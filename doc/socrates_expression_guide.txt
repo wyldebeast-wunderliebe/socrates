@@ -1,0 +1,369 @@
+##############################################################################
+#
+# Socrates Expression guide
+#
+##############################################################################
+
+Contents
+--------
+1. Introduction
+2. Data types
+3. Operations
+4. Functions
+
+
+1. Introduction
+---------------
+
+Socrates QE provides the use of expressions to determine the status of
+a specific node (variable) in terms of requiredness, relevance,
+readonly-ness, an item's constraint and to use a calculation to
+determine a node's value. This is in line with the XForms
+specification. The expression engine used in socrates-impl however (as
+implemented in com.w20e.socrates.expression), is not according to the
+XForms specs, due to the requirements by which Socrates was built. The
+epxression engine is largely based on languages like Python and
+JavaScript, and should hold no surprises for people used working with
+those.
+
+The expression language is syntactically defined as follows:
+
+expr ::= identifier
+     ::= number
+     ::= 'string'
+     ::= function
+     ::= (expr)
+     ::= prefix expr
+     ::= expr infix expr
+
+function ::= name([arg [, arg]*])
+arg ::= expr
+prefix ::= - | not
+infix ::= and | or | xor | + | - | * | /
+
+Prefix is also know as unary operation, infix as binary operation.
+All operations, as shown above, take either a core datatype as
+argument, or another expression. This way arbitrary complex
+expressions may be created. Brackets may help to determine scope of
+expressions.
+
+Example:
+  1 + (4 - 23)
+  true() and (1 - (23 - 3.0))
+
+The following sections describe the operations, functions and
+datatypes in detail. When examples are given, anything after '=>' is
+intended to show the result of the example. Sometimes the name of the
+operation is different from it's notation. If this is the case, the
+notation is shown.
+
+
+2.0 Data types
+--------------
+
+There is three base data types for the expression library:
+
+- number, represented as 20, 13.4, etc.
+- string, represented as 'xxx'
+- boolean, represented as false() or true().
+
+Other than that, you can refer to a variable in the instance by it's
+identifier, so to refer to a variable in the instance called foo,
+simply say: foo (without single quotes).
+
+The three core types can be freely compared to one another, using the
+same liberal approach as XForms, so, for example:
+
+  '' is equal to false()
+  'xxx' is equal to true()
+  0 is equal to false()
+  20 is equal to true()
+  '0' is equal to 0
+
+Whenever the outcome of function or operation or a variable reference
+(the variable doesn't exist) is undefined, a special value 'Undef' is
+used. Undef is only equal to another Undef.
+
+
+3.0 Operations
+--------------
+
+3.1 Unary operations (Prefixes)
+------------------------------
+
+3.1.1 - (minus)
+---------------
+'-' makes the following numeric argument a negative.
+Usage examples:
+  - 20 => -20
+
+
+3.1.2 not
+---------
+'not' negates the following argument.
+Usage examples:
+  not true() => false()
+  not false() => true()
+
+
+3.2 Binary operations (Infixes)
+-------------------------------
+
+3.2.1 and
+---------
+'and' evaluates to a true value if both it's arguments evaluate to
+true, otherwise it evaluates to a false value.
+Usage examples:
+  0 and 'pipo' => false()
+  'pipo' and 'mamaloe' => true()
+  true() and false() => false()
+
+3.2.2 or
+--------
+'or' evaluates to a true value if one of it's arguments evaluates to
+true, otherwise it evaluates to a false value.
+Usage examples:
+  1 or 0 => true()
+  false() or false() => false()
+
+3.2.3 + (plus)
+--------------
+'+' adds it's two arguments.
+Notation: <expr> + <expr>
+Usage examples:
+  1 + 3 => 4
+  1 + 'pipo' => Undef
+
+3.2.4 - (minus)
+---------------
+'-' subtracts it's right operand from the left operand.
+Notation: <expr> - <expr>
+Usage examples:
+  1 - 5 => -4
+  10 - 2.3 => 7.7
+
+3.2.5 divide
+------------
+Divedes left operand by right operand.
+Notation: <expr> / <expr>
+Usage examples:
+  'pipo' / 5 => Undef
+  10 / 2 => 5
+
+
+3.2.6 multiply
+--------------
+Multiplies left operand by right operand.
+Notation: <expr> * <expr>
+Usage examples:
+  4 * 5 => 20
+
+3.2.7 modulo
+------------
+Takes modulo of left operand by right operand
+Notation: <expr> mod <expr>
+Usage examples:
+  10 mod 3 => 1
+  8 mod 5 => 3
+
+3.2.8 equals
+------------
+Determines whether left and right operand are equal.
+Notation: <expr> = <expr>
+Usage examples:
+  10 = (20 - 10) => true()
+
+3.2.9 notequals
+------------
+Determines whether left and right operand are not equal.
+Notation: <expr> 1= <expr>
+Usage examples:
+  10 != (20 - 10) => false()
+  12 != 10 => true()
+
+3.2.10 greater than
+------------------
+Determines whether left operand is greater than right operand.
+Notation: <expr> > <expr>
+Usage examples:
+  10 > 5 => true()
+  'bb' > 'aa' => true()
+
+3.2.11 greater than or equal
+----------------------------
+Determines whether left operand is greater than or equal to right operand.
+Notation: <expr> >= <expr>
+Usage examples:
+  10 >= 5 => true()
+  'bb' >= 'aa' => true()
+  'aa' >= 'aa' => true()
+
+3.2.12 less than
+------------------
+Determines whether left operand is less than right operand.
+Notation: <expr> < <expr>
+Usage examples:
+  10 < 5 => false()
+  'bb' < 'aa' => false()
+
+3.2.13 less than or equal
+----------------------------
+Determines whether left operand is less than or equal to right operand.
+Notation: <expr> <= <expr>
+Usage examples:
+  10 <= 5 => false()
+  'bb' <= 'aa' => false()
+  'aa' <= 'aa' => true()
+
+3.2.14 max
+----------
+Return maximum value of operands.
+Usage example:
+  max(1, 10) => 10
+
+3.2.15 min
+----------
+Return minimum value of operands.
+Usage example:
+  min(1, 10) => 1
+
+
+3.3 Ternary operarions
+----------------------
+
+There is one ternary operation: if/then/else. This enables complex
+if/then/else stamements.
+
+3.3.1 If/then/else
+------------------
+Check if left operand is true. If so use middle operand, otherwise use
+right operand.
+Notations: test(<expr>, <expr>, <expr>) | if(<expr>, <expr>, <expr>)
+Usage examples:
+  if(true(), 1, 'pipo') => 1
+  if(0, 2, if(1, 3, 4)) => 3
+
+
+4.0 Functions
+-------------
+
+4.1 round
+---------
+Rounds of numeric argument to nearest integer, if no decimal places is
+given, otherwise rounds off to decimal places.
+Usage examples:
+  round(3.2) => 3
+  round('pipo') => Undef
+  round(3.444, 2) => 3.44
+
+4.2 str
+-------
+Shows raw string representation of operand without evaluating first.
+Usage examples:
+  str(datetime('01/04/2009', 'dd/MM/yyyy')) => '01/04/2009'
+
+4.3 sum
+-------
+Sums all operands.
+Notation: sum(<epxr>, <expr>, ...)
+Usage example:
+  sum(1,3,5) => 9
+  sum(10, 0, -5) => 5
+
+4.4 randomint
+-------------
+Takes a random integer from a given range, between start (inclusive)
+and end (exclusive). Start and end are optional. If one argument is
+given, it is assumed to be the end marker. It start marker is not
+given, it is 0.
+Notation: random([start], [end])
+Usage examples:
+  random(5, 10) => integer 5, 6, 7,8 or 9
+  random(10) => integer 0 till 9
+  random() => any integer starting from 0
+
+4.5 datetime
+------------
+
+Create datetime, based on either given string and format, or just
+current time.
+
+Usage examples:
+  datetime() => Current date
+  datetime('01/04/2006', 'dd/MM/yyyy') => yields first of april, 2006
+
+4.6 eval
+--------
+Evaluates given argument as expression
+Usage examples:
+  eval('1 + 4') => 5
+
+4.7 exp
+-------
+Return e to the power of given operand.
+Usage example:
+  exp(10)
+
+4.8 map
+-------
+Map first operand to map specified by other operands. The map function
+takes operands[1..n] in pairs, using first as key, second of value.
+Usage examples:
+  map('a', 'a', 1, 'b', 2) => 1
+  map(var, 'a', 1, 'b', 2) => 2, assuming variable var is 'b'
+
+4.9 format
+----------
+Format operands [1..n] according to format string given as first operand.
+
+Format codes:
+  %s : string
+  %f : float
+  %i : int
+  %tY : year
+  %tm : month
+  %td : day
+
+Usage examples:
+  format('--%s--', 'pipo') => '--pipo--'
+  format('%tY', datetime()) => 2010 (or whatever the current year is...)
+
+4.10 matches
+------------
+
+Determine whether left operand (string) is matcheb by regular
+expression (right operand).
+Usage examples:
+  matches('xxx', 'x*') => true()
+
+4.11 ceil
+---------
+
+Determine int ceiling of argument (a.k.a. round up).
+Usage examples:
+  ceil(4.3) => 5
+  ceil(4.8) => 5
+
+
+4.12 floor
+----------
+
+Determine int floor of argument (a.k.a. round down).
+Usage examples:
+  floor(4.3) => 4
+  floor(4.8) => 4
+
+
+4.13 substr
+-----------
+
+Get substring from a given string. This takes at least one, at most
+three arguments. The first argument is the string to use, the second
+argument is the start position (first is 0), the second is the end
+position. If the end position is omitted, the default is the end of
+the string; if the start is also omitted, the default is 0.
+
+Usage examples:
+  substr("foobar") => "foobar"
+  substr("foobar", 2) => "obar"
+  substr("foobar", 2, 5) => "oba"

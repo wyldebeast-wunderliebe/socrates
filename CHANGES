@@ -1,3 +1,9 @@
+4.0.0 
+===== 
+* Collapsed socrates-impl into this package. There's no point in
+  keeping a separate interfaces packages, given that there will ever
+  only one implementation...      
+
 3.2.6
 =====
 * Added cfg to statemanager init

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<instance>
+  <meta name="lala" value="pipo"/>
+  <meta name="created" value="19/06/2009"/>
+  <meta name="status" value="timeout"/>
+
+  <!-- broken xml for test -->
+  <foo>1<foo>
+  <bar>xxxx</bar>
+  
+</instance>
