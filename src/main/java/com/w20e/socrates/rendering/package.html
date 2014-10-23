@@ -1,0 +1,26 @@
+<html>
+
+  <head>
+    <title>Socrates rendering</title>
+  </head>
+
+  <body>
+
+    <h1>Socrates Rendering</h1>
+
+	The rendering API defines the core concepts in the layout and visible
+	(audible?) structure of a questionnaire, as well as the components used to
+	expose the questionnaire to the end user. In general, a questionnaire will 
+	be presented in a visual way, but the rendering API doesn't only support
+	that use.
+	
+	Rendering is defined in terms of a RenderConfig object, that can hold Control
+	objects, arbitrarily nested within Group objects. A Control is bound to one or
+	more Node objects from an Instance by it's bind expression. The Control is
+	responsible for processing user input into the underlying data. For instance,
+	a date widget can convert a user input string into a date object: the Control
+	is the only part that can actually know how it's data is represented for user input 
+	and  how the given data should be processed.
+	
+  </body>
+</html>

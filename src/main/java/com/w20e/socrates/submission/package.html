@@ -1,0 +1,27 @@
+<html>
+
+<head>
+  <title>Socrates Submission</title>
+</head>
+
+<body>
+  <h1>Socrates Submission</h1>
+
+  Submission is the process of handling, or rather storing instance data. In
+  the XForms terminology
+  submission means sending the data off to some handler, be it a file, or http
+  call. In the Socrates terminology, submission is also handled by a protocol
+  specific handler, but since the instance data remains (largely) on the server
+  side, there is no need to send off data over a web protocol particularly.
+
+  Submission should in general only be performed when it is assured that all
+  data is valid. This is handled by the model; whenever the last question is
+  answered, it may be safely assumed that all data is valid as far as the model
+  is concerned.
+
+  Submission handlers are registered with the HandlerManager: this manager
+  determines what handler to use, when a specific protocol is needed for
+  submission.
+
+</body>
+</html>

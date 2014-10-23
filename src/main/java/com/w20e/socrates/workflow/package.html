@@ -1,0 +1,47 @@
+<html>
+
+<head>
+  <title>Socrates Workflow</title>
+</head>
+
+<body>
+  <h1>Socrates Workflow</h1>
+
+  Socrates uses a workflow processor to be able to implement a full
+  trajectory of pre- and postprocessing steps for a given
+  questionnaire. This could for example include logging in before
+  filling in a questionnaire, and by the end of the questionnaire
+  filling in some other data, and sending some data off to an SMTP
+  server.
+
+  The process is roughly comparable to a FSA: the set of states is the
+  set of actions that can be performed, transitions are over the
+  result of an action perfomered. The alfabet for the workflow is
+  usually just 'ok' and 'fail'. Initial state is the first action to
+  be performed, and final states are those where no action is left,
+  given a specific mapping.
+
+  <h2>Processing steps</h2>
+
+  The Workflow is build up from processing steps. These steps have
+  been named 'Actions'. Every action yields a result that can be used
+  to determine the next action to take, or the transition to the next
+  action.
+
+  The questionnaire or Model itself is also part of the
+  workflow. In general for running a questionnaire, one would need at least
+  the steps: Render, Validate and Next. Render
+  basically renders whatever there is to be rendered to some
+  outputstream, Validate is used to validate incoming data against the
+  Model, and finally, Next determines change of state accordingly. If
+  Validate fails, the Next action is skipped, so that Render is called
+  again with the same item.
+
+  <h2>Process denifition</h2>
+
+  The process is defined in an XML file. This file describes the
+  actions, and provides mappings from one action to another, given a
+  specific result of the previous action.
+
+</body>
+</html>

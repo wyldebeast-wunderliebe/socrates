@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Socrates Data</title>
+  </head>
+  <body>
+
+	This API holds the Socrates Data concepts, like the Instance, Node (see XForms
+	definition), and DataType for assigning types to data elements.
+	The Instance is a container of Node objects, that are both ordered sequentially
+	and hierarchically. In general, the Instance implementation is expected to
+	enable questioning of nodes in an XPath kind of way, so that single nodes, but
+	also groups can be selected.
+
+	DataType is implemented as fly-weight, with the DataType interface defining a
+	stateless possibility to 'eval' an object against a type. The type is defined
+	in terms of restrictions and transformations. Usually, first all transformations
+	should be executed, than the restriction checked.
+
+  	The LexicalTransformation interface is used to define transformations to the
+  	lexical space of a Questionnaire, that is, the representation of a value for
+  	human consumption.
+
+  </body>
+ </html>

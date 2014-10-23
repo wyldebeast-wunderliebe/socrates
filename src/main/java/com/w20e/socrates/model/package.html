@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Socrates Model</title>
+  </head>
+
+  <body>
+
+    This package holds the Socrates core concepts. The package is
+    structured with XForms in mind, and as a package is like
+    org.w3c.dom: the package specifies only interfaces, needed by the
+    Socrates engine.
+
+    At the core of Socrates lie the concepts of Model and Instance:
+    the Instance holds all data items, or Nodes, the Model holds all
+    logic concerning the data items, like type constraints, relevance
+    rules, requiredness rules, etc., wrapped in ItemProperties.
+
+    The last core concept provided is the Submission interface. This
+    is needed to tell where data is to be stored.
+
+    As a convenience, the Questionnaire interface is provided. This interface
+    provides a wrapper specification for runnable instances of
+    Model/Instance/Rendering combinations. However, feel free to do it
+    your own way...
+
+  </body>
+</html>

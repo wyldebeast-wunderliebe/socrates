@@ -1,0 +1,17 @@
+3.2.6
+=====
+* Added cfg to statemanager init
+
+3.2.5
+=====
+* Added unset method to ProcessContent
+
+
+3.2.3
+=====
+* Removed options from formatter init
+
+
+3.2.1
+=====
+* Added model param to call of submit in submission handler interface.
