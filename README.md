@@ -1,0 +1,4 @@
+socrates
+========
+
+Socrates core API
