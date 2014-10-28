@@ -28,7 +28,8 @@ public class TestOr extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.op = new Or();
     this.trueBool = new XBoolean(true);

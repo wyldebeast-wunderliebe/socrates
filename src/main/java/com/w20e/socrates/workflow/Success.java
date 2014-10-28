@@ -33,7 +33,8 @@ public class Success extends ActionResultImpl {
    * @see ActionResultImpl.OK
    * @return a <code>String</code> value
    */
-  public final String toString() {
+  @Override
+public final String toString() {
 
     return ActionResultImpl.OK;
   }

@@ -32,7 +32,8 @@ public class TestRenderState extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.instance = new InstanceImpl();
 

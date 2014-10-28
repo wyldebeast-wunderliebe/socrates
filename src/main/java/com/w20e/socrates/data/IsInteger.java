@@ -26,6 +26,7 @@ public class IsInteger implements Restriction {
 	 *            object to check.
 	 * @return whether integer or not.
 	 */
+	@Override
 	public final boolean eval(final Object value) {
 
 		if (value instanceof Integer) {

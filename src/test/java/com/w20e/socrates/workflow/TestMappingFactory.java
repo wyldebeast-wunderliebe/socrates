@@ -32,7 +32,8 @@ public class TestMappingFactory extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.fac = new MappingFactory();
     this.act = new ActionFactory();

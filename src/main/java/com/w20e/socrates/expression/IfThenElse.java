@@ -32,6 +32,7 @@ public class IfThenElse extends AbstractTernaryOperationImpl {
 	 * 
 	 * @return the boolean representation of this operation.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		if (getLeftOperand().toBoolean()) {
@@ -45,6 +46,7 @@ public class IfThenElse extends AbstractTernaryOperationImpl {
 	 * 
 	 * @return the string representation of this operation.
 	 */
+	@Override
 	public final String toString() {
 
 		return getLeftOperand().toString() + " ? "
@@ -57,6 +59,7 @@ public class IfThenElse extends AbstractTernaryOperationImpl {
 	 * 
 	 * @return the XObject evaluation of this operation.
 	 */
+	@Override
 	public final XObject eval() {
 
 		if (getLeftOperand().toBoolean()) {

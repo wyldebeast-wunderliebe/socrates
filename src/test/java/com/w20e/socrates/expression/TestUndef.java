@@ -7,7 +7,8 @@ public class TestUndef extends TestCase {
 
   private Undef undef;
   
-  public void setUp() {
+  @Override
+public void setUp() {
     
     this.undef = new Undef();
   }

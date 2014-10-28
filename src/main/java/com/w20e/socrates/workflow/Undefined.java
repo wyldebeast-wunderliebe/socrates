@@ -34,7 +34,8 @@ public class Undefined extends ActionResultImpl {
    * @see ActionResultImpl.UNDEFINED
    * @return a <code>String</code> value
    */
-  public final String toString() {
+  @Override
+public final String toString() {
 
     return ActionResultImpl.UNDEFINED;
   }

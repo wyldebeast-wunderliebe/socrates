@@ -28,7 +28,8 @@ public class TestAnd extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.op = new And();
     this.trueBool = new XBoolean(true);

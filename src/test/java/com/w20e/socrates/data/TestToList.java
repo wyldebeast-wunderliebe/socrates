@@ -9,6 +9,7 @@ public class TestToList extends TestCase {
 
 	ToList tl;
 	
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		

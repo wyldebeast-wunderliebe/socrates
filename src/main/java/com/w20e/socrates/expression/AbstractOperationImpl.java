@@ -48,6 +48,7 @@ public abstract class AbstractOperationImpl extends AbstractExpressionImpl imple
 	 * 
 	 * @return the left operand of the operation.
 	 */
+	@Override
 	public final Expression getLeftOperand() {
 
 		if (this.lVal == null) {
@@ -61,6 +62,7 @@ public abstract class AbstractOperationImpl extends AbstractExpressionImpl imple
 	 * 
 	 * @return the right operand of the operation.
 	 */
+	@Override
 	public final Expression getRightOperand() {
 
 		if (this.rVal == null) {
@@ -75,6 +77,7 @@ public abstract class AbstractOperationImpl extends AbstractExpressionImpl imple
 	 * @param lval
 	 *            the left operand for the operation.
 	 */
+	@Override
 	public final void setLeftOperand(final Expression val) {
 
 		this.lVal = val;
@@ -86,6 +89,7 @@ public abstract class AbstractOperationImpl extends AbstractExpressionImpl imple
 	 * @param rval
 	 *            the right operand for the operation.
 	 */
+	@Override
 	public final void setRightOperand(final Expression val) {
 
 		this.rVal = val;

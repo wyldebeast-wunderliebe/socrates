@@ -29,6 +29,7 @@ public class Divide extends AbstractOperationImpl {
 	 * 
 	 * @return the boolean representation of the division.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		return eval().toBoolean();
@@ -40,6 +41,7 @@ public class Divide extends AbstractOperationImpl {
 	 * @return the left operand's string representation followed by ' * ' and
 	 *         the right operand's string representation.
 	 */
+	@Override
 	public final String toString() {
 
 		return getLeftOperand().toString() + " / "
@@ -51,6 +53,7 @@ public class Divide extends AbstractOperationImpl {
 	 * 
 	 * @return the XObject that is the result of the evaluation.
 	 */
+	@Override
 	public final XObject eval() {
 
 		return new XNumber(new Double(getLeftOperand().eval().toNumber()

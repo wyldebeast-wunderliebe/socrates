@@ -118,6 +118,7 @@ public final class ExpressionCompiler implements Compiler {
 	 * @param arg0
 	 *            numeric value
 	 */
+	@Override
 	public Object number(final String arg0) {
 
 		if (arg0.indexOf('.') == -1) {
@@ -133,6 +134,7 @@ public final class ExpressionCompiler implements Compiler {
 	 * @param arg0
 	 *            string
 	 */
+	@Override
 	public Object literal(final String arg0) {
 
 		return new XString(arg0);
@@ -147,6 +149,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            dunno
 	 * @return arg1
 	 */
+	@Override
 	public Object qname(final String arg0, final String arg1) {
 
 		return arg1;
@@ -159,6 +162,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            summation operands
 	 * @return summation operation
 	 */
+	@Override
 	public Object sum(final Object[] arg0) {
 
 		return sum(0, arg0);
@@ -198,6 +202,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            right operand
 	 * @return new minus operation
 	 */
+	@Override
 	public Object minus(final Object arg0, final Object arg1) {
 
 		Operation op = new Minus();
@@ -216,6 +221,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            right operand
 	 * @return multiply operation
 	 */
+	@Override
 	public Object multiply(final Object arg0, final Object arg1) {
 
 		Operation op = new Multiply();
@@ -234,6 +240,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            right operand
 	 * @return division operation
 	 */
+	@Override
 	public Object divide(final Object arg0, final Object arg1) {
 
 		Operation op = new Divide();
@@ -252,6 +259,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            right operand
 	 * @return new module operation
 	 */
+	@Override
 	public Object mod(final Object arg0, final Object arg1) {
 
 		Operation op = new Modulo();
@@ -270,6 +278,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            right operand
 	 * @return new LT operation
 	 */
+	@Override
 	public Object lessThan(final Object arg0, final Object arg1) {
 
 		Operation op = new LT();
@@ -288,6 +297,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            right operand
 	 * @return new LTE operation
 	 */
+	@Override
 	public Object lessThanOrEqual(final Object arg0, final Object arg1) {
 
 		Operation op = new LTE();
@@ -306,6 +316,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            right operand
 	 * @return new GT operation
 	 */
+	@Override
 	public Object greaterThan(final Object arg0, final Object arg1) {
 
 		Operation op = new GT();
@@ -324,6 +335,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            right operand
 	 * @return new GTE operation
 	 */
+	@Override
 	public Object greaterThanOrEqual(final Object arg0, final Object arg1) {
 
 		Operation op = new GTE();
@@ -342,6 +354,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            right operand
 	 * @return new Equals operation
 	 */
+	@Override
 	public Object equal(final Object arg0, final Object arg1) {
 
 		Operation op = new Equals();
@@ -360,6 +373,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            right operand
 	 * @return new notequals operation
 	 */
+	@Override
 	public Object notEqual(final Object arg0, final Object arg1) {
 
 		Operation op = new NotEquals();
@@ -376,6 +390,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            left operand for minus.
 	 * @return new Unary minus
 	 */
+	@Override
 	public Object minus(final Object arg0) {
 
 		Operation op = new Minus();
@@ -392,6 +407,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            dunno
 	 * @return null
 	 */
+	@Override
 	public Object variableReference(final Object arg0) {
 
 		return null;
@@ -406,6 +422,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            dunno
 	 * @return new XBoolean
 	 */
+	@Override
 	public Object function(final int arg0, final Object[] arg1) {
 
 	    //System.out.print(arg0);
@@ -450,6 +467,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            arguments
 	 * @return the function or false if unknown.
 	 */
+	@Override
 	public Object function(final Object arg0, final Object[] arg1) {
 
 	    //System.out.println("2 " + arg0);
@@ -568,6 +586,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            left and right operands.
 	 * @return new and object.
 	 */
+	@Override
 	public Object and(final Object[] arg0) {
 		return and(0, arg0);
 	}
@@ -609,6 +628,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            left and right operands.
 	 * @return new or object.
 	 */
+	@Override
 	public Object or(final Object[] arg0) {
 
 		return or(0, arg0);
@@ -651,6 +671,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            left and right operands.
 	 * @return new union object.
 	 */
+	@Override
 	public Object union(final Object[] arg0) {
 
 		return or(arg0);
@@ -663,6 +684,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            dunno
 	 * @return atg0.
 	 */
+	@Override
 	public Object nodeNameTest(final Object arg0) {
 
 		return arg0;
@@ -675,6 +697,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            dunno
 	 * @return null.
 	 */
+	@Override
 	public Object nodeTypeTest(final int arg0) {
 
 		return null;
@@ -687,6 +710,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            dunno
 	 * @return null
 	 */
+	@Override
 	public Object processingInstructionTest(final String arg0) {
 
 		return null;
@@ -703,6 +727,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            dunno
 	 * @return step object
 	 */
+	@Override
 	public Object step(final int arg0, final Object arg1, final Object[] arg2) {
 
 		// System.out.println("Step " + arg1 + ", " + arg2.length);
@@ -718,6 +743,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            elements of the path
 	 * @return a new XRef object
 	 */
+	@Override
 	public Object locationPath(final boolean arg0, final Object[] arg1) {
 
 		String res = "";
@@ -740,6 +766,7 @@ public final class ExpressionCompiler implements Compiler {
 	 *            dunno
 	 * @return expressionpath object.
 	 */
+	@Override
 	public Object expressionPath(final Object arg0, final Object[] arg1,
 			final Object[] arg2) {
 

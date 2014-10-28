@@ -30,6 +30,7 @@ public class NullToZeroAsFloat implements LexicalTransformation {
 	 *            object to transform.
 	 * @return 0 if the argument is null, or the argument itself otherwise.
 	 */
+	@Override
 	public final XObject transform(final XObject obj, Locale locale) {
 
 		if (obj.toObject() == null) {

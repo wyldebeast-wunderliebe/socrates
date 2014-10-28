@@ -53,6 +53,7 @@ public class XString extends AbstractXObjectImpl {
 	 * 
 	 * @return the <code>java.lang.String</code> object wrapped by this class.
 	 */
+	@Override
 	public final String toString() {
 
 		return this.str;
@@ -64,6 +65,7 @@ public class XString extends AbstractXObjectImpl {
 	 * 
 	 * @return the wrapped <code>Number</code> object
 	 */
+	@Override
 	public final Number toNumber() {
 
 		try {
@@ -85,6 +87,7 @@ public class XString extends AbstractXObjectImpl {
 	 *            The expression to use for comparison.
 	 * @return integer value indicating result of comparison
 	 */
+	@Override
 	public final int compareTo(final Expression expr) {
 
 		if (expr == null) {
@@ -112,6 +115,7 @@ public class XString extends AbstractXObjectImpl {
 	 *            The expression to use in equality check.
 	 * @return the boolean representation of this object.
 	 */
+	@Override
 	public final boolean equals(final Object obj) {
 
 		if (!(obj instanceof Expression)) {
@@ -127,6 +131,7 @@ public class XString extends AbstractXObjectImpl {
 	 * 
 	 * @return boolean representation of this object.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		if ("".equals(this.str) || this.str == null) {
@@ -142,6 +147,7 @@ public class XString extends AbstractXObjectImpl {
 	 * 
 	 * @return the wrapped String object
 	 */
+	@Override
 	public final Object toObject() {
 
 		return this.str;

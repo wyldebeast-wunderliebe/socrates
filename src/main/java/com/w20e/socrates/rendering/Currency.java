@@ -22,6 +22,7 @@ public class Currency extends ControlImpl {
 	 * Return display value for this control. This should return the underlying
 	 * value formatted for locale.
 	 */
+	@Override
 	public Object getDisplayValue(Object value, Class<?> datatype, Locale locale) {
 
 		try {

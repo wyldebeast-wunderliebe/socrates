@@ -54,6 +54,7 @@ public class Replace implements Transformation {
 	 *            string to use in replacement
 	 * @return new string.
 	 */
+	@Override
 	public final Object transform(final Object obj) {
 
 		return this.pat.matcher(obj.toString()).replaceAll(this.str);
@@ -66,6 +67,7 @@ public class Replace implements Transformation {
 	 *            string to use in replacement
 	 * @return new string.
 	 */
+	@Override
 	public final Object transform(final Object obj, final Locale l) {
 
 		return this.transform(obj);

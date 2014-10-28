@@ -57,7 +57,8 @@ public class SubmissionImpl implements Submission, Serializable {
    *
    * @return a <code>String</code> value
    */
-  public final String getMethod() {
+  @Override
+public final String getMethod() {
 
     return this.method;
   }
@@ -77,7 +78,8 @@ public class SubmissionImpl implements Submission, Serializable {
    *
    * @return a <code>String</code> value
    */
-  public final String getId() {
+  @Override
+public final String getId() {
 
     return this.id;
   }
@@ -97,7 +99,8 @@ public class SubmissionImpl implements Submission, Serializable {
    *
    * @return a <code>URL</code> value
    */
-  public final URI getAction() {
+  @Override
+public final URI getAction() {
 
     return this.action;
   }
@@ -107,7 +110,8 @@ public class SubmissionImpl implements Submission, Serializable {
    *
    * @param newAction a <code>URI</code> value
    */
-  public final void setAction(final URI newAction) {
+  @Override
+public final void setAction(final URI newAction) {
 
     this.action = newAction;
   }

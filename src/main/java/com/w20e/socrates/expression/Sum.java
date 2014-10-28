@@ -2,6 +2,7 @@ package com.w20e.socrates.expression;
 
 public class Sum extends AbstractFunctionImpl {
 
+	@Override
 	public String toString() {
 
 		return "sum(" + this.getOperandsString() + ")";
@@ -10,6 +11,7 @@ public class Sum extends AbstractFunctionImpl {
 	/**
 	 * Evaluate given summation.
 	 */
+	@Override
 	public XObject eval() {
 		
 		double sum = 0;
@@ -24,6 +26,7 @@ public class Sum extends AbstractFunctionImpl {
 	/**
 	 * Boolean representation of this summation.
 	 */
+	@Override
 	public boolean toBoolean() {
 
 		return eval().toBoolean();

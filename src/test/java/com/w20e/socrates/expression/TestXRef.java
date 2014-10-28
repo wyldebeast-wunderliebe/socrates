@@ -33,7 +33,8 @@ public class TestXRef extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.inst = new InstanceImpl();
     

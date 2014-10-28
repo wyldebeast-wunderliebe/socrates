@@ -67,7 +67,8 @@ public final class XMLFileSubmissionHandler implements SubmissionHandler {
      * @throws SubmissionException
      *             in case the data can't be processed.
      */
-    public void submit(final Instance data, final Model model, final Submission submission)
+    @Override
+	public void submit(final Instance data, final Model model, final Submission submission)
             throws SubmissionException {
 
         LOGGER.fine("Storing instance");

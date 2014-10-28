@@ -11,7 +11,7 @@
 
 package com.w20e.socrates.workflow;
 
-import org.apache.commons.digester.AbstractObjectCreationFactory;
+import org.apache.commons.digester3.AbstractObjectCreationFactory;
 import org.xml.sax.Attributes;
 
 /**

@@ -30,6 +30,7 @@ public class Max extends AbstractOperationImpl {
 	 * @return true if the operation is evaluated to a non-zero value, else
 	 *         return false.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		return eval().toBoolean();
@@ -40,6 +41,7 @@ public class Max extends AbstractOperationImpl {
 	 * 
 	 * @return the string representation of this operation.
 	 */
+	@Override
 	public final String toString() {
 
 		return "max(" + getLeftOperand().toString() + ", "
@@ -53,6 +55,7 @@ public class Max extends AbstractOperationImpl {
 	 * @return the XObject that is the result of this evaluation. In case of
 	 *         this operation this is always an XNumber.
 	 */
+	@Override
 	public final XObject eval() {
 
 		return new XNumber(new Double(Math.max(getLeftOperand().eval()

@@ -61,6 +61,7 @@ public class ProcessContextImpl implements ProcessContext {
 	 *            an <code>Object</code> value
 	 * @return an <code>Object</code> value
 	 */
+	@Override
 	public final Object getProperty(final String name, final Object defaultValue) {
 
 		if (this.properties.containsKey(name)) {
@@ -77,6 +78,7 @@ public class ProcessContextImpl implements ProcessContext {
 	 *            a <code>String</code> value
 	 * @return an <code>Object</code> value
 	 */
+	@Override
 	public final Object getProperty(final String name) {
 
 		return this.properties.get(name);
@@ -91,12 +93,14 @@ public class ProcessContextImpl implements ProcessContext {
 	 *            an <code>Object</code> value
 	 * @return an <code>Object</code> value
 	 */
+	@Override
 	public final Object setProperty(final String name, final Object value) {
 
 		return this.properties.put(name, value);
 	}
 
 	
+	@Override
 	public final Object unsetProperty(final String name) {
 
 		return this.properties.remove(name);
@@ -109,6 +113,7 @@ public class ProcessContextImpl implements ProcessContext {
 	 * @param context
 	 *            a <code>ProcessContext</code> value
 	 */
+	@Override
 	public final void addContext(final ProcessContext context) {
 
 		this.properties.putAll(context.getProperties());
@@ -119,6 +124,7 @@ public class ProcessContextImpl implements ProcessContext {
 	 * 
 	 * @return an <code>ActionResult</code> value
 	 */
+	@Override
 	public final ActionResult getResult() {
 
 		return this.result;
@@ -130,6 +136,7 @@ public class ProcessContextImpl implements ProcessContext {
 	 * @param newResult
 	 *            an <code>ActionResult</code> value
 	 */
+	@Override
 	public final void setResult(final ActionResult newResult) {
 
 		this.result = newResult;
@@ -140,6 +147,7 @@ public class ProcessContextImpl implements ProcessContext {
 	 * 
 	 * @return current action
 	 */
+	@Override
 	public final ProcessAction getCurrentAction() {
 
 		return this.currentAction;
@@ -151,6 +159,7 @@ public class ProcessContextImpl implements ProcessContext {
 	 * @param action
 	 *            current action.
 	 */
+	@Override
 	public final void setCurrentAction(final ProcessAction action) {
 
 		this.currentAction = action;

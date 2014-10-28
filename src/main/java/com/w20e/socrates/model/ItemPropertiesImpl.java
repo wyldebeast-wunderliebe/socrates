@@ -19,6 +19,9 @@
 
 package com.w20e.socrates.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.w20e.socrates.expression.Expression;
 import com.w20e.socrates.expression.XBoolean;
 import com.w20e.socrates.data.XSString;
@@ -37,7 +40,7 @@ public class ItemPropertiesImpl implements ItemProperties {
     /**
      * Bind expression for this properties.
      */
-    private String bind;
+    private List<String> bind;
 
     /**
      * Type to use for this properties. Defaults to 'XSString'.
@@ -85,6 +88,7 @@ public class ItemPropertiesImpl implements ItemProperties {
     public ItemPropertiesImpl(final String propsId) {
 
         this.id = propsId;
+        this.bind = new ArrayList<String>();
     }
 
     /**
@@ -92,7 +96,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * 
      * @return Properties id
      */
-    public final String getId() {
+    @Override
+	public final String getId() {
 
         return this.id;
     }
@@ -102,7 +107,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * 
      * @return the item type class, like XSString or XSBoolean.
      */
-    public final Class<?> getType() {
+    @Override
+	public final Class<?> getType() {
 
         return this.type;
     }
@@ -113,7 +119,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * @param itemType
      *            a <code>Class</code> value
      */
-    public final void setType(final Class<?> itemType) {
+    @Override
+	public final void setType(final Class<?> itemType) {
 
         this.type = itemType;
     }
@@ -124,7 +131,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * 
      * @return p3p type
      */
-    public final String getP3PType() {
+    @Override
+	public final String getP3PType() {
 
         return this.p3pType;
     }
@@ -136,7 +144,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * @param t
      *            The type to use for p3p.
      */
-    public final void setP3PType(final String t) {
+    @Override
+	public final void setP3PType(final String t) {
 
         this.p3pType = t;
     }
@@ -147,7 +156,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * @param expr
      *            an <code>Expression</code> value
      */
-    public final void setReadOnly(final Expression expr) {
+    @Override
+	public final void setReadOnly(final Expression expr) {
 
         this.readonly = expr;
     }
@@ -157,7 +167,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * 
      * @return an <code>Expression</code> value
      */
-    public final Expression getReadOnly() {
+    @Override
+	public final Expression getReadOnly() {
 
         return this.readonly;
     }
@@ -168,7 +179,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * @param expr
      *            an <code>Expression</code> value
      */
-    public final void setRequired(final Expression expr) {
+    @Override
+	public final void setRequired(final Expression expr) {
 
         this.required = expr;
     }
@@ -178,7 +190,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * 
      * @return an <code>Expression</code> value
      */
-    public final Expression getRequired() {
+    @Override
+	public final Expression getRequired() {
 
         return this.required;
     }
@@ -189,7 +202,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * @param expr
      *            an <code>Expression</code> value
      */
-    public final void setRelevant(final Expression expr) {
+    @Override
+	public final void setRelevant(final Expression expr) {
 
         this.relevant = expr;
     }
@@ -199,7 +213,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * 
      * @return an <code>Expression</code> value
      */
-    public final Expression getRelevant() {
+    @Override
+	public final Expression getRelevant() {
 
         return this.relevant;
     }
@@ -210,7 +225,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * 
      * @return possibly a complex Expression
      */
-    public final Expression getConstraint() {
+    @Override
+	public final Expression getConstraint() {
 
         return this.constraint;
     }
@@ -221,7 +237,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * @param expr
      *            an <code>Expression</code> value
      */
-    public final void setConstraint(final Expression expr) {
+    @Override
+	public final void setConstraint(final Expression expr) {
 
         this.constraint = expr;
     }
@@ -232,7 +249,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * @param e
      *            expression to use.
      */
-    public final void setCalculate(final Expression e) {
+    @Override
+	public final void setCalculate(final Expression e) {
 
         this.calculate = e;
     }
@@ -242,7 +260,8 @@ public class ItemPropertiesImpl implements ItemProperties {
      * 
      * @return expression.
      */
-    public final Expression getCalculate() {
+    @Override
+	public final Expression getCalculate() {
 
         return this.calculate;
     }
@@ -252,8 +271,9 @@ public class ItemPropertiesImpl implements ItemProperties {
      * 
      * @param bind
      */
-    public void setBind(String newBind) {
-        this.bind = newBind;
+    public void addBind(String bind) {
+    	
+        this.bind.add(bind);
     }
 
     /**
@@ -261,7 +281,9 @@ public class ItemPropertiesImpl implements ItemProperties {
      * 
      * @param bind
      */
-    public String getBind() {
-        return bind;
+    @Override
+	public List<String> getBind() {
+
+        return this.bind;
     }
 }

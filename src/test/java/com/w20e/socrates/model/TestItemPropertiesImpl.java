@@ -25,7 +25,8 @@ public class TestItemPropertiesImpl extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.props = new ItemPropertiesImpl("id");
   }
@@ -99,7 +100,7 @@ public class TestItemPropertiesImpl extends TestCase {
 
   public void testSetBind() {
 	  
-	  this.props.setBind("somebind");
-	  assertEquals("somebind", this.props.getBind());
+	  this.props.addBind("somebind");
+	  assertEquals("somebind", this.props.getBind().get(0));
   }
 }

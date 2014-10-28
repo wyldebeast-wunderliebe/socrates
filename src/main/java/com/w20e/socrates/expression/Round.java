@@ -32,7 +32,8 @@ public class Round extends AbstractFunctionImpl {
      * @return true if the operation is evaluated to a non-zero value, else
      *         return false.
      */
-    public final boolean toBoolean() {
+    @Override
+	public final boolean toBoolean() {
 
         return eval().toBoolean();
     }
@@ -42,7 +43,8 @@ public class Round extends AbstractFunctionImpl {
      * 
      * @return the string representation of this operation.
      */
-    public final String toString() {
+    @Override
+	public final String toString() {
 
         return "round(" + getOperandsString() + ")";
     }
@@ -54,7 +56,8 @@ public class Round extends AbstractFunctionImpl {
      * @return the XObject that is the result of this evaluation. In case of
      *         this operation this is always an XNumber.
      */
-    public final XObject eval() {
+    @Override
+	public final XObject eval() {
 
         final Expression[] ops = getOperands();
         

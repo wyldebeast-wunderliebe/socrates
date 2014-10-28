@@ -26,7 +26,8 @@ public class TestRunnerContext extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.ctx = new RunnerContextImpl(null, null, null, null, null, null);
   }

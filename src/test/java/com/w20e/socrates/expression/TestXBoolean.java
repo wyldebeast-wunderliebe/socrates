@@ -23,7 +23,8 @@ public class TestXBoolean extends TestCase {
         super(name);
     }
 
-    public void setUp() {
+    @Override
+	public void setUp() {
 
         this.bool = new XBoolean(true);
     }

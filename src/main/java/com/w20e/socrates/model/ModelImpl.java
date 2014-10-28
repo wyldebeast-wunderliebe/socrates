@@ -69,7 +69,8 @@ public class ModelImpl implements Model {
      * @param modelId
      *            Id for the model.
      */
-    public void setId(final String modelId) {
+    @Override
+	public void setId(final String modelId) {
 
         this.id = modelId;
     }
@@ -79,7 +80,8 @@ public class ModelImpl implements Model {
      * 
      * @return model id
      */
-    public String getId() {
+    @Override
+	public String getId() {
 
         return this.id;
     }
@@ -92,7 +94,8 @@ public class ModelImpl implements Model {
      *            bind id for the item properties.
      * @return the ItemProperties found, or null if none found.
      */
-    public ItemProperties getItemProperties(final String propsId) {
+    @Override
+	public ItemProperties getItemProperties(final String propsId) {
 
         return this.propsMap.get(propsId);
     }
@@ -116,7 +119,8 @@ public class ModelImpl implements Model {
      * 
      * @return a <code>Submission</code> value
      */
-    public Submission getSubmission() {
+    @Override
+	public Submission getSubmission() {
 
         return this.submission;
     }
@@ -127,7 +131,8 @@ public class ModelImpl implements Model {
      * @param sub
      *            Submission to use.
      */
-    public void setSubmission(final Submission sub) {
+    @Override
+	public void setSubmission(final Submission sub) {
 
         this.submission = sub;
     }
@@ -137,7 +142,8 @@ public class ModelImpl implements Model {
      * 
      * @return all item properties.
      */
-    public Collection<ItemProperties> getAllItemProperties() {
+    @Override
+	public Collection<ItemProperties> getAllItemProperties() {
 
         return this.propsMap.values();
     }
@@ -147,7 +153,8 @@ public class ModelImpl implements Model {
      * 
      * @return meta data as map
      */
-    public Map<String, String> getMetaData() {
+    @Override
+	public Map<String, String> getMetaData() {
 
         return this.metadata;
     }

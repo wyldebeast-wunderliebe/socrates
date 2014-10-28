@@ -47,6 +47,7 @@ public class XList extends AbstractXObjectImpl implements Iterable<Expression> {
 	 * 
 	 * @return the <code>java.lang.String</code> object wrapped by this class.
 	 */
+	@Override
 	public final String toString() {
 
 		return this.members.toString();
@@ -58,6 +59,7 @@ public class XList extends AbstractXObjectImpl implements Iterable<Expression> {
 	 * 
 	 * @return the wrapped <code>Number</code> object
 	 */
+	@Override
 	public final Number toNumber() {
 
 		return this.members.size();
@@ -75,6 +77,7 @@ public class XList extends AbstractXObjectImpl implements Iterable<Expression> {
 	 *            The expression to use for comparison.
 	 * @return integer value indicating result of comparison
 	 */
+	@Override
 	public final int compareTo(final Expression expr) {
 
 		if (expr == null) {
@@ -111,6 +114,7 @@ public class XList extends AbstractXObjectImpl implements Iterable<Expression> {
 	 *            The expression to use in equality check.
 	 * @return the boolean representation of this object.
 	 */
+	@Override
 	public final boolean equals(final Object obj) {
 
 		if (!(obj instanceof Expression)) {
@@ -126,6 +130,7 @@ public class XList extends AbstractXObjectImpl implements Iterable<Expression> {
 	 * 
 	 * @return boolean representation of this object.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		return this.members.size() > 0;
@@ -136,6 +141,7 @@ public class XList extends AbstractXObjectImpl implements Iterable<Expression> {
 	 * 
 	 * @return the wrapped String object
 	 */
+	@Override
 	public final Object toObject() {
 
 		return this.members;
@@ -151,6 +157,7 @@ public class XList extends AbstractXObjectImpl implements Iterable<Expression> {
 		return this.members.contains(obj);
 	}
 	
+	@Override
 	public Iterator<Expression> iterator() {
 		
 		return this.members.iterator();

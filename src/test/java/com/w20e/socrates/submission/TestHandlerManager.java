@@ -38,7 +38,8 @@ public class TestHandlerManager extends TestCase {
     /*
      * @see TestCase#setUp()
      */
-    protected void setUp() throws Exception {
+    @Override
+	protected void setUp() throws Exception {
         super.setUp();
 
         this.mgr = HandlerManager.getInstance();
@@ -80,7 +81,8 @@ public class TestHandlerManager extends TestCase {
 
     private static class FileSubmissionHandler implements SubmissionHandler {
 
-        public void submit(Instance data, Model model, Submission submission) {
+        @Override
+		public void submit(Instance data, Model model, Submission submission) {
             // We don't need this here.
         }
     }

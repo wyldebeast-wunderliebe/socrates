@@ -32,7 +32,8 @@ public class NotEquals extends AbstractOperationImpl {
    *
    * @return boolean representation of evaluating the expression.
    */
-  public final boolean toBoolean() {
+  @Override
+public final boolean toBoolean() {
 
     return !getLeftOperand().eval().equals(getRightOperand().eval());
   }
@@ -42,7 +43,8 @@ public class NotEquals extends AbstractOperationImpl {
    *
    * @return String representation of evaluating the expression.
    */
-  public final String toString() {
+  @Override
+public final String toString() {
 
     return getLeftOperand().toString() + " != " + getRightOperand().toString();
   }
@@ -52,7 +54,8 @@ public class NotEquals extends AbstractOperationImpl {
    *
    * @return the XObject result of evaluation.
    */
-  public final XObject eval() {
+  @Override
+public final XObject eval() {
 
     return new XBoolean(toBoolean());
   }

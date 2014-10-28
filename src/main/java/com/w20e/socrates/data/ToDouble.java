@@ -12,6 +12,7 @@
 package com.w20e.socrates.data;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Locale;
 
 /**
@@ -30,6 +31,7 @@ public class ToDouble implements Transformation {
 	 *            object to convert.
 	 * @return float object
 	 */
+	@Override
 	public final Object transform(final Object obj) {
 
 		if (obj == null || "".equals(obj.toString()) || obj.toString() == null) {
@@ -39,9 +41,10 @@ public class ToDouble implements Transformation {
 		return Double.valueOf(obj.toString());
 	}
 
+	@Override
 	public final Object transform(final Object obj, final Locale locale) {
 		try {
-			return DecimalFormat.getInstance(locale)
+			return NumberFormat.getInstance(locale)
 					.parseObject(obj.toString());
 		} catch (Exception e) {
 			return null;

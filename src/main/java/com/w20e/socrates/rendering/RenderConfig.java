@@ -16,6 +16,7 @@ public interface RenderConfig extends RenderableContainer {
 	 * 
 	 * @return collection of renderable items.
 	 */
+	@Override
 	List<Renderable> getItems();
 
 	/**

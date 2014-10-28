@@ -44,7 +44,8 @@ public class Format implements Transformation, LexicalTransformation {
    * @return string representation of this object, according to the format
    * string.
    */
-  public final Object transform(final Object obj) {
+  @Override
+public final Object transform(final Object obj) {
 
     return String.format(this.format, new Object[] {obj});
   }
@@ -56,7 +57,8 @@ public class Format implements Transformation, LexicalTransformation {
    * @return string representation of this object, according to the format
    * string.
    */
-  public final Object transform(final Object obj, final Locale l) {
+  @Override
+public final Object transform(final Object obj, final Locale l) {
 
     return String.format(l, this.format, new Object[] {obj});
   }
@@ -68,7 +70,8 @@ public class Format implements Transformation, LexicalTransformation {
    * @return string representation of this object, according to the format
    * string.
    */
-  public final XObject transform(final XObject obj, Locale l) {
+  @Override
+public final XObject transform(final XObject obj, Locale l) {
 
     return new XString(String.format(l, this.format, new Object[] {obj.toNumber()}));
   }

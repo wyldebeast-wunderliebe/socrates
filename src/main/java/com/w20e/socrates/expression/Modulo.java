@@ -29,6 +29,7 @@ public class Modulo extends AbstractOperationImpl {
 	 * 
 	 * @return boolean representation of this operation.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		return eval().toBoolean();
@@ -39,6 +40,7 @@ public class Modulo extends AbstractOperationImpl {
 	 * 
 	 * @return String representation of this operation.
 	 */
+	@Override
 	public final String toString() {
 
 		return getLeftOperand().toString() + " % "
@@ -50,6 +52,7 @@ public class Modulo extends AbstractOperationImpl {
 	 * 
 	 * @return the evaluated result as XObject.
 	 */
+	@Override
 	public final XObject eval() {
 
 		return new XNumber(new Double(getLeftOperand().eval().toNumber()

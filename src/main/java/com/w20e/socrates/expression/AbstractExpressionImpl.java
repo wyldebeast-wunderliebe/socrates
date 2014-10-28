@@ -29,6 +29,7 @@ public abstract class AbstractExpressionImpl implements Expression {
 	 * 
 	 * @return the string representation of the expression.
 	 */
+	@Override
 	public abstract String toString();
 
 	/**
@@ -39,6 +40,7 @@ public abstract class AbstractExpressionImpl implements Expression {
 	 * 
 	 * @return the type of the operation.
 	 */
+	@Override
 	public final String getType() {
 
 		return this.getClass().getName().substring(

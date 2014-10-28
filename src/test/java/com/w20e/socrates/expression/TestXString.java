@@ -23,7 +23,8 @@ public class TestXString extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.str = new XString("foo");
   }

@@ -31,6 +31,7 @@ public class Floor extends AbstractUnaryOperationImpl {
 	 * @return true if the operation is evaluated to a non-zero value, else
 	 *         return false.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		return eval().toBoolean();
@@ -41,6 +42,7 @@ public class Floor extends AbstractUnaryOperationImpl {
 	 * 
 	 * @return the string representation of this operation.
 	 */
+	@Override
 	public final String toString() {
 
 		return "floor(" + getLeftOperand().toString() + ")";
@@ -52,6 +54,7 @@ public class Floor extends AbstractUnaryOperationImpl {
 	 * @return the XObject that is the result of this evaluation. In case of
 	 *         this operation this is always an XNumber.
 	 */
+	@Override
 	public final XObject eval() {
 
 		return new XNumber(Double.valueOf(Math.floor(getLeftOperand().eval()

@@ -29,7 +29,8 @@ public class TestMultiply extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.num0 = new XNumber(Integer.valueOf(10));
     this.num1 = new XNumber(Integer.valueOf(5));

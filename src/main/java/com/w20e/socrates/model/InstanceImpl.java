@@ -121,7 +121,8 @@ public class InstanceImpl implements Instance {
      * 
      * @return id of the instance
      */
-    public final String getId() {
+    @Override
+	public final String getId() {
 
         return this.id;
     }
@@ -137,7 +138,8 @@ public class InstanceImpl implements Instance {
      *             when the matching algorithm used cannot parse this
      *             expression.
      */
-    public final List<Node> getNodes(final String pathExpr)
+    @Override
+	public final List<Node> getNodes(final String pathExpr)
             throws InvalidPathExpression {
 
         if (!this.matcher.containsWildcard(pathExpr)) {
@@ -159,7 +161,8 @@ public class InstanceImpl implements Instance {
      * 
      * @return a list of all nodes
      */
-    public final List<Node> getAllNodes() {
+    @Override
+	public final List<Node> getAllNodes() {
 
         return this.nodes;
     }
@@ -176,15 +179,16 @@ public class InstanceImpl implements Instance {
      *            a tree like path query.
      * @return the Node requested or null if not found.
      */
-    public final Node getNode(final String pathExpr)
+    @Override
+	public final Node getNode(final String pathExpr)
             throws InvalidPathExpression {
 
         if (!this.matcher.containsWildcard(pathExpr)) {
             if (this.nodeMap.containsKey(pathExpr)) {
-                return (Node) this.nodeMap.get(pathExpr).get(0);
+                return this.nodeMap.get(pathExpr).get(0);
             }
         }
-        return (Node) this.matcher.matchFirst(pathExpr, this.nodes);
+        return this.matcher.matchFirst(pathExpr, this.nodes);
     }
 
     /**
@@ -206,7 +210,8 @@ public class InstanceImpl implements Instance {
      * 
      * @return meta data map.
      */
-    public final Map<String, Object> getMetaData() {
+    @Override
+	public final Map<String, Object> getMetaData() {
 
         return this.metaData;
     }

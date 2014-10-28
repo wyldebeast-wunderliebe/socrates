@@ -22,7 +22,8 @@ public class TestProcessContextImpl extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.ctx = new ProcessContextImpl();
   }

@@ -24,7 +24,8 @@ public class TestNodeValidator extends TestCase {
     ModelImpl model;
     InstanceImpl instance;
 
-    public void setUp() {
+    @Override
+	public void setUp() {
 
         this.model = new ModelImpl();
         this.instance = new InstanceImpl();

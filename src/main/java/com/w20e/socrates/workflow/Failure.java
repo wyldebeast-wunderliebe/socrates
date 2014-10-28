@@ -58,6 +58,7 @@ public class Failure extends ActionResultImpl {
 	 * @see ActionResultImpl.FAIL
 	 * @return a <code>String</code> value
 	 */
+	@Override
 	public final String toString() {
 
 		return ActionResultImpl.FAIL;

@@ -27,6 +27,7 @@ public class ToInteger implements Transformation {
 	 * @return Integer object.
 	 * @throws TransformationException
 	 */
+	@Override
 	public final Object transform(final Object obj)
 			throws TransformationException {
 
@@ -45,6 +46,7 @@ public class ToInteger implements Transformation {
 		}
 	}
 
+	@Override
 	public final Object transform(final Object obj, final Locale locale)
 			throws TransformationException {
 		return this.transform(obj);

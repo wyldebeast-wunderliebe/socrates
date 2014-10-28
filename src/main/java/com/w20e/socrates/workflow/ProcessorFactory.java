@@ -22,7 +22,7 @@ package com.w20e.socrates.workflow;
 import java.net.URL;
 import java.util.Vector;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 
 /**
  * This factory class creates Processor objects from an XML definition. See the

@@ -25,7 +25,8 @@ public class IsFloat implements Restriction {
    * @param value object to check.
    * @return whether integer or not.
    */
-  public final boolean eval(final Object value) {
+  @Override
+public final boolean eval(final Object value) {
 
     if (value instanceof Float) {
       return true;

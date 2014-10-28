@@ -26,7 +26,8 @@ public class TestSubmissionImpl extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.sub = new SubmissionImpl();
   }

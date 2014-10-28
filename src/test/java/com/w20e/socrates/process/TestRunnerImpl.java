@@ -31,8 +31,6 @@ import java.util.Vector;
 import junit.framework.TestCase;
 
 import org.apache.commons.configuration.Configuration;
-import org.apache.commons.configuration.ConfigurationBuilder;
-
 import com.w20e.socrates.data.Instance;
 import com.w20e.socrates.data.Node;
 import com.w20e.socrates.expression.XBoolean;
@@ -78,6 +76,7 @@ public class TestRunnerImpl extends TestCase {
 		super(name);
 	}
 
+	@Override
 	public void setUp() {
 
 		// Let's create a model, so as to test some complex
@@ -447,10 +446,12 @@ public class TestRunnerImpl extends TestCase {
 
 	private static class Formatter0 implements Formatter {
 
+		@Override
 		public void init(Configuration cfg) {
 			// We don't care.
 		}
 
+		@Override
 		public void format(Collection<Renderable> items, OutputStream out,
 				RunnerContext context) throws FormatException {
 			
@@ -476,6 +477,7 @@ public class TestRunnerImpl extends TestCase {
 
 		Model m;
 
+		@Override
 		public void init(Configuration cfg, RenderConfig newCfg, Model newM, Instance newInst) {
 			this.cfg = (RenderConfigImpl) newCfg;
 			this.m = newM;
@@ -483,6 +485,7 @@ public class TestRunnerImpl extends TestCase {
 			this.i = this.cfg.getItems().iterator();
 		}
 
+		@Override
 		public RenderStateImpl next() throws NoSuchElementException {
 
 			if (!this.i.hasNext()) {
@@ -516,29 +519,35 @@ public class TestRunnerImpl extends TestCase {
 			return this.curr;
 		}
 
+		@Override
 		public RenderState previous() {
 			return null;
 		}
 
+		@Override
 		public RenderState current() {
 
 			return this.curr;
 		}
 
+		@Override
 		public boolean setState(RenderState state) {
 			return false;
 			// whatever...
 		}
 
+		@Override
 		public boolean setStateById(String stateId) {
 		    return false;
 		    // whatever...
 	    }
 
+		@Override
 		public boolean hasNext() {
 			return true;
 		}
 
+		@Override
 		public boolean hasPrevious() {
 			return true;
 		}
@@ -557,10 +566,12 @@ public class TestRunnerImpl extends TestCase {
 			this.items.add(i);
 		}
 
+		@Override
 		public List<Renderable> getItems() {
 			return this.items;
 		}
 
+		@Override
 		public Renderable getItem(String id) {
 			return null;
 		}

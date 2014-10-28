@@ -70,7 +70,8 @@ implements UnaryOperation {
    * Set left operand for this Eval.
    * @param l Left operand.
    */
-  public final void setLeftOperand(final Expression l) {
+  @Override
+public final void setLeftOperand(final Expression l) {
     this.lv = l;
   }
 
@@ -81,7 +82,8 @@ implements UnaryOperation {
    * @return Left Operand for this expression. This will first parse
    * the eval'ed result of the left operand as string.
    */
-  public final Expression getLeftOperand() {
+  @Override
+public final Expression getLeftOperand() {
 
     try {
       return (Expression) Parser.parseExpression(
@@ -96,7 +98,8 @@ implements UnaryOperation {
    * Return string representation of the Eval.
    * @return Left operand unparsed, as string.
    */
-  public final String toString() {
+  @Override
+public final String toString() {
 
     return this.lv.toString();
   }
@@ -105,7 +108,8 @@ implements UnaryOperation {
    * Return Boolean representation for this Eval.
    * @return boolean representation of this expression.
    */
-  public final boolean toBoolean() {
+  @Override
+public final boolean toBoolean() {
 
      return eval().toBoolean();
   }
@@ -114,7 +118,8 @@ implements UnaryOperation {
    * Evaluate the left operand. This will call resolving first, and then
    * @return the eval'ed result.
    */
-  public final XObject eval() {
+  @Override
+public final XObject eval() {
 
     try {
       return XRefSolver.resolve(this.model, this.instance,

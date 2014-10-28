@@ -53,6 +53,7 @@ public class XNumber extends AbstractXObjectImpl {
 	 * 
 	 * @return the wrapped <code>Number</code> object
 	 */
+	@Override
 	public final Number toNumber() {
 
 		return Double.valueOf(this.num.doubleValue());
@@ -68,6 +69,7 @@ public class XNumber extends AbstractXObjectImpl {
 	 *            the expresssion to compare to.
 	 * @return the integer value indicating comparison result.
 	 */
+	@Override
 	public final int compareTo(final Expression expr) {
 	    
 	    if (this.num == null) {
@@ -96,6 +98,7 @@ public class XNumber extends AbstractXObjectImpl {
 	 *            The expression to use in equality check.
 	 * @return the boolean representation of this object.
 	 */
+	@Override
 	public final boolean equals(final Object obj) {
 
 	    if (! (obj instanceof Expression)) {
@@ -111,6 +114,7 @@ public class XNumber extends AbstractXObjectImpl {
 	 * 
 	 * @return the <code>boolean</code> representation of this XNumber.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		if (this.num == null || this.num.floatValue() == 0.0) {
@@ -126,6 +130,7 @@ public class XNumber extends AbstractXObjectImpl {
 	 * 
 	 * @return the <code>String</code> representation of this XNumber.
 	 */
+	@Override
 	public final String toString() {
 
 		if (this.num == null) {
@@ -139,6 +144,7 @@ public class XNumber extends AbstractXObjectImpl {
 	 * 
 	 * @return Number object wrapped by this XObject.
 	 */
+	@Override
 	public final Object toObject() {
 
 		return this.num;

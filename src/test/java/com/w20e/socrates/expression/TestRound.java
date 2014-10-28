@@ -23,7 +23,8 @@ public class TestRound extends TestCase {
   private Round round;
   
   
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.round = new Round();
     

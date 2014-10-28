@@ -60,6 +60,7 @@ public class RenderStateImpl implements RenderState {
 	 * Return all items contained by this page. Items may be plain items, or
 	 * groups.
 	 */
+	@Override
 	public final Collection<Renderable> getItems() {
 
 		return this.items;
@@ -69,6 +70,7 @@ public class RenderStateImpl implements RenderState {
 	 * Return the unique id for this state.
 	 * @return
 	 */
+	@Override
 	public String getId() {
 
 		return this.id;

@@ -29,6 +29,7 @@ public class Not extends AbstractUnaryOperationImpl {
 	 * 
 	 * @return true iff the operand evaluates to false;
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		if (getLeftOperand() instanceof Undef) {
@@ -43,6 +44,7 @@ public class Not extends AbstractUnaryOperationImpl {
 	 * 
 	 * @return '!' and the string representation of the operand.
 	 */
+	@Override
 	public final String toString() {
 
 		return "not(" + getLeftOperand().toString() + ")";
@@ -53,6 +55,7 @@ public class Not extends AbstractUnaryOperationImpl {
 	 * 
 	 * @return the result of evaluating the operation.
 	 */
+	@Override
 	public final XObject eval() {
 
 		return new XBoolean(toBoolean());

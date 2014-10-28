@@ -35,6 +35,7 @@ public abstract class AbstractFunctionImpl extends AbstractExpressionImpl
 	 * 
 	 * @return the operands of the operation.
 	 */
+	@Override
 	public final Expression[] getOperands() {
 
 		return this.args.clone();

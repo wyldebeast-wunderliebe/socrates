@@ -6,6 +6,7 @@ public class TestMap extends TestCase {
 
 	Map map;
 	
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 

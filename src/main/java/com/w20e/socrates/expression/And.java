@@ -32,6 +32,7 @@ public class And extends AbstractOperationImpl {
 	 * 
 	 * @return the boolean representation of this operation.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		return getLeftOperand().toBoolean() && getRightOperand().toBoolean();
@@ -42,6 +43,7 @@ public class And extends AbstractOperationImpl {
 	 * 
 	 * @return the string representation of this operation.
 	 */
+	@Override
 	public final String toString() {
 
 		return getLeftOperand().toString() + " and "
@@ -53,6 +55,7 @@ public class And extends AbstractOperationImpl {
 	 * 
 	 * @return the XObject evaluation of this operation.
 	 */
+	@Override
 	public final XObject eval() {
 
 		return new XBoolean(toBoolean());

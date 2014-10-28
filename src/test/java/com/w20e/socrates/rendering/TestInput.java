@@ -37,6 +37,7 @@ public class TestInput extends TestCase {
 		super(name);
 	}
 
+	@Override
 	public void setUp() {
 		this.item = new Input("#ID#");
 	}

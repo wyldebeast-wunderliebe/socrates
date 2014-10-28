@@ -36,6 +36,7 @@ public abstract class AbstractXObjectImpl extends AbstractExpressionImpl
 	 * 
 	 * @return the XObject evaluation of this object.
 	 */
+	@Override
 	public final XObject eval() {
 
 		return this;
@@ -44,6 +45,7 @@ public abstract class AbstractXObjectImpl extends AbstractExpressionImpl
 	/**
 	 * Override hashCode by using hashCode of embedded object.
 	 */
+	@Override
 	public final int hashCode() {
 
 		return this.eval().toObject().hashCode();

@@ -4,6 +4,7 @@ package com.w20e.socrates.expression;
 
 public class Map extends AbstractFunctionImpl {
 
+	@Override
 	public String toString() {
 
 	    final StringBuffer buff = new StringBuffer("map(");
@@ -23,6 +24,7 @@ public class Map extends AbstractFunctionImpl {
 	/**
 	 * Evaluate given summation.
 	 */
+	@Override
 	public XObject eval() {
 
         try {
@@ -44,6 +46,7 @@ public class Map extends AbstractFunctionImpl {
 	/**
 	 * Boolean representation of this summation.
 	 */
+	@Override
 	public boolean toBoolean() {
 
 		return eval().toBoolean();

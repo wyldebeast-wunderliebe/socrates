@@ -30,6 +30,7 @@ public class TestDataHandler extends TestCase {
 	private ItemProperties props;
 
 	
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 

@@ -27,6 +27,7 @@ public class Or extends AbstractOperationImpl {
 	 * 
 	 * @return the boolean representation of this operation.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		return getLeftOperand().toBoolean() || getRightOperand().toBoolean();
@@ -37,6 +38,7 @@ public class Or extends AbstractOperationImpl {
 	 * 
 	 * @return the string representation of this operation.
 	 */
+	@Override
 	public final String toString() {
 
 		return getLeftOperand().toString() + " or "
@@ -48,6 +50,7 @@ public class Or extends AbstractOperationImpl {
 	 * 
 	 * @return the evaluated expression.
 	 */
+	@Override
 	public final XObject eval() {
 
 		return new XBoolean(toBoolean());

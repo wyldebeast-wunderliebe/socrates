@@ -12,6 +12,7 @@ public class TestCurrency extends TestCase {
 
 	private Currency curr;
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		this.curr = new Currency("curr");

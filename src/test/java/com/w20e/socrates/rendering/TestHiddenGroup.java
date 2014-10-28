@@ -6,6 +6,7 @@ public class TestHiddenGroup extends TestCase {
 
 	private HiddenGroup grp;
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 

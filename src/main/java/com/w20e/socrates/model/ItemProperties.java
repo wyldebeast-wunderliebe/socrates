@@ -19,6 +19,8 @@
 
 package com.w20e.socrates.model;
 
+import java.util.List;
+
 import com.w20e.socrates.expression.Expression;
 
 /**
@@ -43,7 +45,7 @@ public interface ItemProperties {
      * 
      * @return id of the item properties
      */
-    String getBind();
+    List<String> getBind();
 
 	/**
 	 * Return the type for this item. This is an implementation of the XForms

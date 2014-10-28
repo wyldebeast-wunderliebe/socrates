@@ -20,6 +20,7 @@ public class Sample extends AbstractFunctionImpl {
 	/**
 	 * String representation of random.
 	 */
+	@Override
 	public String toString() {
 
 		return "sample(" + this.getOperandsString() + ")";
@@ -30,6 +31,7 @@ public class Sample extends AbstractFunctionImpl {
 	 * argument. If there is no arguments, or the sample size is larger than the
 	 * population, the result is undefined.
 	 */
+	@Override
 	public XObject eval() {
 
 		if (this.getOperands().length < 1) {
@@ -66,6 +68,7 @@ public class Sample extends AbstractFunctionImpl {
 	/**
 	 * Return false if eval's to false.
 	 */
+	@Override
 	public boolean toBoolean() {
 
 		return eval().toBoolean();

@@ -72,7 +72,8 @@ public final class SimplePathMatcher implements PathMatcher {
    *          The list to use for keys.
    * @return a list of objects requested through a pathExpr.
    */
-  public List<Node> match(final String pathExpr, final Collection<Node> list) {
+  @Override
+public List<Node> match(final String pathExpr, final Collection<Node> list) {
 
     List<Node> results = new ArrayList<Node>();
 
@@ -99,7 +100,8 @@ public final class SimplePathMatcher implements PathMatcher {
    * @return true or false, stating whether a pathExpr matches
    *          the requested path
    */
-  public boolean matches(final String pathExpr, final String path) {
+  @Override
+public boolean matches(final String pathExpr, final String path) {
 
     return (createPattern(pathExpr).matcher(path).matches());
   }
@@ -135,7 +137,8 @@ public final class SimplePathMatcher implements PathMatcher {
    * @param list list of objects to use.
    * @return macthing object
    */
-  public Node matchFirst(final String pathExpr, final List<Node> list) {
+  @Override
+public Node matchFirst(final String pathExpr, final List<Node> list) {
 
     Pattern pat = createPattern(pathExpr);
 
@@ -160,7 +163,8 @@ public final class SimplePathMatcher implements PathMatcher {
    * @param pathExpr expression to test.
    * @return whether the expression contains wildcards
    */
-  public boolean containsWildcard(final String pathExpr) {
+  @Override
+public boolean containsWildcard(final String pathExpr) {
 
     if (pathExpr.indexOf('*') != -1 || pathExpr.indexOf('?') != -1) {
       return true;

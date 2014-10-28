@@ -23,7 +23,8 @@ public class TestSimplePathMatcher extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.matcher = SimplePathMatcher.getInstance();
   }

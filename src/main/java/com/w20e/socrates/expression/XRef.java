@@ -92,6 +92,7 @@ public class XRef extends AbstractExpressionImpl implements XObject {
 	 * @TODO The to number stuff should actually first get the underlying value,
 	 *       and then convert it to a number.
 	 */
+	@Override
 	public final Number toNumber() {
 
 		return TypeChecker.evaluate(
@@ -123,6 +124,7 @@ public class XRef extends AbstractExpressionImpl implements XObject {
 	 *            The Expression to compare with
 	 * @return the integer value indicating comparison result.
 	 */
+	@Override
 	public final int compareTo(final Expression expr) {
 
 		// Just call underlying object...
@@ -138,6 +140,7 @@ public class XRef extends AbstractExpressionImpl implements XObject {
 	 *            The Object to evaluate.
 	 * @return the boolean representation of this object.
 	 */
+	@Override
 	public final boolean equals(final Object obj) {
 
 		if (!(obj instanceof Expression)) {
@@ -153,6 +156,7 @@ public class XRef extends AbstractExpressionImpl implements XObject {
 	 * 
 	 * @return the <code>boolean</code> representation of this XNumber.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		return TypeChecker.evaluate(
@@ -166,6 +170,7 @@ public class XRef extends AbstractExpressionImpl implements XObject {
 	 * 
 	 * @return the <code>String</code> representation of this XRef.
 	 */
+	@Override
 	public final String toString() {
 
 		return TypeChecker.evaluate(
@@ -179,11 +184,13 @@ public class XRef extends AbstractExpressionImpl implements XObject {
 	 * 
 	 * @return Node value, converted with class.
 	 */
+	@Override
 	public final Object toObject() {
 
 		return getValue().toObject();
 	}
 
+	@Override
 	public XObject eval() {
 
 		return getValue();
@@ -192,6 +199,7 @@ public class XRef extends AbstractExpressionImpl implements XObject {
 	/**
 	 * Override Object hashCode.
 	 */
+	@Override
 	public final int hashCode() {
 
 		return this.toObject().hashCode();

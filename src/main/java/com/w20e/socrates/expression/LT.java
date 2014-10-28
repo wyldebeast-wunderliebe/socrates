@@ -29,6 +29,7 @@ public class LT extends AbstractOperationImpl {
 	 * 
 	 * @return the boolean representation of the evaluated operation.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		return getLeftOperand().eval().compareTo(getRightOperand().eval()) < 0;
@@ -41,6 +42,7 @@ public class LT extends AbstractOperationImpl {
    *
    * @return the boolean representation of the evaluated operation.
    */
+	@Override
 	public final String toString() {
 
 		return getLeftOperand().toString() + " < "
@@ -52,6 +54,7 @@ public class LT extends AbstractOperationImpl {
 	 * 
 	 * @return the XBoolean result of evaluating the operation.
 	 */
+	@Override
 	public final XObject eval() {
 
 		return new XBoolean(toBoolean());

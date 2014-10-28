@@ -10,7 +10,8 @@ public class TestToInteger extends TestCase {
 
     private ToInteger i;
 
-    protected void setUp() throws Exception {
+    @Override
+	protected void setUp() throws Exception {
         super.setUp();
 
         this.i = new ToInteger();

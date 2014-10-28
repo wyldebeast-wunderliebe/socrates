@@ -25,7 +25,8 @@ public class TestUndefined extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.result = new Undefined();
   }

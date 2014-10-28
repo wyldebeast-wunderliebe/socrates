@@ -23,7 +23,7 @@ import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.digester.AbstractObjectCreationFactory;
+import org.apache.commons.digester3.AbstractObjectCreationFactory;
 import org.xml.sax.Attributes;
 
 /**
@@ -32,7 +32,7 @@ import org.xml.sax.Attributes;
  * @author <a href="mailto:dokter@wyldebeast">Duco Dokter</a>
  * @version 1.0
  */
-public class ActionFactory extends AbstractObjectCreationFactory {
+public class ActionFactory extends AbstractObjectCreationFactory<Object> {
 
 	/**
 	 * Holds the actions, that can statically be retrieved by other factories,

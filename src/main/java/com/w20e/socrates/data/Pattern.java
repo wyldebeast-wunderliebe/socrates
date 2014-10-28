@@ -41,6 +41,7 @@ public class Pattern implements Restriction {
 	 *            string to match.
 	 * @return whether str matches the regular expression.
 	 */
+	@Override
 	public final boolean eval(final Object str) {
 
 		if (this.pat.matcher((String) str).matches()) {

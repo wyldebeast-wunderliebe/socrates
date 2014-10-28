@@ -29,5 +29,6 @@ public interface ActionResult {
 	 * 
 	 * @return a <code>String</code> value
 	 */
+	@Override
 	String toString();
 }

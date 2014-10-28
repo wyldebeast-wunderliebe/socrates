@@ -28,6 +28,7 @@ public class IsBoolean implements Restriction {
 	 *            (case insensitive).
 	 * @return boolean value indicating whether this string could be a boolean.
 	 */
+	@Override
 	public final boolean eval(final Object value) {
 
 		if ("0".equals(value.toString()) || "1".equals(value.toString())

@@ -50,6 +50,7 @@ public class Date extends ControlImpl {
 	 * for this control's id in the map.
 	 * @todo We might need a Locale here...
 	 */
+	@Override
 	public Object processInput(Map<String, Object> data) {
 
 	    if (!data.containsKey(getId())) {
@@ -68,6 +69,7 @@ public class Date extends ControlImpl {
 	 * Return the display value for the given value.
 	 * @todo Should we use the locale to format the date? I would think so...
 	 */
+	@Override
 	public Object getDisplayValue(Object value, Class<?> datatype, Locale locale) {
 
 	    try {

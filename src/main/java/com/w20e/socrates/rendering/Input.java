@@ -38,6 +38,7 @@ public class Input extends ControlImpl {
 	 * for this control's id in the map. If the value in the data map is empty,
 	 * or null, null will be returned.
 	 */
+	@Override
 	public Object processInput(Map<String, Object> data) {
 
 	    if (!data.containsKey(getId())) {
@@ -54,7 +55,8 @@ public class Input extends ControlImpl {
     /**
      * Format the underlying value into something the user might understand.
      */
-    public Object getDisplayValue(Object value, Class<?> datatype, Locale locale) {
+    @Override
+	public Object getDisplayValue(Object value, Class<?> datatype, Locale locale) {
 
         try {
             return TypeChecker.evaluateLexical(datatype, value, locale);

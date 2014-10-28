@@ -11,6 +11,7 @@ public class TestCheckbox extends TestCase {
 
 	Checkbox control;
 	
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		

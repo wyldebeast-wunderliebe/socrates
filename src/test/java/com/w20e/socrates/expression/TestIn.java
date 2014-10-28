@@ -10,6 +10,7 @@ public class TestIn extends TestCase {
 
 	In in;
 	
+	@Override
 	@Before
 	public void setUp() throws Exception {
 		

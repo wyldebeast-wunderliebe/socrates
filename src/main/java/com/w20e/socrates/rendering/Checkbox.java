@@ -35,7 +35,8 @@ public class Checkbox extends ControlImpl {
         setType("checkbox");
     }
 
-    public Object processInput(Map<String, Object> data) {
+    @Override
+	public Object processInput(Map<String, Object> data) {
 
         Object val = data.get(getId());
 
@@ -53,7 +54,8 @@ public class Checkbox extends ControlImpl {
     /**
      * Return lexical value for boolean.
      */
-    public Object getDisplayValue(Object value, Class<?> datatype, Locale locale) {
+    @Override
+	public Object getDisplayValue(Object value, Class<?> datatype, Locale locale) {
 
         try {
             return TypeChecker.evaluateLexical(XSBoolean.class, value, locale);

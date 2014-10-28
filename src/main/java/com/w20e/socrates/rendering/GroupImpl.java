@@ -30,6 +30,7 @@ implements Group {
 	 * @return Returns the items contained by this group, in the order they were
 	 *         added.
 	 */
+	@Override
 	public List<Renderable> getItems() {
 
 		return this.items;
@@ -59,6 +60,7 @@ implements Group {
 	/**
 	 * @return Returns the hint.
 	 */
+	@Override
 	public final String getHint() {
 
 		return this.hint;
@@ -68,6 +70,7 @@ implements Group {
 	 * @param newHint
 	 *            The hint to set.
 	 */
+	@Override
 	public final void setHint(final String newHint) {
 
 		this.hint = newHint;
@@ -76,6 +79,7 @@ implements Group {
 	/**
 	 * @return Returns the label.
 	 */
+	@Override
 	public final String getLabel() {
 
 		return this.label;
@@ -85,6 +89,7 @@ implements Group {
 	 * @param newLabel
 	 *            The hint to set.
 	 */
+	@Override
 	public final void setLabel(final String newLabel) {
 
 		this.label = newLabel;
@@ -100,6 +105,7 @@ implements Group {
 		return this.items.get(pos);
 	}
 
+	@Override
 	public String getType() {
 		return this.getClass().getSimpleName().toLowerCase();
 	}

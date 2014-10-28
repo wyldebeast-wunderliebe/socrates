@@ -33,7 +33,8 @@ public class Multiply extends AbstractOperationImpl {
    * @return boolean evaluation of this expression. This is true iff
    * the result evaluates to a non-zero value.
    */
-  public final boolean toBoolean() {
+  @Override
+public final boolean toBoolean() {
 
     return eval().toBoolean();
   }
@@ -45,7 +46,8 @@ public class Multiply extends AbstractOperationImpl {
    *
    * @return the string representation of this expression.
    */
-  public final String toString() {
+  @Override
+public final String toString() {
 
     return getLeftOperand().toString() + " * " + getRightOperand().toString();
   }
@@ -54,7 +56,8 @@ public class Multiply extends AbstractOperationImpl {
    * Evaluate the operation.
    * @return the evaluated operation as XObject.
    */
-  public final XObject eval() {
+  @Override
+public final XObject eval() {
 
     return new XNumber(
         new Double(getLeftOperand().eval().toNumber().doubleValue()

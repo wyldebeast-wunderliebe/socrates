@@ -11,6 +11,7 @@ import junit.framework.TestCase;
 public class TestTypeChecker extends TestCase {
 
 	
+	@Override
 	@Before
 	public void setUp() throws Exception {
 

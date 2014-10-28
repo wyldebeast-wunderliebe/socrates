@@ -20,7 +20,8 @@ public class TestMaxLength extends TestCase {
 
   private MaxLength max;
 
-  protected void setUp() throws Exception {
+  @Override
+protected void setUp() throws Exception {
 
     super.setUp();
     this.max = new MaxLength(5);

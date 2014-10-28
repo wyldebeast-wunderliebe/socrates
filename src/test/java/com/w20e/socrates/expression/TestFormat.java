@@ -10,7 +10,8 @@ public class TestFormat extends TestCase {
     XNumber num;
     XString str;
     
-    public void setUp() {
+    @Override
+	public void setUp() {
 
         Expression[] ops = {new XString("01-04-2009"), new XString("dd-MM-yyyy")};
         this.dt = new DateTime();

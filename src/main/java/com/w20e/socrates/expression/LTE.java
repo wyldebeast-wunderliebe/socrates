@@ -33,6 +33,7 @@ public class LTE extends AbstractOperationImpl {
 	 * 
 	 * @return the boolean representation of the evaluated operation.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		return getLeftOperand().eval().compareTo(getRightOperand().eval()) <= 0;
@@ -45,6 +46,7 @@ public class LTE extends AbstractOperationImpl {
 	 * 
 	 * @return the string representation of this operation.
 	 */
+	@Override
 	public final String toString() {
 
 		return getLeftOperand().toString() + " <= "
@@ -59,6 +61,7 @@ public class LTE extends AbstractOperationImpl {
 	 *         evalation. In this case this will be an <code>XObject</code> of
 	 *         type <code>XBoolean</code>.
 	 */
+	@Override
 	public final XObject eval() {
 
 		return new XBoolean(toBoolean());

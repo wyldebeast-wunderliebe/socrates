@@ -6,6 +6,7 @@ public class TestRenderableContainerImpl extends TestCase {
 
 	private RenderableContainerImpl container;
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 

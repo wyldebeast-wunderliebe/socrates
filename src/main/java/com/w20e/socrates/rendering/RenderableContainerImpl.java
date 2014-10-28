@@ -17,6 +17,7 @@ implements RenderableContainer {
 	 * @return Returns the items contained by this group, in the order they were
 	 *         added.
 	 */
+	@Override
 	public List<Renderable> getItems() {
 
 		return new ArrayList<Renderable>(items.values());

@@ -13,7 +13,8 @@ public class ActionTestImpl extends AbstractProcessActionImpl {
       super(id);
     }
     
-    public ActionResult exec(ProcessContext ctx)
+    @Override
+	public ActionResult exec(ProcessContext ctx)
       throws ActionExecException {
       
       ctx.setProperty(getId(), "ok");

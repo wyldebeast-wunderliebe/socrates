@@ -78,7 +78,8 @@ public class ModelCacheThread extends Thread {
     /**
      * Start the thread.
      */
-    public final void run() {
+    @Override
+	public final void run() {
 
         LOGGER.finer("Starting thread");
 

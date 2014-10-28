@@ -130,6 +130,7 @@ public final class UTF8ResourceBundleImpl {
 		 * 
 		 * @return keys
 		 */
+		@Override
 		@SuppressWarnings("unchecked")
 		public Enumeration getKeys() {
 
@@ -139,6 +140,7 @@ public final class UTF8ResourceBundleImpl {
 		/**
 		 * Override getString, to prevent nasty null pointer exceptions.
 		 */
+		@Override
 		public String getString(final String key, final String defaultMsg) {
 			try {
 				return this.bundle.getString(key);
@@ -154,6 +156,7 @@ public final class UTF8ResourceBundleImpl {
 		 *            key
 		 * @return value
 		 */
+		@Override
 		protected Object handleGetObject(final String key) {
 
 			String value = (String) this.bundle.handleGetObject(key);

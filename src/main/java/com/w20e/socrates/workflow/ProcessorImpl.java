@@ -85,6 +85,7 @@ public class ProcessorImpl implements Processor {
 	 * 
 	 * @return the initial state.
 	 */
+	@Override
 	public final ProcessAction getInitial() {
 
 		return this.initAction;
@@ -106,6 +107,7 @@ public class ProcessorImpl implements Processor {
 	 * 
 	 * @return the final states
 	 */
+	@Override
 	public final List<ProcessAction> getFinals() {
 
 		return this.finalStates;
@@ -123,6 +125,7 @@ public class ProcessorImpl implements Processor {
 	 * @exception Exception
 	 *                if an error occurs
 	 */
+	@Override
 	public final void next(final ProcessContext ctx) throws ProcessException {
 
 		final ProcessAction action = getNextAction(ctx);
@@ -153,6 +156,7 @@ public class ProcessorImpl implements Processor {
 	 *            process context.
 	 * @return a boolean value indicating whether there is a next thing.
 	 */
+	@Override
 	public final boolean hasNext(final ProcessContext ctx) {
 
 		if (getNextAction(ctx) != null) {
@@ -204,7 +208,7 @@ public class ProcessorImpl implements Processor {
 
 			for (final Iterator<ProcessAction> i = ((Processor) newMapping
 					.getFrom()).getFinals().iterator(); i.hasNext();) {
-				addMapping(new Mapping(((ProcessState) i.next()), newMapping
+				addMapping(new Mapping((i.next()), newMapping
 						.getTo(), newMapping.getCondition()));
 			}
 		} else {
@@ -270,6 +274,7 @@ public class ProcessorImpl implements Processor {
 	 * 
 	 * @return a <code>Map</code> value
 	 */
+	@Override
 	public final Map<ProcessState, Map<String, ProcessState>> getMappings() {
 
 		return this.trans;

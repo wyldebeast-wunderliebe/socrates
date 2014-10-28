@@ -19,6 +19,7 @@ import com.w20e.socrates.expression.XString;
 
 public class DecimalFormat implements LexicalTransformation {
 
+	@Override
 	public XObject transform(final XObject obj, final Locale locale) {
 
 		if (locale == null) {

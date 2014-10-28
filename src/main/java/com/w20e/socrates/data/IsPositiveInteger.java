@@ -26,6 +26,7 @@ public class IsPositiveInteger implements Restriction {
 	 *            object to check.
 	 * @return whether parameter is a non positive integer.
 	 */
+	@Override
 	public final boolean eval(final Object value) {
 
 		if (!(value instanceof Integer)) {

@@ -48,6 +48,7 @@ public abstract class AbstractProcessActionImpl implements ProcessAction {
 	 * 
 	 * @return a <code>String</code> value
 	 */
+	@Override
 	public final String getId() {
 
 		return this.actionId;
@@ -56,6 +57,7 @@ public abstract class AbstractProcessActionImpl implements ProcessAction {
 	/**
 	 * Get property by name.
 	 */
+	@Override
 	public String getProperty(String key) {
 
 		return this.properties.getProperty(key);
@@ -64,6 +66,7 @@ public abstract class AbstractProcessActionImpl implements ProcessAction {
 	/**
 	 * Set property on action.
 	 */
+	@Override
 	public void setProperty(final String key, final String value) {
 
 		this.properties.setProperty(key, value);

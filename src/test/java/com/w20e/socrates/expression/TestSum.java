@@ -6,6 +6,7 @@ public class TestSum extends TestCase {
 
 	private Sum sum;
 	
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		

@@ -52,7 +52,8 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
      * 
      * @return options.
      */
-    public final Collection<Option> getOptions() {
+    @Override
+	public final Collection<Option> getOptions() {
         return this.getOptions(SelectionControl.DEFAULT_OPTION_LIST);
     }
 
@@ -61,7 +62,8 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
      * @param refvalue
      * @return
      */
-    public Collection<Option> getOptions(String refvalue) {
+    @Override
+	public Collection<Option> getOptions(String refvalue) {
 
     	return this.optionlists.get(refvalue).getOptions();
     }
@@ -110,7 +112,8 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
     /**
      * Return vocabulary value.
      */
-    public final Object getDisplayValue(Object value, Class<?> datatype, Locale locale) {
+    @Override
+	public final Object getDisplayValue(Object value, Class<?> datatype, Locale locale) {
 
         if (value == null) {
             return "";
@@ -144,7 +147,8 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
      * depends for it's vocabulary.
      * @return
      */
-    public String getNodeRef() {
+    @Override
+	public String getNodeRef() {
 
         return this.getProperty("noderef");
     }

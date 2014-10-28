@@ -28,7 +28,8 @@ public class NoneSubmissionHandler implements SubmissionHandler {
    * @param submission Submission implementation to use.
    * @throws SubmissionException should never happen :)
    */
-  public final void submit(final Instance data, final Model model, final Submission submission)
+  @Override
+public final void submit(final Instance data, final Model model, final Submission submission)
   throws SubmissionException {
 	  // Do nothing, as the name might have suggested...
   }

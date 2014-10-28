@@ -27,7 +27,8 @@ public class TestNot extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.not = new Not();
     this.trueBool = new XBoolean(true);

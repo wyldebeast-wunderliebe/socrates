@@ -72,6 +72,7 @@ public class Matrix extends GroupImpl implements Vocabulary {
 	 * 
 	 * @return options.
 	 */
+	@Override
 	public final Collection<Option> getOptions() {
 		
 		return this.select.getOptions();
@@ -82,7 +83,8 @@ public class Matrix extends GroupImpl implements Vocabulary {
 	 * @param refvalue
 	 * @return
 	 */
-    public Collection<Option> getOptions(String refvalue) {
+    @Override
+	public Collection<Option> getOptions(String refvalue) {
 
     	return this.select.getOptions(refvalue);
     }
@@ -104,7 +106,8 @@ public class Matrix extends GroupImpl implements Vocabulary {
      * depends for it's vocabulary.
      * @return
      */
-    public String getNodeRef() {
+    @Override
+	public String getNodeRef() {
 
         return this.getProperty("noderef");
     }

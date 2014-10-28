@@ -22,7 +22,8 @@ public class TestNodeImpl extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.node = new NodeImpl("foo");
   }

@@ -20,6 +20,7 @@ public class TestActionExecException extends TestCase {
 		super(name);
 	}
 
+	@Override
 	public void setUp() {
 
 		this.exception = new ActionExecException();

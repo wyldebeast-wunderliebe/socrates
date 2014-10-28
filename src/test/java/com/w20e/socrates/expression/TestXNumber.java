@@ -21,6 +21,7 @@ public class TestXNumber extends TestCase {
 		super(name);
 	}
 
+	@Override
 	public void setUp() {
 
 		this.num = new XNumber(Integer.valueOf(10));

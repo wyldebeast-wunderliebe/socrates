@@ -9,6 +9,7 @@ public class TestIfThenElse extends TestCase {
 	private XString sv;
 	private XBoolean bv;
 	
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		

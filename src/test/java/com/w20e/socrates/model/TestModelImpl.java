@@ -25,7 +25,8 @@ public class TestModelImpl extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     // Let's create a rather complex model, so as to test some complex
     // requirements.

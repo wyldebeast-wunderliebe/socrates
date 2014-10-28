@@ -33,7 +33,8 @@ public class TestInstanceImpl extends TestCase {
         super(name);
     }
 
-    public void setUp() {
+    @Override
+	public void setUp() {
 
         // prepare the testset
 

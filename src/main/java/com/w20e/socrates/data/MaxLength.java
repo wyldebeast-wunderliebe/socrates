@@ -42,6 +42,7 @@ public class MaxLength implements Restriction {
 	 * @return whether the length of the argument is smaller than the max length
 	 *         specified for this instance.
 	 */
+	@Override
 	public final boolean eval(final Object str) {
 
 		if (str.toString().length() <= this.max) {

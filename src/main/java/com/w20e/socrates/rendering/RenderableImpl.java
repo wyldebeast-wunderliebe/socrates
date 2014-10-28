@@ -41,6 +41,7 @@ public abstract class RenderableImpl extends Properties implements Renderable {
 	/**
 	 * Return the item's id.
 	 */
+	@Override
 	public String getId() {
 
 		return this.id;

@@ -27,6 +27,7 @@ public class ToString implements Transformation {
 	 *            object to transform.
 	 * @return transformed object.
 	 */
+	@Override
 	public final Object transform(final Object obj) {
 
 		if (obj == null) {
@@ -35,6 +36,7 @@ public class ToString implements Transformation {
 		return obj.toString();
 	}
 
+	@Override
 	public final Object transform(final Object obj, final Locale locale) {
 		return this.transform(obj);
 	}

@@ -29,6 +29,7 @@ public class ToTime implements LexicalTransformation {
 	 *            The object to transform
 	 * @return Object The transformed object
 	 */
+	@Override
 	public final XString transform(final XObject obj, final Locale locale) {
 
 		if (obj == null || "".equals(obj.toString())) {

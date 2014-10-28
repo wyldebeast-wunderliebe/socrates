@@ -44,5 +44,6 @@ public abstract class ActionResultImpl implements ActionResult {
 	 * 
 	 * @return a <code>String</code> value
 	 */
+	@Override
 	public abstract String toString();
 }

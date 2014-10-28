@@ -65,6 +65,7 @@ public class XBoolean extends AbstractXObjectImpl {
 	 * 
 	 * @return the wrapped <code>Number</code> object
 	 */
+	@Override
 	public final Number toNumber() {
 
 		if (this.bool) {
@@ -85,6 +86,7 @@ public class XBoolean extends AbstractXObjectImpl {
 	 *            The expression to compare to.
 	 * @return integer value indicating comparison result.
 	 */
+	@Override
 	public final int compareTo(final Expression expr) {
 
 		if (expr instanceof Undef) {
@@ -109,6 +111,7 @@ public class XBoolean extends AbstractXObjectImpl {
 	 *            The expression to use in equality check.
 	 * @return the boolean representation of this object.
 	 */
+	@Override
 	public final boolean equals(final Object obj) {
 
 		if (!(obj instanceof Expression)) {
@@ -123,6 +126,7 @@ public class XBoolean extends AbstractXObjectImpl {
 	 * 
 	 * @return the boolean representation of this object.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		return this.bool;
@@ -133,6 +137,7 @@ public class XBoolean extends AbstractXObjectImpl {
 	 * 
 	 * @return 'false()' if this object evaluates to false, 'true()' otherwise.
 	 */
+	@Override
 	public final String toString() {
 
 		return Boolean.toString(this.bool);
@@ -143,6 +148,7 @@ public class XBoolean extends AbstractXObjectImpl {
 	 * 
 	 * @return Boolean object.
 	 */
+	@Override
 	public final Object toObject() {
 
 		return Boolean.valueOf(this.bool);

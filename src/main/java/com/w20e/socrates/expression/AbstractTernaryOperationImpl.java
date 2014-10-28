@@ -54,6 +54,7 @@ public abstract class AbstractTernaryOperationImpl extends
 	 * 
 	 * @return the left operand of the operation.
 	 */
+	@Override
 	public final Expression getLeftOperand() {
 
 		if (this.lVal == null) {
@@ -67,6 +68,7 @@ public abstract class AbstractTernaryOperationImpl extends
 	 * 
 	 * @return the right operand of the operation.
 	 */
+	@Override
 	public final Expression getRightOperand() {
 
 		if (this.rVal == null) {
@@ -80,6 +82,7 @@ public abstract class AbstractTernaryOperationImpl extends
 	 * 
 	 * @return the middle operand of the operation.
 	 */
+	@Override
 	public final Expression getMiddleOperand() {
 
 		if (this.mVal == null) {
@@ -94,6 +97,7 @@ public abstract class AbstractTernaryOperationImpl extends
 	 * @param lval
 	 *            the left operand for the operation.
 	 */
+	@Override
 	public final void setLeftOperand(final Expression val) {
 
 		this.lVal = val;
@@ -105,6 +109,7 @@ public abstract class AbstractTernaryOperationImpl extends
 	 * @param rval
 	 *            the right operand for the operation.
 	 */
+	@Override
 	public final void setRightOperand(final Expression val) {
 
 		this.rVal = val;
@@ -116,6 +121,7 @@ public abstract class AbstractTernaryOperationImpl extends
 	 * @param rval
 	 *            the middle operand for the operation.
 	 */
+	@Override
 	public final void setMiddleOperand(final Expression val) {
 
 		this.mVal = val;

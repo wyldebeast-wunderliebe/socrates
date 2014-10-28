@@ -19,6 +19,7 @@ import com.w20e.socrates.expression.XString;
 
 public class CurrencyFormat implements LexicalTransformation {
 
+	@Override
 	public XObject transform(final XObject obj, final Locale locale) {
 		return new XString(NumberFormat.getCurrencyInstance(locale).format(
 				obj.toNumber()));

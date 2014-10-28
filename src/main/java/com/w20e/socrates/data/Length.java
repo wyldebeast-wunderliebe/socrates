@@ -40,6 +40,7 @@ public class Length implements Restriction {
 	 *            string to check.
 	 * @return whether the string argument is exactely of length len.
 	 */
+	@Override
 	public final boolean eval(final Object str) {
 
 		if (str.toString().length() == this.len) {

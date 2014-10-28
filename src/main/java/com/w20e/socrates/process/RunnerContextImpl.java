@@ -123,6 +123,7 @@ public class RunnerContextImpl extends ProcessContextImpl implements
 	 * 
 	 * @return a <code>Formatter</code> value
 	 */
+	@Override
 	public final Formatter getFormatter() {
 
 		return this.formatter;
@@ -133,6 +134,7 @@ public class RunnerContextImpl extends ProcessContextImpl implements
 	 * 
 	 * @return a <code>Model</code> value
 	 */
+	@Override
 	public final Model getModel() {
 
 		return this.model;
@@ -143,6 +145,7 @@ public class RunnerContextImpl extends ProcessContextImpl implements
 	 * 
 	 * @return an <code>OutputStream</code> value
 	 */
+	@Override
 	public final OutputStream getOutputStream() {
 
 		return this.out;
@@ -164,6 +167,7 @@ public class RunnerContextImpl extends ProcessContextImpl implements
 	 * 
 	 * @return a <code>StateManager</code> value
 	 */
+	@Override
 	public final StateManager getStateManager() {
 
 		return this.stateMgr;
@@ -185,6 +189,7 @@ public class RunnerContextImpl extends ProcessContextImpl implements
 	 * 
 	 * @return a <code>Map</code> value
 	 */
+	@Override
 	public final Map<String, Object> getData() {
 
 		return this.data;
@@ -195,6 +200,7 @@ public class RunnerContextImpl extends ProcessContextImpl implements
 	 * 
 	 * @return instance.
 	 */
+	@Override
 	public final Instance getInstance() {
 
 		return this.instance;
@@ -211,16 +217,19 @@ public class RunnerContextImpl extends ProcessContextImpl implements
 		this.instance = inst;
 	}
 
+	@Override
 	public final RenderConfig getRenderConfig() {
 
 		return this.cfg;
 	}
 
+	@Override
 	public Locale getLocale() {
 
 		return this.locale;
 	}
 
+	@Override
 	public URI getQuestionnaireId() {
 
 		return this.id;
@@ -235,6 +244,7 @@ public class RunnerContextImpl extends ProcessContextImpl implements
 		this.locale = newLocale;
 	}
 	
+	@Override
 	public Configuration getConfiguration() {
 
 		URI qUri = getQuestionnaireId();

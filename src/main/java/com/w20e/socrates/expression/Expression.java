@@ -44,6 +44,7 @@ public interface Expression {
 	 * 
 	 * @return the string representation of the expression.
 	 */
+	@Override
 	String toString();
 
 	/**

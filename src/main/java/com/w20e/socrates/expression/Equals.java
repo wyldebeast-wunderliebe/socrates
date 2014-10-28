@@ -30,6 +30,7 @@ public class Equals extends AbstractOperationImpl {
 	 * @return true if left and right operand are equal, according to the left
 	 *         operand's equals method.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		return getLeftOperand().eval().equals(getRightOperand().eval());
@@ -42,6 +43,7 @@ public class Equals extends AbstractOperationImpl {
 	 * 
 	 * @return the string representation of this expression.
 	 */
+	@Override
 	public final String toString() {
 
 		return getLeftOperand().toString() + " == "
@@ -54,6 +56,7 @@ public class Equals extends AbstractOperationImpl {
 	 * @return the XObject that is the result of this operation. This is an
 	 *         XBoolean.
 	 */
+	@Override
 	public final XObject eval() {
 
 		return new XBoolean(toBoolean());

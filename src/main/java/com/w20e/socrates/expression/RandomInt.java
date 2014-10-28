@@ -19,6 +19,7 @@ public class RandomInt extends AbstractFunctionImpl {
 	/**
 	 * String representation of random.
 	 */
+	@Override
 	public String toString() {
 
 		return "random(" + this.getOperandsString() + ")";
@@ -27,6 +28,7 @@ public class RandomInt extends AbstractFunctionImpl {
 	/**
 	 * Return random number in given range.
 	 */
+	@Override
 	public XObject eval() {
 
 		int start = 0, stop = 0;
@@ -50,6 +52,7 @@ public class RandomInt extends AbstractFunctionImpl {
 	/**
 	 * Return false if eval's to false.
 	 */
+	@Override
 	public boolean toBoolean() {
 
 		return eval().toBoolean();

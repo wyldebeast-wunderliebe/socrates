@@ -27,7 +27,8 @@ public class TestProcessorFactory extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.fac = new ProcessorFactory(null);
   }
@@ -42,7 +43,7 @@ public class TestProcessorFactory extends TestCase {
 
       assertEquals(proc.getFinals().size(), 1);
 
-      assertEquals(((ProcessAction) proc.getFinals().get(0) ).getId(), "a1");
+      assertEquals(proc.getFinals().get(0).getId(), "a1");
       
           
     } catch (Exception e) {
@@ -59,7 +60,7 @@ public class TestProcessorFactory extends TestCase {
       assertEquals(proc.getInitial().getId(), "a0");
       assertEquals(proc.getFinals().size(), 1);
 
-      assertEquals(((ProcessAction) proc.getFinals().get(0) ).getId(), "a1");
+      assertEquals(proc.getFinals().get(0).getId(), "a1");
     } catch (Exception e) {
       fail();
     }
@@ -77,7 +78,7 @@ public class TestProcessorFactory extends TestCase {
       assertEquals(proc.getInitial().getId(), "a0");
       assertEquals(proc.getFinals().size(), 1);
 
-      assertEquals(((ProcessAction) proc.getFinals().get(0) ).getId(), "a1");
+      assertEquals(proc.getFinals().get(0).getId(), "a1");
     } catch (Exception e) {
       e.printStackTrace();
       fail();

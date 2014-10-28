@@ -6,6 +6,7 @@ public class TestGridGroup extends TestCase {
 
 	private GridGroup grp;
 	
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		

@@ -30,6 +30,7 @@ public class GT extends AbstractOperationImpl {
 	 * @return true if left operand is greater than the right operand, according
 	 *         to the left operand's <code>compareTo</code> method.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		return getLeftOperand().eval().compareTo(getRightOperand().eval()) > 0;
@@ -42,6 +43,7 @@ public class GT extends AbstractOperationImpl {
 	 * 
 	 * @return the string representation of this expression.
 	 */
+	@Override
 	public final String toString() {
 
 		return getLeftOperand().toString() + " > "
@@ -54,6 +56,7 @@ public class GT extends AbstractOperationImpl {
 	 * @return the XObject that is the result of this operation. This is an
 	 *         XBoolean.
 	 */
+	@Override
 	public final XObject eval() {
 
 		return new XBoolean(toBoolean());

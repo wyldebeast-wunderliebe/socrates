@@ -35,6 +35,7 @@ public abstract class AbstractUnaryOperationImpl extends AbstractExpressionImpl
 	 * 
 	 * @return the left operand of the operation.
 	 */
+	@Override
 	public final Expression getLeftOperand() {
 
 		if (this.lVal == null) {
@@ -49,6 +50,7 @@ public abstract class AbstractUnaryOperationImpl extends AbstractExpressionImpl
 	 * @param val
 	 *            the left operand for the operation.
 	 */
+	@Override
 	public final void setLeftOperand(final Expression val) {
 
 		this.lVal = val;

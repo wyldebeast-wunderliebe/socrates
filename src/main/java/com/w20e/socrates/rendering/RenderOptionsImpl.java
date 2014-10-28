@@ -87,6 +87,7 @@ public class RenderOptionsImpl implements RenderOptions {
 	}
 	
 
+	@Override
 	public Object get(String opt) {
 		
 		return this.options.get(opt);

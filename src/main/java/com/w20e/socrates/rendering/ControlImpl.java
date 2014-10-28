@@ -65,7 +65,8 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
      * 
      * @return bind expression
      */
-    public final String getBind() {
+    @Override
+	public final String getBind() {
         return this.bind;
     }
 
@@ -82,7 +83,8 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
     /**
      * @return Returns the alert.
      */
-    public final String getAlert() {
+    @Override
+	public final String getAlert() {
 
         return this.alert;
     }
@@ -101,7 +103,8 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
      * 
      * @return Returns the help.
      */
-    public final String getHelp() {
+    @Override
+	public final String getHelp() {
 
         return this.help;
     }
@@ -131,7 +134,8 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
     /**
      * Return the control's type.
      */
-    public final String getType() {
+    @Override
+	public final String getType() {
         return this.type;
     }
 

@@ -8,6 +8,7 @@ public class TestTime extends TestCase {
 
 	private Time control;
 	
+	@Override
 	public void setUp() {
 		this.control = new Time("time0");
 	}

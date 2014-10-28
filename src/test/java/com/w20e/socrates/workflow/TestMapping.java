@@ -56,7 +56,8 @@ public class TestMapping extends TestCase {
       super(id);
     }
 
-    public ActionResult exec(ProcessContext ctx) {
+    @Override
+	public ActionResult exec(ProcessContext ctx) {
       
       ctx.setProperty(getId(), "ok");      
       

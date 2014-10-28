@@ -8,6 +8,7 @@ public class TestDate extends TestCase {
 
 	private Date control;
 	
+	@Override
 	public void setUp() {
 		this.control = new Date("date0");
 	}

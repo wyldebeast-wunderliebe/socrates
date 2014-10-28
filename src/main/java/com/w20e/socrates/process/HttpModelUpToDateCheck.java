@@ -60,7 +60,8 @@ public class HttpModelUpToDateCheck implements ModelUpToDateCheck {
      *            URL id of model to check.
      * @return whether the model is up to date or not.
      */
-    public final boolean isUpToDate(final URI id) {
+    @Override
+	public final boolean isUpToDate(final URI id) {
 
         String urlStr = id.toString();
 

@@ -29,7 +29,8 @@ public class TestProcessorImpl extends TestCase {
     super(name);
   }
 
-  public void setUp() {
+  @Override
+public void setUp() {
 
     this.action0 = new Action0("a0");
 
@@ -193,7 +194,8 @@ public class TestProcessorImpl extends TestCase {
       super(id);
     }
     
-    public ActionResult exec(ProcessContext context) {
+    @Override
+	public ActionResult exec(ProcessContext context) {
       
       context.setProperty(getId(), "ok");
       
@@ -209,7 +211,8 @@ public class TestProcessorImpl extends TestCase {
       super(id);
     }
     
-    public ActionResult exec(ProcessContext context) {
+    @Override
+	public ActionResult exec(ProcessContext context) {
       
       context.setProperty(getId(), "fail");   
       

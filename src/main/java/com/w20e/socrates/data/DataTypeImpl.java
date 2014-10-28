@@ -62,6 +62,7 @@ public abstract class DataTypeImpl implements DataType {
 	 * @return The XObject after evaluation of all transformations and
 	 * restrictions.
 	 */
+	@Override
 	public final XObject eval(final Object value)
 	    throws TransformationException, RestrictionViolation {
 
@@ -101,7 +102,8 @@ public abstract class DataTypeImpl implements DataType {
      * @param value value to check.
      * @return The XObject after evaluation of all restrictions.
      */
-    public final void validate(final Object value)
+    @Override
+	public final void validate(final Object value)
         throws RestrictionViolation {
 
         for (final Iterator<Restriction> i = this.restrictions.iterator(); i.hasNext();) {
@@ -122,6 +124,7 @@ public abstract class DataTypeImpl implements DataType {
 	 * @return lexical value
 	 * @TODO move null check and return of "" to lexical transformations.
 	 */
+	@Override
 	public final String evalLexical(final Object value, final Locale locale)
 	throws TransformationException, RestrictionViolation {
 
@@ -140,6 +143,7 @@ public abstract class DataTypeImpl implements DataType {
 	 * @param restriction
 	 *            new restriction.
 	 */
+	@Override
 	public final void addRestriction(final Restriction restriction) {
 
 		this.restrictions.add(restriction);
@@ -151,6 +155,7 @@ public abstract class DataTypeImpl implements DataType {
 	 * @param trans
 	 *            the transformation to add.
 	 */
+	@Override
 	public final void addTransformation(final Transformation trans) {
 
 		this.transformations.add(trans);
@@ -163,6 +168,7 @@ public abstract class DataTypeImpl implements DataType {
 	 * @param trans
 	 *            the transformation to add.
 	 */
+	@Override
 	public final void addLexicalTransformation(
 			final LexicalTransformation ltrans) {
 

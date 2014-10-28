@@ -36,6 +36,7 @@ public class ToBoolean implements Transformation {
 	 *            object to transform
 	 * @return boolean object.
 	 */
+	@Override
 	public final Object transform(final Object obj) {
 
 		if (obj == null || obj instanceof Undef) {
@@ -60,6 +61,7 @@ public class ToBoolean implements Transformation {
 		return Boolean.valueOf(true);
 	}
 
+	@Override
 	public final Object transform(final Object obj, final Locale locale) {
 
 		return this.transform(obj);

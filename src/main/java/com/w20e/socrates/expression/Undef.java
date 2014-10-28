@@ -31,6 +31,7 @@ public class Undef extends AbstractXObjectImpl {
 	 * 
 	 * @return a <code>Number</code> value
 	 */
+	@Override
 	public final Number toNumber() {
 
 		return Double.NaN;
@@ -58,6 +59,7 @@ public class Undef extends AbstractXObjectImpl {
 	 *            The Expression to compare with
 	 * @return the integer value indicating comparison result.
 	 */
+	@Override
 	public final int compareTo(final Expression expr) {
 
 		if (expr instanceof Undef || expr == null) {
@@ -74,6 +76,7 @@ public class Undef extends AbstractXObjectImpl {
 	 *            The expression to use in equality check.
 	 * @return the boolean representation of this object.
 	 */
+	@Override
 	public final boolean equals(final Object obj) {
 
 		if (!(obj instanceof Expression)) {
@@ -93,6 +96,7 @@ public class Undef extends AbstractXObjectImpl {
 	 * 
 	 * @return the <code>boolean</code> representation of this XNumber.
 	 */
+	@Override
 	public final boolean toBoolean() {
 
 		return false;
@@ -103,6 +107,7 @@ public class Undef extends AbstractXObjectImpl {
 	 * 
 	 * @return the <code>String</code> representation of Undef.
 	 */
+	@Override
 	public final String toString() {
 
 		return "";
@@ -113,6 +118,7 @@ public class Undef extends AbstractXObjectImpl {
 	 * 
 	 * @return null
 	 */
+	@Override
 	public final Object toObject() {
 
 		return null;

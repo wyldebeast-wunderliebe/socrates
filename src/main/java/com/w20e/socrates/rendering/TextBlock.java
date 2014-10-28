@@ -31,11 +31,13 @@ public class TextBlock extends Properties implements Renderable {
 	/**
 	 * Return the id for this block;
 	 */
+	@Override
 	public String getId() {
 
 		return this.id;
 	}
 
+	@Override
 	public String getType() {
 
 		return "text";
