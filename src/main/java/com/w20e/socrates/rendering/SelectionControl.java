@@ -30,6 +30,17 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
      * Create new SelectionControl
      * @param newId
      */
+    public SelectionControl() {
+
+        super();
+        this.optionlists = new HashMap<String, OptionList>();
+        this.addOptions(new OptionList());
+    }
+
+    /**
+     * Create new SelectionControl
+     * @param newId
+     */
     public SelectionControl(String newId) {
 
         super(newId);
@@ -44,6 +55,7 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
      *            option to add.
      */
     public final void addOption(final Option opt) {
+    	
         this.optionlists.get(SelectionControl.DEFAULT_OPTION_LIST).add(opt.getValue(), opt);
     }
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GroupImpl 
-extends RenderableImpl
+extends RenderableContainerImpl
 implements Group {
 
 	/**
@@ -24,27 +24,6 @@ implements Group {
 	 */
 	public GroupImpl(String newId) {
 		super(newId);
-	}
-
-	/**
-	 * @return Returns the items contained by this group, in the order they were
-	 *         added.
-	 */
-	@Override
-	public List<Renderable> getItems() {
-
-		return this.items;
-	}
-
-	/**
-	 * Add an item to the config.
-	 * 
-	 * @param item
-	 *            The item to add.
-	 */
-	public final void addItem(final Renderable item) {
-
-		this.items.add(item);
 	}
 
 	/**
@@ -70,7 +49,6 @@ implements Group {
 	 * @param newHint
 	 *            The hint to set.
 	 */
-	@Override
 	public final void setHint(final String newHint) {
 
 		this.hint = newHint;
@@ -89,7 +67,6 @@ implements Group {
 	 * @param newLabel
 	 *            The hint to set.
 	 */
-	@Override
 	public final void setLabel(final String newLabel) {
 
 		this.label = newLabel;

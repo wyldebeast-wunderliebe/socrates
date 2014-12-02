@@ -1,83 +1,85 @@
 package com.w20e.socrates.rendering;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
+import java.util.UUID;
+
+import com.w20e.socrates.data.Node;
+
 
 /**
- * RenderableImpl provides a basic inplementation for anything that can be used
+ * RenderableImpl provides a basic implementation for anything that can be used
  * for the rendering framework.
  * @author dokter
  */
-public abstract class RenderableImpl extends Properties implements Renderable {
+public abstract class RenderableImpl implements Renderable {
 
 	/**
      * Default serial id.
      */
     private static final long serialVersionUID = 1L;
 
-    /**
-	 * Item's label. Default is the empty string.
-	 */
-	private String label = "";
-
-	/**
-	 * Hold the item's hint. Default is set to the empty string.
-	 */
-	private String hint = "";
-
 	/**
 	 * Hold unique id for this item.
 	 */
 	private String id;
+	private Map<String, String>props;
+	
+	public RenderableImpl() {
+
+        this.props = new HashMap<String, String>();
+		this.id = UUID.randomUUID().toString();
+	}
 
 	/**
 	 * Constructor for Renderable item. An id should always be there.
 	 * @param newId
 	 */
 	public RenderableImpl(String newId) {
-
+		
+        this.props = new HashMap<String, String>();
 		this.id = newId;
 	}
 
 	/**
 	 * Return the item's id.
 	 */
-	@Override
 	public String getId() {
 
 		return this.id;
 	}
-
+	
 	/**
-	 * Return this item's hint.
+	 * Return the item's id.
 	 */
-	public String getHint() {
+	public void setId(String newId) {
 
-		return this.hint;
+		this.id = newId;
 	}
 
-	/**
-	 * Return this item's label.
-	 */
-	public String getLabel() {
+	public String toString() {
+		
+		return getType() + "[@id=" + getId() + "]";
+	}
+	
+	public String getProperty(String key, String defaultValue) {
+		
+		if (this.props.containsKey(key)) {
+			return this.props.get(key);			
+		}
 
-		return this.label;
+		return defaultValue;
 	}
 
-	/**
-	 * Set the hint.
-	 * @param newHint
-	 */
-	public void setHint(final String newHint) {
-
-		this.hint = newHint;
+	public String getProperty(String key) {
+		
+		return this.props.get(key);
 	}
 
-	/**
-	 * Set the label.
-	 * @param newLabel
-	 */
-	public void setLabel(final String newLabel) {
-
-		this.label = newLabel;
+	public String setProperty(String key, String value) {
+		
+		return this.props.put(key, value);
 	}
 }

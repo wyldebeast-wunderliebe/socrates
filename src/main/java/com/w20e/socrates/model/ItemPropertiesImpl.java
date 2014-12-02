@@ -48,11 +48,6 @@ public class ItemPropertiesImpl implements ItemProperties {
     private Class<?> type = XSString.class;
 
     /**
-     * P3P type for this properties.
-     */
-    private String p3pType;
-
-    /**
      * Determine whether an Item is readonly. Default is false.
      */
     private Expression readonly = new XBoolean(false);
@@ -108,7 +103,7 @@ public class ItemPropertiesImpl implements ItemProperties {
      * @return the item type class, like XSString or XSBoolean.
      */
     @Override
-	public final Class<?> getType() {
+	public final Class<?> getDatatype() {
 
         return this.type;
     }
@@ -120,34 +115,9 @@ public class ItemPropertiesImpl implements ItemProperties {
      *            a <code>Class</code> value
      */
     @Override
-	public final void setType(final Class<?> itemType) {
+	public final void setDatatype(final Class<?> itemType) {
 
         this.type = itemType;
-    }
-
-    /**
-     * Get the p3p type for this item. This can be used to specify a privacy
-     * type for the Item.
-     * 
-     * @return p3p type
-     */
-    @Override
-	public final String getP3PType() {
-
-        return this.p3pType;
-    }
-
-    /**
-     * Set the p3p type for this item. This can be used to specify a privacy
-     * type for the Item.
-     * 
-     * @param t
-     *            The type to use for p3p.
-     */
-    @Override
-	public final void setP3PType(final String t) {
-
-        this.p3pType = t;
     }
 
     /**

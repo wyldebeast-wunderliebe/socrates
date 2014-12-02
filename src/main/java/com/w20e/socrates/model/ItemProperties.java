@@ -53,7 +53,7 @@ public interface ItemProperties {
 	 * 
 	 * @return the item type class, like XSString or XSBoolean.
 	 */
-	Class<?> getType();
+	Class<?> getDatatype();
 
 	/**
 	 * Describe <code>setType</code> method here.
@@ -61,24 +61,7 @@ public interface ItemProperties {
 	 * @param type
 	 *            a <code>Class</code> value
 	 */
-	void setType(Class<?> type);
-
-	/**
-	 * Get the p3p type for this item. This can be used to specify a privacy
-	 * type for the Item.
-	 * 
-	 * @return string representation of the P3P type.
-	 */
-	String getP3PType();
-
-	/**
-	 * Set the p3p type for this item. This can be used to specify a privacy
-	 * type for the Item.
-	 * 
-	 * @param type
-	 *            the P3P type
-	 */
-	void setP3PType(String type);
+	void setDatatype(Class<?> type);
 
 	/**
 	 * Fetch the <code>Constraint</code> of the current object. This might very

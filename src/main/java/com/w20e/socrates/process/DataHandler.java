@@ -145,7 +145,7 @@ public final class DataHandler {
 
                             if (val != null) {
                                 typedVal = TypeChecker.evaluate(
-                                        props.getType(), val).toObject();
+                                        props.getDatatype(), val).toObject();
                             }
 
                             if (typedVal != null) {

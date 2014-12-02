@@ -78,14 +78,14 @@ public final class NodeValidator {
             	
                     Object value = XRefSolver.resolve(model, inst,
                             props.getCalculate(), node).eval().toObject();
-                return TypeChecker.evaluate(props.getType(), value);
+                return TypeChecker.evaluate(props.getDatatype(), value);
             }
             
             if (node == null) {
                 return Undef.UNDEF;
             }
 
-            return TypeChecker.evaluate(props.getType(), node.getValue());
+            return TypeChecker.evaluate(props.getDatatype(), node.getValue());
         } catch (Exception e) {
         	try {
         		LOGGER.log(Level.FINE, "Exception in getting node value for " + node.getName() +"; returning Undef");
@@ -240,7 +240,7 @@ public final class NodeValidator {
         // Type validation is only done if there's an actual value
         if (value != null && !(value instanceof Undef)) {
             try {
-                TypeChecker.validate(props.getType(), value);
+                TypeChecker.validate(props.getDatatype(), value);
             } catch (Exception e) {
                 throw new ConstraintViolation(ConstraintViolation.TYPE, node
                         .getName());

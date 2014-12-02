@@ -23,17 +23,14 @@ import java.net.URI;
 import java.util.logging.Logger;
 
 import org.apache.commons.digester3.Digester;
-import org.apache.commons.digester3.FactoryCreateRule;
-import org.apache.commons.digester3.ObjectCreateRule;
-import org.apache.commons.digester3.ObjectCreationFactory;
 import org.apache.commons.digester3.Rule;
 import org.xml.sax.SAXException;
 
-import com.w20e.socrates.model.ItemPropertiesImpl;
-import com.w20e.socrates.model.NodeImpl;
 import com.w20e.socrates.model.Questionnaire;
-import com.w20e.socrates.rendering.RenderConfig;
+import com.w20e.socrates.rendering.Option;
 import com.w20e.socrates.rendering.RenderConfigImpl;
+import com.w20e.socrates.rendering.RenderConfig;
+
 
 /**
  * @author dokter
@@ -91,6 +88,22 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 		dig.addCallMethod("*/properties/relevant", "setExpr", 1);
 		dig.addCallParam("*/properties/relevant", 0);
 
+		dig.addRule("*/properties/readonly", exprRule);
+		dig.addCallMethod("*/properties/readonly", "setExpr", 1);
+		dig.addCallParam("*/properties/readonly", 0);
+
+		dig.addRule("*/properties/calculate", exprRule);
+		dig.addCallMethod("*/properties/calculate", "setExpr", 1);
+		dig.addCallParam("*/properties/calculate", 0);
+
+		dig.addRule("*/properties/constraint", exprRule);
+		dig.addCallMethod("*/properties/constraint", "setExpr", 1);
+		dig.addCallParam("*/properties/constraint", 0);
+
+		dig.addRule("*/properties/datatype", exprRule);
+		dig.addCallMethod("*/properties/datatype", "setExpr", 1);
+		dig.addCallParam("*/properties/datatype", 0);
+
 		return dig;
 	}
 
@@ -102,9 +115,35 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 	 */
 	private Digester createRenderingDigester() {
 
+		GroupFactory groupFactory = new GroupFactory();
+
 		Digester dig = new Digester();
 
-		dig.addObjectCreate("questionnaire", RenderConfigImpl.class);
+		dig.addObjectCreate("survey/layout", RenderConfigImpl.class);
+
+		dig.addFactoryCreate("*/group", groupFactory);
+		dig.addSetNext("*/group", "addItem", "com.w20e.socrates.rendering.Group");
+		
+		dig.addObjectCreate("*/text", "com.w20e.socrates.rendering.TextBlock");
+		dig.addSetProperties("*/text");
+		dig.addSetNext("*/text", "addItem", "com.w20e.socrates.rendering.TextBlock");
+
+		dig.addObjectCreate("*/select", "com.w20e.socrates.rendering.Select");
+		dig.addSetProperties("*/select");
+		dig.addSetNext("*/select", "addItem", "com.w20e.socrates.rendering.Select");
+
+		dig.addObjectCreate("*/option", "com.w20e.socrates.rendering.Option");
+		dig.addSetProperties("*/option");
+		dig.addSetNext("*/option", "addOption", "com.w20e.socrates.rendering.Option");		
+		
+		dig.addCallMethod("*/label", "setLabel", 1);
+		dig.addCallParam("*/label", 0);
+
+		dig.addCallMethod("*/hint", "setHint", 1);
+		dig.addCallParam("*/hint", 0);
+
+		dig.addCallMethod("*/help", "setHelp", 1);
+		dig.addCallParam("*/help", 0);
 
 		return dig;
 	}
@@ -155,8 +194,8 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 		try {
 			QuestionnaireImpl q = (QuestionnaireImpl) createInstanceDigester()
 					.parse(uristr);
-			//q.setRenderConfig((RenderConfig) createRenderingDigester().parse(
-			//		uristr));
+			q.setRenderConfig((RenderConfig) createRenderingDigester().parse(
+					uristr));
 			return q;
 		} catch (IOException e) {
 			LOGGER.severe("Couldn't create model: " + e.getMessage());

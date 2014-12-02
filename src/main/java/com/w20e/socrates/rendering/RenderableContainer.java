@@ -28,5 +28,6 @@ public interface RenderableContainer {
 	 * @return collection of renderable items.
 	 */
 	List<Renderable> getItems();
-
+	
+	Renderable getItem(String id);
 }

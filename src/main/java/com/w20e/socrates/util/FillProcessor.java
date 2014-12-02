@@ -97,7 +97,7 @@ public final class FillProcessor {
                     val = NodeValidator.getValue(n, props, model, inst);
                     
                     displayVal = c
-                            .getDisplayValue(val.toObject(), props.getType(), locale)
+                            .getDisplayValue(val.toObject(), props.getDatatype(), locale)
                             .toString();
                 }
             } catch (Exception e) {

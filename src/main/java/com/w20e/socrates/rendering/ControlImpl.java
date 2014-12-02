@@ -20,6 +20,7 @@
 package com.w20e.socrates.rendering;
 
 
+
 /**
  * @author D.A.Dokter A base control.
  */
@@ -41,6 +42,16 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
     private String alert = "";
 
     /**
+	 * Control label. Default is the empty string.
+	 */
+	private String label = "";
+
+	/**
+	 * Hold the control hint. Default is set to the empty string.
+	 */
+	private String hint = "";
+
+    /**
      * Hold the control type.
      */
     private String type;
@@ -50,6 +61,14 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
      */
     private String bind = "";
 
+    /**
+     * Allow for convenient non argument constructor. This will generate a unique id.
+     */
+    public ControlImpl() {
+
+        super();
+    }
+    
     /**
      * Constructor taking a unique id.
      * 
@@ -66,7 +85,7 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
      * @return bind expression
      */
     @Override
-	public final String getBind() {
+	public String getBind() {
         return this.bind;
     }
 
@@ -76,8 +95,9 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
      * @param newBind
      *            bind expression
      */
-    public final void setBind(final String newBind) {
-        this.bind = newBind;
+    public void setBind(final String newBind) {
+
+    	this.bind = newBind;
     }
 
     /**
@@ -136,7 +156,46 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
      */
     @Override
 	public final String getType() {
+    	
         return this.type;
     }
 
+	/**
+	 * Return this item's hint.
+	 */
+	public String getHint() {
+
+		return this.hint;
+	}
+
+	/**
+	 * Return this item's label.
+	 */
+	public String getLabel() {
+
+		return this.label;
+	}
+
+	/**
+	 * Set the hint.
+	 * @param newHint
+	 */
+	public void setHint(final String newHint) {
+
+		this.hint = newHint;
+	}
+
+	/**
+	 * Set the label.
+	 * @param newLabel
+	 */
+	public void setLabel(final String newLabel) {
+		
+		this.label = newLabel;
+	}
+	
+	public String toString() {
+		
+		return getType() + "[@id=" + getId() + "; @bind=" + getBind() + "]";
+	}
 }

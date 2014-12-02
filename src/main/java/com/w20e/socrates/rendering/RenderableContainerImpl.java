@@ -4,15 +4,31 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class RenderableContainerImpl 
+public class RenderableContainerImpl
+extends RenderableImpl
 implements RenderableContainer {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * Holds a list of items for this group.
 	 */
 	private LinkedHashMap<String, Renderable> items =
 		new LinkedHashMap<String, Renderable>();
 
+	public RenderableContainerImpl() {
+
+		super();
+	}
+
+	public RenderableContainerImpl(String id) {
+
+		super(id);
+	}
+	
 	/**
 	 * @return Returns the items contained by this group, in the order they were
 	 *         added.
@@ -49,10 +65,11 @@ implements RenderableContainer {
 	 * @todo Find something more efficient...
 	 */
 	private Renderable getItemById(RenderableContainer container, String id) {
-
+		
 		Renderable res = null;
 		
 		for (Renderable r : container.getItems()) {
+						
 			if (id.equals(r.getId())) {
 				return r;
 			}
@@ -65,5 +82,11 @@ implements RenderableContainer {
 		}
 
 		return res;
+	}
+
+	@Override
+	public String getType() {
+
+		return null;
 	}
 }

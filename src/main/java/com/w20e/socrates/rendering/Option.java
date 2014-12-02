@@ -88,7 +88,7 @@ public class Option {
      */
     public final void setValue(final String optionValue) {
 
-        this.value = optionValue;
+    	this.value = optionValue;
     }
 
     /**
@@ -106,5 +106,9 @@ public class Option {
     public final void setHint(final String newHint) {
 
         this.hint = newHint;
+    }
+    
+    public String toString() {
+    	return "option: " + getValue();
     }
 }

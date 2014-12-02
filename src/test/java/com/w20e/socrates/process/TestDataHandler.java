@@ -64,7 +64,7 @@ public class TestDataHandler extends TestCase {
 	// Unit test for integer data
 	public void testXSInteger() {
 	    
-		this.props.setType(XSInteger.class);
+		this.props.setDatatype(XSInteger.class);
 		this.data.clear();
 		
 	    // Let's start with no data: should be no problem!
@@ -132,7 +132,7 @@ public class TestDataHandler extends TestCase {
 	// Unit test for boolean data
 	public void ztestXSBoolean() {
 	    
-		this.props.setType(XSBoolean.class);
+		this.props.setDatatype(XSBoolean.class);
 		this.data.clear();
 		
 	    // Let's start with no data: should be no problem!
@@ -176,7 +176,7 @@ public class TestDataHandler extends TestCase {
 	// Unit test for string data
 	public void ztestXSString() {
 	    
-		this.props.setType(XSString.class);
+		this.props.setDatatype(XSString.class);
 		this.data.clear();
 		
 	    // Let's start with no data: should be no problem!

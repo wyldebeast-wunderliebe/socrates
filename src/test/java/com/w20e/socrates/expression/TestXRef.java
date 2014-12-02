@@ -62,7 +62,7 @@ public void setUp() {
 	} catch (InvalidPathExpression e) {
 		fail();
 	}
-    this.props.setType(XSInteger.class);
+    this.props.setDatatype(XSInteger.class);
     assertTrue(this.ref.eval() instanceof XNumber);
 
     // Let's test the none existing node...

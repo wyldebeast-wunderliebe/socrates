@@ -27,6 +27,14 @@ public class Select extends SelectionControl {
 	 * Serialization id.
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Construct select type.
+	 */
+	public Select() {
+		super();
+		setType("select");
+	}
 
 	/**
 	 * Construct select type.
@@ -103,5 +111,4 @@ public class Select extends SelectionControl {
 
 		return data.get(getId());
 	}
-
 }

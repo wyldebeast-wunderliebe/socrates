@@ -22,11 +22,11 @@
     <properties id="p0">
       <bind>u_.*</bind>
       <required>1</required>
-      <calculate></calculate>
-      <constraint></constraint>
-      <readonly></readonly>
+      <calculate>1 + 1</calculate>
+      <constraint>bar &lt; 1</constraint>
+      <readonly>333</readonly>
       <relevant>bar &gt; 666</relevant>
-      <datatype></datatype>
+      <datatype>xs:integer</datatype>
     </properties>
 
     <properties id="p1">
@@ -36,5 +36,32 @@
 
   </model>
 
+  <layout>
+
+    <!-- optionset id="yesno">
+      <option value="1"><label i18n:trans="">yes</label></option>
+      <option value="0"><label i18n:trans="">no</label></option>
+    </optionset-->
+
+    <group id="grp0" layout="page">
+      <label i18n:translate="">This is a group</label>
+      <hint></hint>
+
+      <text>Some text...</text>
+
+      <select bind="bar" id="pan">
+        <label i18n:translate="">Pick a number</label>
+        <option value="1"><label>1</label></option>
+        <option><label>2</label></option>
+        <option value="666"><label>666</label></option>
+      </select>
+
+      <select bind="badddr" id="padddn"></select>
+  
+      <text id="moretext">Some more text...</text>
+  
+  
+  	</group>
+  </layout>
 </survey>
 	

@@ -41,7 +41,7 @@ public class TestNodeValidator extends TestCase {
         this.props.setRequired(new XBoolean(true));
         this.props.setRelevant(new XBoolean(true));
         this.props.setConstraint(eq);
-        this.props.setType(XSInteger.class);
+        this.props.setDatatype(XSInteger.class);
     }
 
     /*
@@ -55,7 +55,7 @@ public class TestNodeValidator extends TestCase {
         // NodeValidator.getValue(this.n, this.props, this.model,
         // this.instance).toNumber().intValue());
 
-        this.props.setType(XSBoolean.class);
+        this.props.setDatatype(XSBoolean.class);
 
         this.n.setValue(Boolean.valueOf(false));
 
@@ -83,7 +83,7 @@ public class TestNodeValidator extends TestCase {
      */
     public void testGetRawValue() {
 
-        this.props.setType(XSBoolean.class);
+        this.props.setDatatype(XSBoolean.class);
 
         this.n.setValue(Boolean.valueOf(false));
 
@@ -159,7 +159,7 @@ public class TestNodeValidator extends TestCase {
         // Test when node is a boolean type
 
         this.n.setValue(true);
-        this.props.setType(XSBoolean.class);
+        this.props.setDatatype(XSBoolean.class);
 
         this.props.setRelevant(new XVar("/a"));
 

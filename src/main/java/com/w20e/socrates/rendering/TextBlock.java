@@ -1,11 +1,11 @@
 package com.w20e.socrates.rendering;
 
-import java.util.Properties;
+
 
 /**
  * The TextBlock class adds the possibility of having arbitrary text in your pages.
  */
-public class TextBlock extends Properties implements Renderable {
+public class TextBlock extends RenderableImpl {
 
 	/**
 	 * 
@@ -13,31 +13,24 @@ public class TextBlock extends Properties implements Renderable {
 	private static final long serialVersionUID = 1505360129571705660L;
 
 	/**
-	 * Everything renderable needs to have an id.
-	 */
-	private String id;
-
-	/**
 	 * Hold the text.
 	 */
 	private String text;
+	
+	private String id;
 
+	public TextBlock(){
 
-	public TextBlock(final String newId){
+		//super();
+	}
 
-		this.id = newId;
+	public TextBlock(final String id){
+		
+		this.id = id;
+		//super(id);
 	}
 	
-	/**
-	 * Return the id for this block;
-	 */
-	@Override
-	public String getId() {
-
-		return this.id;
-	}
-
-	@Override
+	//@Override
 	public String getType() {
 
 		return "text";

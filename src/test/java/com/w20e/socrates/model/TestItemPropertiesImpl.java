@@ -58,22 +58,13 @@ public void setUp() {
     assertEquals(eq, this.props.getRelevant());
   }
 
-  public void testGetType() {
+  public void testGetDatatype() {
 
-    assertEquals(this.props.getType(), XSString.class);
+    assertEquals(this.props.getDatatype(), XSString.class);
 
-    this.props.setType(XSBoolean.class);
+    this.props.setDatatype(XSBoolean.class);
 
-    assertEquals(this.props.getType(), XSBoolean.class);
-  }
-
-  public void testGetP3PType() {
-
-    assertNull(this.props.getP3PType());
-
-    this.props.setP3PType("surname");
-
-    assertEquals(this.props.getP3PType(), "surname");
+    assertEquals(this.props.getDatatype(), XSBoolean.class);
   }
 
   public void testSetConstraint() {
