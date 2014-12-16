@@ -25,7 +25,8 @@ public class Checkbox extends ControlImpl {
     /**
      * UID.
      */
-    private static final long serialVersionUID = 1L;
+    @SuppressWarnings("unused")
+	private static final long serialVersionUID = 1L;
 
     /**
      * Construct input type.
@@ -35,7 +36,8 @@ public class Checkbox extends ControlImpl {
         setType("checkbox");
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
 	public Object processInput(Map<String, Object> data) {
 
         Object val = data.get(getId());
@@ -45,7 +47,7 @@ public class Checkbox extends ControlImpl {
         }
         
         if (val instanceof List) {
-            val = ((List) val).get(0);
+            val = ((List<Object>) val).get(0);
         }
 
         return val;

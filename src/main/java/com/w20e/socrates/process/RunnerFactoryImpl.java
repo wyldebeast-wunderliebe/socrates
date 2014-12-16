@@ -39,8 +39,8 @@ import com.w20e.socrates.rendering.RenderConfig;
 import com.w20e.socrates.rendering.StateManager;
 
 /**
- * @author helmantel <code>WoliWebRunnerFactory</code> delivers WoliWeb
- *         specific <code>Runner</code> objects.
+ * @author helmantel <code>WoliWebRunnerFactory</code> delivers WoliWeb specific
+ *         <code>Runner</code> objects.
  * @todo split this bad boy into separate parts for creating all kinds of
  *       things.
  * @todo make caches more intelligent to account for changes of XML defs.
@@ -91,30 +91,34 @@ public final class RunnerFactoryImpl implements RunnerFactory {
 	 * Create a runner instance, or null if the runner cannot be created. The
 	 * runner holds a reference to the model, and will be initialized with a
 	 * workflow definition.
-	 *
-	 * @param id questionnaire id
-	 * @param l a <code>Locale</code> value
-	 * @param medium a <code>String</code> value
+	 * 
+	 * @param id
+	 *            questionnaire id
+	 * @param l
+	 *            a <code>Locale</code> value
+	 * @param medium
+	 *            a <code>String</code> value
 	 * @return a <code>Runner</code> value
 	 * @exception UnsupportedMediumException
 	 *                if an error occurs
 	 */
 	@Override
-	public Runner createRunner(final URI url)
-			throws UnsupportedMediumException {
+	public Runner createRunner(final URI url) throws UnsupportedMediumException {
 
 		if (!this.runners.containsKey(url)) {
 			LOGGER.fine("Creating new runner for id " + url.toString());
 			try {
-				Configuration cfg =
-					ConfigurationResource.getInstance().getConfiguration(url.toURL());
+				Configuration cfg = ConfigurationResource.getInstance()
+						.getConfiguration(url.toURL());
 
 				if (cfg == null) {
 					return null;
 				}
 
-				this.runners.put(url, new RunnerImpl(new URL((String) cfg
-						.getProperty("runner.url"))));
+				this.runners.put(
+						url,
+						new RunnerImpl(new URL((String) cfg
+								.getProperty("runner.url"))));
 			} catch (Exception e) {
 				LOGGER.log(Level.SEVERE, "Couldn't create runner", e);
 				throw new UnsupportedMediumException(e.getMessage());
@@ -127,7 +131,8 @@ public final class RunnerFactoryImpl implements RunnerFactory {
 	/**
 	 * Create a context for the given id.
 	 * 
-	 * @param url runner config id
+	 * @param url
+	 *            runner config id
 	 * @throws UnsupportedMediumException
 	 *             in case the medium isn't supported.
 	 */
@@ -137,13 +142,13 @@ public final class RunnerFactoryImpl implements RunnerFactory {
 
 		try {
 
-			Configuration cfg =
-				ConfigurationResource.getInstance().getConfiguration(url.toURL());
+			Configuration cfg = ConfigurationResource.getInstance()
+					.getConfiguration(url.toURL());
 
 			if (cfg == null) {
 				return null;
 			}
-			
+
 			URI modelId = new URI((String) cfg.getProperty("model.id"));
 
 			LOGGER.fine("Creating model for " + modelId);
@@ -153,26 +158,25 @@ public final class RunnerFactoryImpl implements RunnerFactory {
 			Instance inst = ModelResource.getInstance().createInstance(modelId,
 					cfg);
 
-			RenderConfig rCfg = ModelResource.getInstance().getRenderConfig(modelId, cfg);
-			
+			RenderConfig rCfg = ModelResource.getInstance().getRenderConfig(
+					modelId, cfg);
+
 			LOGGER.finer("Created. Let's create a new context");
-			RunnerContextImpl ctx = new RunnerContextImpl(
-					null,
-					getFormatter(url, cfg, options),
-					createStateManager(cfg, rCfg, model, inst),
-					model, inst, rCfg);
+			RunnerContextImpl ctx = new RunnerContextImpl(null, getFormatter(
+					url, cfg, options), createStateManager(cfg, rCfg, model,
+					inst), model, inst, rCfg);
 
 			// Allow arbitrary properties to be set on the context.
 			String key;
-			
-	        for (final Iterator<?> i = cfg.getKeys(); i.hasNext();) {
 
-	        	key = (String) i.next();
+			for (final Iterator<?> i = cfg.getKeys(); i.hasNext();) {
 
-	            if (key.startsWith("context")) {
+				key = (String) i.next();
 
-	                ctx.setProperty(key, cfg.getProperty(key));
-	            }
+				if (key.startsWith("context")) {
+
+					ctx.setProperty(key, cfg.getProperty(key));
+				}
 			}
 
 			return ctx;
@@ -196,8 +200,7 @@ public final class RunnerFactoryImpl implements RunnerFactory {
 	 *             whenever the formatter can't be created
 	 */
 	private Formatter getFormatter(final URI id, final Configuration cfg,
-			final Map<String, String> options)
-			throws Exception {
+			final Map<String, String> options) throws Exception {
 
 		if (!this.formatters.containsKey(id)) {
 			LOGGER.fine("Creating new formatter");
@@ -230,7 +233,9 @@ public final class RunnerFactoryImpl implements RunnerFactory {
 			throws Exception {
 
 		StateManager mgr = (StateManager) Class.forName(
-				cfg.getString("statemanager.class")).newInstance();
+				cfg.getString("statemanager.class",
+						"com.w20e.socrates.process.DefaultStateManager"))
+				.newInstance();
 
 		mgr.init(cfg, rCfg, model, instance);
 

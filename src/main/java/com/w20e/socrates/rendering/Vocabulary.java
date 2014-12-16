@@ -14,7 +14,4 @@ public interface Vocabulary {
 
     @SuppressWarnings("rawtypes")
 	public Collection getOptions(String refvalue);
-
-	public String getNodeRef();
-
 }

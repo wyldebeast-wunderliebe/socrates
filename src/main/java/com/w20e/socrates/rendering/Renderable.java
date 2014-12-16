@@ -34,4 +34,9 @@ public interface Renderable {
 	 * All renderables may have properties, used for rendering.
 	 */
 	String getProperty(String name, String defaultValue);
+
+	/**
+	 * All renderables may have properties, used for rendering.
+	 */
+	String getProperty(String name);
 }

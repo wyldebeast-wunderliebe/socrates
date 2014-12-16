@@ -16,6 +16,7 @@ public class Hidden extends Input {
 	/**
 	 * UID.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	/**

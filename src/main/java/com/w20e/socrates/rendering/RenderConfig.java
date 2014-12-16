@@ -23,4 +23,8 @@ public interface RenderConfig extends RenderableContainer {
 	 * Get item by it's id.
 	 */
 	Renderable getItem(String itemId);
+	
+	void addOptionList(OptionList options);
+	
+	OptionList getOptionList(String ref);
 }

@@ -40,7 +40,8 @@ public class TestDataHandler extends TestCase {
 
 	    this.instance.addNode(node0);
 
-	    this.props = new ItemPropertiesImpl("/a");
+	    this.props = new ItemPropertiesImpl("a");
+	    this.props.addBind("/a");
 
 	    this.model.addItemProperties(this.props);
 	

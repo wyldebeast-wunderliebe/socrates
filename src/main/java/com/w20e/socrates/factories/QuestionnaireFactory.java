@@ -13,6 +13,8 @@ package com.w20e.socrates.factories;
 
 import java.net.URI;
 
+import org.apache.commons.configuration.Configuration;
+
 import com.w20e.socrates.model.Questionnaire;
 
 /**
@@ -44,7 +46,7 @@ public interface QuestionnaireFactory {
 	 * @throws InvalidException
 	 *             When the questionnaire is invalid
 	 */
-	Questionnaire createQuestionnaire(URI uri)
+	Questionnaire createQuestionnaire(URI uri, Configuration cfg)
 			throws UnsupportedProtocolException, NotFoundException,
 			InvalidException;
 }

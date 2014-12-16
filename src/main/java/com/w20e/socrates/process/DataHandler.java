@@ -127,6 +127,7 @@ public final class DataHandler {
                 //					
                 try {
                     n = inst.getNode(((Control) r).getBind());
+                    
                     props = model.getItemProperties(n.getName());
 
                     // If the node has a calculate property set, we may as well

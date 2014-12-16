@@ -28,9 +28,16 @@ public class Input extends ControlImpl {
 	/**
 	 * Construct input type.
 	 */
+	public Input() {
+
+		super();
+	}
+
+	/**
+	 * Construct input type.
+	 */
 	public Input(String id) {
 		super(id);
-		setType("input");
 	}
 
 	/**

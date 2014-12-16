@@ -49,6 +49,7 @@ import com.w20e.socrates.rendering.Control;
 import com.w20e.socrates.rendering.ControlImpl;
 import com.w20e.socrates.rendering.Input;
 import com.w20e.socrates.rendering.RenderConfig;
+import com.w20e.socrates.rendering.RenderConfigImpl;
 import com.w20e.socrates.rendering.RenderState;
 import com.w20e.socrates.rendering.RenderStateImpl;
 import com.w20e.socrates.rendering.Renderable;
@@ -93,11 +94,12 @@ public class TestRunnerImpl extends TestCase {
 
 		this.model = new ModelImpl();
 
-		ItemProperties props0 = new ItemPropertiesImpl("/a");
-		ItemProperties props1 = new ItemPropertiesImpl("/a/b");
-		ItemProperties props2 = new ItemPropertiesImpl("/a/b/c1");
-		ItemProperties props3 = new ItemPropertiesImpl("/a/b/c2");
+		ItemProperties props0 = new ItemPropertiesImpl("p0", "/a");
+		ItemProperties props1 = new ItemPropertiesImpl("p1", "/a/b");
+		ItemProperties props2 = new ItemPropertiesImpl("p2", "/a/b/c1");
+		ItemProperties props3 = new ItemPropertiesImpl("p3", "/a/b/c2");
 
+		
 		props0.setRequired(new XBoolean(true));
 		props1.setRelevant(new XBoolean(false));
 
@@ -556,25 +558,5 @@ public class TestRunnerImpl extends TestCase {
         public int getProgressPercentage() {
             return 0;
         }
-	}
-
-	private static class RenderConfigImpl implements RenderConfig {
-
-		private List<Renderable> items = new ArrayList<Renderable>();
-
-		public void addItem(Renderable i) {
-			this.items.add(i);
-		}
-
-		@Override
-		public List<Renderable> getItems() {
-			return this.items;
-		}
-
-		@Override
-		public Renderable getItem(String id) {
-			return null;
-		}
-	}
-	
+	}	
 }

@@ -11,6 +11,7 @@ package com.w20e.socrates.rendering;
 
 import java.util.Locale;
 
+import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import com.w20e.socrates.data.XSDecimal;
@@ -42,6 +43,17 @@ public class TestInput extends TestCase {
 		this.item = new Input("#ID#");
 	}
 
+	public void testConstructor() {
+		
+		Input input = new Input();
+		
+		Assert.assertEquals("input", input.getType());
+
+		input = new Input("input666");
+
+		Assert.assertEquals("input666", input.getId());
+	}
+	
 	public final void testRenderItem() {
 		this.item = new Input("#IDx#");
 		assertEquals(this.item.getId(), "#IDx#");
@@ -68,8 +80,8 @@ public class TestInput extends TestCase {
     }
 
     public final void testGetLabel() {
-        this.item.setLabel("LBL!");
-        assertEquals("LBL!", this.item.getLabel());
+        this.item.setLabel(new Label("LBL!"));
+        assertEquals("LBL!", this.item.getLabel().toString());
     }
 
     public final void testGetDisplayValue() {

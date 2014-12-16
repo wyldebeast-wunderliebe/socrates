@@ -27,7 +27,7 @@ public class Option {
     /**
      * Hold label.
      */
-    private String label;
+    private Label label;
 
     /**
      * Hold hint.
@@ -45,22 +45,37 @@ public class Option {
     public Option(final String optionValue, final String optionLabel) {
 
         this.value = optionValue;
+        this.label = new Label(optionLabel);
+    }
+
+    /**
+     * Create Option.
+     * 
+     * @param optionValue
+     *            value for this option
+     * @param optionLabel
+     *            label for this option
+     */
+    public Option(final String optionValue, final Label optionLabel) {
+
+        this.value = optionValue;
         this.label = optionLabel;
     }
 
+    
     /**
      * Creator for digester.
      */
     public Option() {
 
         this.value = null;  
-        this.label = "";
+        this.label = Label.EMPTY;
     }   
 
     /**
      * @return Returns the label.
      */
-    public final String getLabel() {
+    public final Label getLabel() {
 
         return this.label;
     }
@@ -69,7 +84,7 @@ public class Option {
      * @param optionLabel
      *            The label to set.
      */
-    public final void setLabel(final String optionLabel) {
+    public final void setLabel(final Label optionLabel) {
 
         this.label = optionLabel;
     }

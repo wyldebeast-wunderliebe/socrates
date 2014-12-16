@@ -28,6 +28,7 @@ import com.w20e.socrates.rendering.GridGroup;
 import com.w20e.socrates.rendering.GroupImpl;
 import com.w20e.socrates.rendering.Group;
 import com.w20e.socrates.rendering.Matrix;
+import com.w20e.socrates.rendering.Page;
 
 /**
  * Factory class for creating ItemWrapper classes.
@@ -75,6 +76,8 @@ public class GroupFactory extends AbstractObjectCreationFactory<Group> {
 				LOGGER.severe("Didna happen");
 				// no worries
 			}
+		} else if ("page".equals(attrs.getValue("layout"))) {
+			group = new Page(attrs.getValue("id"));
 		} else {
 			// If it's nothing else, it's a flow.
 			group = new FlowGroup(attrs.getValue("id"));

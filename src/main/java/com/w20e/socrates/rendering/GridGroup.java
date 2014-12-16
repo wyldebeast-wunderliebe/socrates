@@ -20,6 +20,7 @@ public final class GridGroup extends GroupImpl {
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	/**

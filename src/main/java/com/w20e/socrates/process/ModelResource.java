@@ -40,199 +40,204 @@ import com.w20e.socrates.rendering.RenderConfig;
  */
 public final class ModelResource {
 
-    /**
-     * Initialize this class' logging.
-     */
-    private static final Logger LOGGER = Logger.getLogger(ModelResource.class
-            .getName());
+	/**
+	 * Initialize this class' logging.
+	 */
+	private static final Logger LOGGER = Logger.getLogger(ModelResource.class
+			.getName());
 
-    /**
-     * Hold singleton instance.
-     */
-    private static ModelResource instance = null;
+	/**
+	 * Hold singleton instance.
+	 */
+	private static ModelResource instance = null;
 
-    /**
-     * Cache checking thread.
-     */
-    private ModelCacheThread cacheThread;
+	/**
+	 * Cache checking thread.
+	 */
+	private ModelCacheThread cacheThread;
 
-    /**
-     * Hold all models.
-     */
-    private Map<URI, Questionnaire> models = new HashMap<URI, Questionnaire>();
+	/**
+	 * Hold all models.
+	 */
+	private Map<URI, Questionnaire> models = new HashMap<URI, Questionnaire>();
 
-    /**
-     * Hold factories for creating new models.
-     */
-    private Map<String, QuestionnaireFactory> factories = new ConcurrentHashMap<String, QuestionnaireFactory>();
+	/**
+	 * Hold factories for creating new models.
+	 */
+	private Map<String, QuestionnaireFactory> factories = new ConcurrentHashMap<String, QuestionnaireFactory>();
 
-    /**
-     * Hide constructor. Start model up-to-date checks.
-     * 
-     * @todo Determine what checks are actually needed by configuration.
-     */
-    private ModelResource() {
+	/**
+	 * Hide constructor. Start model up-to-date checks.
+	 * 
+	 * @todo Determine what checks are actually needed by configuration.
+	 */
+	private ModelResource() {
 
-        this.cacheThread = new ModelCacheThread();
-        this.cacheThread.register("file", new FileModelUpToDateCheck());
-        this.cacheThread.start();
-    }
+		this.cacheThread = new ModelCacheThread();
+		this.cacheThread.register("file", new FileModelUpToDateCheck());
+		this.cacheThread.start();
+	}
 
-    /**
-     * Return the singleton instance for this resource.
-     * 
-     * @return the instance.
-     * @todo make registry for uptodate handlers configurable
-     */
-    public static synchronized ModelResource getInstance() {
+	/**
+	 * Return the singleton instance for this resource.
+	 * 
+	 * @return the instance.
+	 * @todo make registry for uptodate handlers configurable
+	 */
+	public static synchronized ModelResource getInstance() {
 
-        if (ModelResource.instance == null) {
-            ModelResource.instance = new ModelResource();
-        }
+		if (ModelResource.instance == null) {
+			ModelResource.instance = new ModelResource();
+		}
 
-        return ModelResource.instance;
-    }
+		return ModelResource.instance;
+	}
 
-    /**
-     * Get the model identified by id, and create new if necessary.
-     * 
-     * @param id
-     *            the model's id.
-     * @param cfg
-     *            Configuration resource.
-     * @return the model found, or null.
-     * @throws Exception
-     *             in case of any failure.
-     */
-    public Model getModel(final URI id, final Configuration cfg)
-            throws Exception {
+	/**
+	 * Get the model identified by id, and create new if necessary.
+	 * 
+	 * @param id
+	 *            the model's id.
+	 * @param cfg
+	 *            Configuration resource.
+	 * @return the model found, or null.
+	 * @throws Exception
+	 *             in case of any failure.
+	 */
+	public Model getModel(final URI id, final Configuration cfg)
+			throws Exception {
 
-        LOGGER.fine("Fetching model " + id);
+		LOGGER.fine("Fetching model " + id);
 
-        Model m = getModelDefinition(id, cfg).getModel(id.toString());
+		Model m = getModelDefinition(id, cfg).getModel(id.toString());
 
-        if (m == null) {
-            return m;
-        }
+		if (m == null) {
+			return m;
+		}
 
-        Submission submission = new SubmissionImpl();
-        String action = cfg.getString("submission.type", "file") + ":"
-                + cfg.getString("submission.basedir", ".");
-        submission.setAction(new URI(action));
-        m.setSubmission(submission);
+		Submission submission = new SubmissionImpl();
+		String action = cfg.getString("submission.type", "file") + ":"
+				+ cfg.getString("submission.basedir", ".");
+		submission.setAction(new URI(action));
+		m.setSubmission(submission);
 
-        return m;
-    }
+		return m;
+	}
 
-    /**
-     * Create a new instance for this id. This will always be a statefull.
-     * Instance, hence the 'create' name, instead of the usual 'get'.
-     * 
-     * @param id
-     *            model id
-     * @param cfg
-     *            Configuration resource
-     * @return new instance
-     * @throws Exception
-     *             in case the model can't be created.
-     */
-    public Instance createInstance(final URI id, final Configuration cfg)
-            throws Exception {
+	/**
+	 * Create a new instance for this id. This will always be a statefull.
+	 * Instance, hence the 'create' name, instead of the usual 'get'.
+	 * 
+	 * @param id
+	 *            model id
+	 * @param cfg
+	 *            Configuration resource
+	 * @return new instance
+	 * @throws Exception
+	 *             in case the model can't be created.
+	 */
+	public Instance createInstance(final URI id, final Configuration cfg)
+			throws Exception {
 
-        InstanceImpl inst = new InstanceImpl();
-        Node node;
+		InstanceImpl inst = new InstanceImpl();
+		Node node;
 
-        for (Iterator<Node> i = getModelDefinition(id, cfg).getInstance("")
-                .getAllNodes().iterator(); i.hasNext();) {
-            node = i.next();
-            inst.addNode(new NodeImpl(node.getName(), node.getValue()));
-        }
+		for (Iterator<Node> i = getModelDefinition(id, cfg).getInstance("")
+				.getAllNodes().iterator(); i.hasNext();) {
+			node = i.next();
+			inst.addNode(new NodeImpl(node.getName(), node.getValue()));
+		}
 
-        return inst;
-    }
+		return inst;
+	}
 
-    /**
-     * Return the rendering info for the given model.
-     * 
-     * @param id
-     *            the model's id
-     * @param cfg
-     *            Confirutation resource
-     * @return the rendering configuration
-     * @throws Exception
-     *             in case the rendering couldn't be parsed
-     */
-    public synchronized RenderConfig getRenderConfig(final URI id,
-            final Configuration cfg) throws Exception {
+	/**
+	 * Return the rendering info for the given model.
+	 * 
+	 * @param id
+	 *            the model's id
+	 * @param cfg
+	 *            Confirutation resource
+	 * @return the rendering configuration
+	 * @throws Exception
+	 *             in case the rendering couldn't be parsed
+	 */
+	public synchronized RenderConfig getRenderConfig(final URI id,
+			final Configuration cfg) throws Exception {
 
-        return getModelDefinition(id, cfg).getRenderConfig();
-    }
+		return getModelDefinition(id, cfg).getRenderConfig();
+	}
 
-    /**
-     * Get the set of all model id's.
-     * 
-     * @return a set of all models.
-     */
-    public Set<URI> getModelIds() {
+	/**
+	 * Get the set of all model id's.
+	 * 
+	 * @return a set of all models.
+	 */
+	public Set<URI> getModelIds() {
 
-        return this.models.keySet();
-    }
+		return this.models.keySet();
+	}
 
-    /**
-     * Remove the model (and rendering) for id.
-     * 
-     * @param id
-     *            the model to remove.
-     */
-    public synchronized void removeModel(final URI id) {
+	/**
+	 * Remove the model (and rendering) for id.
+	 * 
+	 * @param id
+	 *            the model to remove.
+	 */
+	public synchronized void removeModel(final URI id) {
 
-        LOGGER.fine("Removing model " + id);
+		LOGGER.fine("Removing model " + id);
 
-        if (this.models.remove(id) == null) {
-            LOGGER.log(Level.WARNING, "Couldn't remove model");
-        }
-    }
+		if (this.models.remove(id) == null) {
+			LOGGER.log(Level.WARNING, "Couldn't remove model");
+		}
+	}
 
-    /**
-     * Get the model definition. Create if necessary.
-     * 
-     * @param id
-     *            Model id
-     * @param cfg
-     *            Congfiguration
-     * @return the model definition.
-     * @throws Exception
-     *             in case the definition can't be created.
-     */
-    private synchronized Questionnaire getModelDefinition(final URI id,
-            final Configuration cfg) throws Exception {
+	/**
+	 * Get the model definition. Create if necessary.
+	 * 
+	 * @param id
+	 *            Model id
+	 * @param cfg
+	 *            Congfiguration
+	 * @return the model definition.
+	 * @throws Exception
+	 *             in case the definition can't be created.
+	 */
+	private synchronized Questionnaire getModelDefinition(final URI id,
+			final Configuration cfg) throws Exception {
 
-        if (!this.models.containsKey(id)) {
+		if (!this.models.containsKey(id)) {
 
-            this.models.put(id, getFactory(cfg.getString("model.factory"))
-                    .createQuestionnaire(id));
-        }
+			this.models
+					.put(id,
+							getFactory(
+									cfg.getString("model.factory",
+											"com.w20e.socrates.factories.XMLQuestionnaireFactory"))
+									.createQuestionnaire(id, cfg));
+		}
 
-        return this.models.get(id);
-    }
+		return this.models.get(id);
+	}
 
-    /**
-     * Create a new factory for Models.
-     * 
-     * @param className
-     *            Create factory for the given class name
-     * @return the factory found, or null if none found.
-     * @throws Exception
-     *             in case the factory can't created
-     */
-    private QuestionnaireFactory getFactory(final String className)
-            throws Exception {
+	/**
+	 * Create a new factory for Models.
+	 * 
+	 * @param className
+	 *            Create factory for the given class name
+	 * @return the factory found, or null if none found.
+	 * @throws Exception
+	 *             in case the factory can't created
+	 */
+	private QuestionnaireFactory getFactory(final String className)
+			throws Exception {
 
-        if (!this.factories.containsKey(className)) {
-            this.factories.put(className, (QuestionnaireFactory) Class.forName(
-                    className).newInstance());
-        }
+		if (!this.factories.containsKey(className)) {
+			this.factories.put(className,
+					(QuestionnaireFactory) Class.forName(className)
+							.newInstance());
+		}
 
-        return this.factories.get(className);
-    }
+		return this.factories.get(className);
+	}
 }

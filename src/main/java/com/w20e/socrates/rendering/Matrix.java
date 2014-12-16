@@ -23,6 +23,7 @@ public class Matrix extends GroupImpl implements Vocabulary {
 	/**
 	 * UID.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	private SelectionControlImpl select;
@@ -96,20 +97,9 @@ public class Matrix extends GroupImpl implements Vocabulary {
 	 *            value to get label for.
 	 * @return String (nice) presentation for this option.
 	 */
-	public final String getOptionLabel(String value) {
+	public final Label getOptionLabel(String value) {
 
 		return this.select.getOptionLabel(value);
 	}
-
-    /**
-     * Return node reference descriptor for the node upon which this control
-     * depends for it's vocabulary.
-     * @return
-     */
-    @Override
-	public String getNodeRef() {
-
-        return this.getProperty("noderef");
-    }
 
 }

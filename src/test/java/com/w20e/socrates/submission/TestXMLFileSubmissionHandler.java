@@ -62,7 +62,7 @@ protected void setUp() throws Exception {
     instance.addNode(new NodeImpl("/bar"));
     instance.addNode(new NodeImpl("/bar2"));
 
-    ItemPropertiesImpl props = new ItemPropertiesImpl("/bar");
+    ItemPropertiesImpl props = new ItemPropertiesImpl("p", "/bar");
     
     props.setCalculate(new XString("argh"));    
         

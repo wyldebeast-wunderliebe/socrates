@@ -32,10 +32,10 @@ protected void setUp() throws Exception {
    */
   public void testOptionStringString() {
 
-    Option opt = new Option("opt_0", "Option 0");
+    Option opt = new Option("opt_0", new Label("Option 0"));
 
     assertEquals(opt.getValue(), "opt_0");
-    assertEquals(opt.getLabel(), "Option 0");
+    assertEquals(opt.getLabel().toString(), "Option 0");
   }
 
   /*
@@ -46,7 +46,7 @@ protected void setUp() throws Exception {
     Option opt = new Option();
 
     assertNull(opt.getValue());
-    assertEquals("", opt.getLabel());
+    assertEquals("", opt.getLabel().toString());
   }
 
   public void testSetName() {
@@ -59,8 +59,8 @@ protected void setUp() throws Exception {
   public void testSetLabel() {
 
     Option opt = new Option();
-    opt.setLabel("Option 0");
-    assertEquals(opt.getLabel(), "Option 0");
+    opt.setLabel(new Label("Option 0"));
+    assertEquals("Option 0", opt.getLabel().toString());
   }
   
   public void testGetHint() {

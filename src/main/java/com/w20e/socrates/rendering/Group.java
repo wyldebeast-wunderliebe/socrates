@@ -24,7 +24,7 @@ public interface Group extends Renderable, RenderableContainer {
 	/**
 	 * Label for the group. Should contain short description.
 	 */
-	String getLabel();
+	Label getLabel();
 
 	/**
 	 * Hint for this group. Should hold extra info.
@@ -32,4 +32,9 @@ public interface Group extends Renderable, RenderableContainer {
 	 * @return
 	 */
 	String getHint();
+
+	/**
+	 * How should individual items of this group be shown?
+	 */
+	String getLayout();
 }

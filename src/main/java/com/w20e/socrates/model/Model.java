@@ -62,6 +62,16 @@ public interface Model {
 	ItemProperties getItemProperties(String itemId);
 
 	/**
+	 * Get an Item identified by it's id.
+	 * 
+	 * @param itemId
+	 *            Id of the item properties.
+	 * @return an <code>ItemProperties</code> object, <b>null </b> if nothing
+	 *         found.
+	 */
+	ItemProperties getItemPropertiesById(String itemId);
+
+	/**
 	 * Set the submission for this model.
 	 * 
 	 * @param s

@@ -22,14 +22,14 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.logging.Logger;
 
+import org.apache.commons.configuration.Configuration;
 import org.apache.commons.digester3.Digester;
 import org.apache.commons.digester3.Rule;
 import org.xml.sax.SAXException;
 
 import com.w20e.socrates.model.Questionnaire;
-import com.w20e.socrates.rendering.Option;
-import com.w20e.socrates.rendering.RenderConfigImpl;
 import com.w20e.socrates.rendering.RenderConfig;
+import com.w20e.socrates.rendering.RenderConfigImpl;
 
 
 /**
@@ -113,38 +113,68 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 	 * 
 	 * @return the digester
 	 */
-	private Digester createRenderingDigester() {
+	private Digester createRenderingDigester(Configuration cfg) {
 
 		GroupFactory groupFactory = new GroupFactory();
+		ControlFactory controlFactory = new ControlFactory(cfg);
+		OptionsFactory optionsFactory = new OptionsFactory();
+		LabelFactory labelFactory = new LabelFactory();
 
 		Digester dig = new Digester();
-
+		
 		dig.addObjectCreate("survey/layout", RenderConfigImpl.class);
 
+		dig.addObjectCreate("*/layout/optionset", "com.w20e.socrates.rendering.OptionList");
+		dig.addSetProperties("*/layout/optionset");
+		dig.addSetNext("*/layout/optionset", "addOptionList");
+				
 		dig.addFactoryCreate("*/group", groupFactory);
 		dig.addSetNext("*/group", "addItem", "com.w20e.socrates.rendering.Group");
 		
 		dig.addObjectCreate("*/text", "com.w20e.socrates.rendering.TextBlock");
 		dig.addSetProperties("*/text");
 		dig.addSetNext("*/text", "addItem", "com.w20e.socrates.rendering.TextBlock");
-
-		dig.addObjectCreate("*/select", "com.w20e.socrates.rendering.Select");
+        dig.addCallMethod("*/text", "setText", 1);
+        dig.addCallParam("*/text", 0);
+		
+		dig.addObjectCreate("*/select", cfg.getString("layout.controlclasses.select",
+					"com.w20e.socrates.rendering.Select"));
 		dig.addSetProperties("*/select");
-		dig.addSetNext("*/select", "addItem", "com.w20e.socrates.rendering.Select");
+		dig.addSetNext("*/select", "addItem");
+
+		dig.addObjectCreate("*/input", cfg.getString("layout.controlclasses.select", "com.w20e.socrates.rendering.Input"));
+		dig.addSetProperties("*/input");
+		dig.addSetNext("*/input", "addItem");
+
+		dig.addFactoryCreate("*/control", controlFactory);
+		dig.addSetProperties("*/control");
+		dig.addSetNext("*/control", "addItem");
 
 		dig.addObjectCreate("*/option", "com.w20e.socrates.rendering.Option");
 		dig.addSetProperties("*/option");
 		dig.addSetNext("*/option", "addOption", "com.w20e.socrates.rendering.Option");		
 		
-		dig.addCallMethod("*/label", "setLabel", 1);
-		dig.addCallParam("*/label", 0);
-
+		dig.addFactoryCreate("*/select/optionset", optionsFactory);
+		dig.addSetNext("*/select/optionset", "setOptions");
+		
+		//dig.addCallMethod("*/label", "setLabel", 1);
+		//dig.addCallParam("*/label", 0);
+		
+		dig.addFactoryCreate("*/label", labelFactory);
+		dig.addSetNext("*/label", "setLabel");
+        dig.addCallMethod("*/label", "setText", 1);
+        dig.addCallParam("*/label", 0);
+		
 		dig.addCallMethod("*/hint", "setHint", 1);
 		dig.addCallParam("*/hint", 0);
 
 		dig.addCallMethod("*/help", "setHelp", 1);
 		dig.addCallParam("*/help", 0);
 
+        dig.addCallMethod("*/property", "setProperty", 2);
+        dig.addCallParam("*/property", 0, "name");
+        dig.addCallParam("*/property", 1);
+		
 		return dig;
 	}
 
@@ -170,7 +200,7 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 	 * @todo Maybe rendering/instance parsing can be made more efficient?
 	 */
 	@Override
-	public final synchronized Questionnaire createQuestionnaire(final URI uri)
+	public final synchronized Questionnaire createQuestionnaire(final URI uri, final Configuration cfg)
 			throws UnsupportedProtocolException, NotFoundException, InvalidException {
 
 		String uristr = uri.toString();
@@ -194,7 +224,7 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 		try {
 			QuestionnaireImpl q = (QuestionnaireImpl) createInstanceDigester()
 					.parse(uristr);
-			q.setRenderConfig((RenderConfig) createRenderingDigester().parse(
+			q.setRenderConfig((RenderConfig) createRenderingDigester(cfg).parse(
 					uristr));
 			return q;
 		} catch (IOException e) {

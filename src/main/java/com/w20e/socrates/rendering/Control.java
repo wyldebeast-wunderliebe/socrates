@@ -33,7 +33,7 @@ public interface Control extends Renderable {
      * 
      * @return label
      */
-    String getLabel();
+    Label getLabel();
 
     /**
      * Get the control's hint. This is usually displayed following the label,

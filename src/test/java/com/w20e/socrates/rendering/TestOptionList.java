@@ -18,8 +18,8 @@ public class TestOptionList {
 	@Test
 	public void testSetRefvalue() {
 
-		this.list.setRefvalue("pipo");
-		assertEquals("pipo", this.list.getRefValue());
+		this.list.setId("pipo");
+		assertEquals("pipo", this.list.getId());
 	}
 
 	@Test

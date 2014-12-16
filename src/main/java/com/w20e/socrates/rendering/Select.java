@@ -18,7 +18,7 @@ import com.w20e.socrates.model.ConstraintViolation;
 /**
  * Select control.
  * @TODO enable multiple values
- * @author dokter
+ * @author dokter@w20e.com
  *
  */
 public class Select extends SelectionControl {
@@ -26,6 +26,7 @@ public class Select extends SelectionControl {
 	/**
 	 * Serialization id.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 	
 	/**
@@ -33,7 +34,6 @@ public class Select extends SelectionControl {
 	 */
 	public Select() {
 		super();
-		setType("select");
 	}
 
 	/**
@@ -41,7 +41,6 @@ public class Select extends SelectionControl {
 	 */
 	public Select(String id) {
 		super(id);
-		setType("select");
 	}
 
 	/**

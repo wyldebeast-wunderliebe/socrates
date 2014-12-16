@@ -59,6 +59,14 @@ public abstract class RenderableImpl implements Renderable {
 		this.id = newId;
 	}
 
+	/**
+	 * Default impl returns classname lowercase
+	 */
+	public String getType() {
+
+		return this.getClass().getSimpleName().toLowerCase();
+	}
+	
 	public String toString() {
 		
 		return getType() + "[@id=" + getId() + "]";

@@ -29,7 +29,8 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
     /**
      * Default serial id.
      */
-    private static final long serialVersionUID = 1L;
+    @SuppressWarnings("unused")
+	private static final long serialVersionUID = 1L;
 
     /**
      * Hold help.
@@ -44,7 +45,8 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
     /**
 	 * Control label. Default is the empty string.
 	 */
-	private String label = "";
+	private Label label = Label.EMPTY;
+
 
 	/**
 	 * Hold the control hint. Default is set to the empty string.
@@ -156,8 +158,12 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
      */
     @Override
 	public final String getType() {
-    	
-        return this.type;
+
+    	if (this.type != null) {
+    		return this.type;
+    	} else {
+    		return super.getType();
+    	}
     }
 
 	/**
@@ -171,7 +177,7 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
 	/**
 	 * Return this item's label.
 	 */
-	public String getLabel() {
+	public Label getLabel() {
 
 		return this.label;
 	}
@@ -189,11 +195,20 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
 	 * Set the label.
 	 * @param newLabel
 	 */
-	public void setLabel(final String newLabel) {
+	public void setLabel(final Label newLabel) {
 		
 		this.label = newLabel;
 	}
-	
+
+	/**
+	 * Set the label.
+	 * @param newLabel
+	 */
+	public void setLabel(final String newLabel) {
+		
+		this.label = new Label(newLabel);
+	}
+
 	public String toString() {
 		
 		return getType() + "[@id=" + getId() + "; @bind=" + getBind() + "]";

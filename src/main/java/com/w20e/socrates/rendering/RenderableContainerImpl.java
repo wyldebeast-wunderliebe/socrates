@@ -11,6 +11,7 @@ implements RenderableContainer {
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 	
 	/**
@@ -61,6 +62,16 @@ implements RenderableContainer {
 		return getItemById(this, id);
 	}
 
+	/**
+	 * Get the item by it's index.
+	 * @param index
+	 * @return Renderable
+	 */
+	public Renderable getItem(int index) {
+		
+		return this.getItems().get(index);
+	}
+	
 	/**
 	 * @todo Find something more efficient...
 	 */

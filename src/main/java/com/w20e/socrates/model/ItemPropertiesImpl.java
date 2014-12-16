@@ -87,6 +87,22 @@ public class ItemPropertiesImpl implements ItemProperties {
     }
 
     /**
+     * Creates a new <code>ItemPropertiesImpl</code> instance.
+     * 
+     * @param propsId
+     *            unique id for properties within model.
+     * @param bind
+     *            for binding the properties to a specific Node.
+     */
+    public ItemPropertiesImpl(final String propsId, String bind) {
+
+        this.id = propsId;
+        this.bind = new ArrayList<String>();
+        
+        this.addBind(bind);
+    }
+
+    /**
      * Unique id for this properties object within a model.
      * 
      * @return Properties id

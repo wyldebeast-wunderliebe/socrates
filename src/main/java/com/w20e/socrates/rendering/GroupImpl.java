@@ -1,25 +1,18 @@
 package com.w20e.socrates.rendering;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public abstract class GroupImpl 
-extends RenderableContainerImpl
-implements Group {
+public abstract class GroupImpl extends RenderableContainerImpl implements
+		Group {
 
 	/**
 	 * UID.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Holds a list of items for this group.
-	 */
-	private List<Renderable> items = new ArrayList<Renderable>();
-
-
-	/**
 	 * Constructor taking unique id.
+	 * 
 	 * @param newId
 	 */
 	public GroupImpl(String newId) {
@@ -34,7 +27,9 @@ implements Group {
 	/**
 	 * Hold label for this item.
 	 */
-	private String label = "";
+	private Label label = Label.EMPTY;
+
+	private String layout = "flow";
 
 	/**
 	 * @return Returns the hint.
@@ -58,7 +53,7 @@ implements Group {
 	 * @return Returns the label.
 	 */
 	@Override
-	public final String getLabel() {
+	public final Label getLabel() {
 
 		return this.label;
 	}
@@ -67,19 +62,18 @@ implements Group {
 	 * @param newLabel
 	 *            The hint to set.
 	 */
-	public final void setLabel(final String newLabel) {
+	public final void setLabel(final Label newLabel) {
 
 		this.label = newLabel;
 	}
 
-	/**
-	 * Get the item by it's index.
-	 * @param pos
-	 * @return
-	 */
-	public Renderable getItem(int pos) {
+	public String getLayout() {
 
-		return this.items.get(pos);
+		return this.layout;
+	}
+
+	public void setLayout(String layout) {
+		this.layout = layout;
 	}
 
 	@Override

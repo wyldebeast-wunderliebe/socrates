@@ -54,10 +54,18 @@ public class ModelImpl implements Model {
     private Submission submission;
 
     /**
-     * Map of ItemProperties objects, stored by their id.
+     * Map of ItemProperties objects, stored by their binds.
      */
     private Map<String, ItemProperties> propsMap = new HashMap<String, ItemProperties>();
 
+    /**
+     * Map of ItemProperties objects, stored by their id.
+     */
+    private Map<String, ItemProperties> propsById = new HashMap<String, ItemProperties>();
+
+    
+    public static ItemProperties DEFAULT_PROPERTIES = new ItemPropertiesImpl("default");
+    
     /**
      * Hold meta data.
      */
@@ -88,16 +96,29 @@ public class ModelImpl implements Model {
 
     /**
      * Return the ItemProperties defined by it's id. If the properties object
-     * can't be found, null is returned.
+     * can't be found, return a default implementation.
      * 
      * @param propsId
      *            bind id for the item properties.
      * @return the ItemProperties found, or null if none found.
      */
     @Override
-	public ItemProperties getItemProperties(final String propsId) {
+	public ItemProperties getItemProperties(final String bind) {
 
-        return this.propsMap.get(propsId);
+    	if (this.propsMap.containsKey(bind)) {
+        return this.propsMap.get(bind);
+    	} else {
+    		return DEFAULT_PROPERTIES;
+    	}
+    }
+
+	public ItemProperties getItemPropertiesById(final String propsId) {
+
+    	if (this.propsById.containsKey(propsId)) {
+        return this.propsById.get(propsId);
+    	} else {
+    		return DEFAULT_PROPERTIES;
+    	}
     }
 
     /**
@@ -110,8 +131,11 @@ public class ModelImpl implements Model {
     public void addItemProperties(final ItemProperties ip) {
         if (ip != null) {
 
-            this.propsMap.put(ip.getId(), ip);
-        }
+        	for (String bind: ip.getBind()) {
+        		this.propsMap.put(bind, ip);
+        		this.propsById.put(ip.getId(), ip);
+        	}
+        }	
     }
 
     /**

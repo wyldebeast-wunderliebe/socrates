@@ -9,7 +9,7 @@ import java.util.Map;
  * The SelectionControl can be used as a base class for those types that
  * actually provide a vocabulary of options to choose from.
  * 
- * @author dokter
+ * @author dokter@w20e.com
  * 
  */
 public abstract class SelectionControl extends ControlImpl implements Vocabulary {
@@ -17,7 +17,8 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
     /**
      * Default serial id.
      */
-    private static final long serialVersionUID = 1L;
+    @SuppressWarnings("unused")
+	private static final long serialVersionUID = 1L;
 
     /**
      * Default reference value.
@@ -26,6 +27,9 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
 
     private Map<String, OptionList> optionlists;
 
+    // ref to options
+    private String ref;
+    
     /**
      * Create new SelectionControl
      * @param newId
@@ -60,12 +64,14 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
     }
 
     /**
-     * Get all options for this item.
+     * Get all options for this item. If a default optionlist exists, return that, otherwise just return the
+     * first optionlist found.
      * 
      * @return options.
      */
     @Override
 	public final Collection<Option> getOptions() {
+
         return this.getOptions(SelectionControl.DEFAULT_OPTION_LIST);
     }
 
@@ -75,9 +81,9 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
      * @return
      */
     @Override
-	public Collection<Option> getOptions(String refvalue) {
+	public Collection<Option> getOptions(String ref) {
 
-    	return this.optionlists.get(refvalue).getOptions();
+    	return this.optionlists.get(ref).getOptions();
     }
 
     
@@ -86,7 +92,16 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
      */
     public final void addOptions(OptionList newOptions) {
 
-        this.optionlists.put(newOptions.getRefValue(), newOptions);
+        this.optionlists.put(newOptions.getId(), newOptions);
+    }
+
+    
+    /**
+     * Set options for this item by list.
+     */
+    public final void setOptions(OptionList options) {
+
+        this.optionlists.put(DEFAULT_OPTION_LIST, options);
     }
 
     /**
@@ -96,12 +111,12 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
      *            value to get label for.
      * @return String (nice) presentation for this option.
      */
-    public final String getOptionLabel(String value) {
+    public final Label getOptionLabel(String value) {
 
     	if (this.optionlists.get(SelectionControl.DEFAULT_OPTION_LIST).contains(value)) {
             return this.optionlists.get(SelectionControl.DEFAULT_OPTION_LIST).get(value).getLabel();
     	} else {
-    		return value;
+    		return new Label(value);
     	}
     }
 
@@ -112,12 +127,12 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
      *            value to get label for.
      * @return String (nice) presentation for this option.
      */
-    public final String getOptionLabel(String value, String ref) {
+    public final Label getOptionLabel(String value, String ref) {
 
     	if (this.optionlists.get(ref).contains(value)) {
             return this.optionlists.get(ref).get(value).getLabel();
     	} else {
-    		return value;
+    		return new Label(value);
     	}
     }
 
@@ -159,10 +174,13 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
      * depends for it's vocabulary.
      * @return
      */
-    @Override
-	public String getNodeRef() {
+	public String getRef() {
 
-        return this.getProperty("noderef");
+    	return this.ref;
     }
 
+    public void setRef(String ref) {
+    	
+    	this.ref = ref;
+    }
 }

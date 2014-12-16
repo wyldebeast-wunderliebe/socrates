@@ -89,53 +89,46 @@ public class TestSelect {
     @Test
     public void testGetDisplayValue() {
 
-        assertEquals("", this.select.getDisplayValue(null, null, null));
-        assertEquals("", this.select.getDisplayValue(Undef.UNDEF, null, null));
+        assertEquals("", this.select.getDisplayValue(null, null, null).toString());
+        assertEquals("", this.select.getDisplayValue(Undef.UNDEF, null, null).toString());
         assertEquals("lbl1", this.select.getDisplayValue(new XString("val1"), null,
-                null));
+                null).toString());
         assertEquals("lbl1", this.select.getDisplayValue(new XString("val1"), null,
-                null));
+                null).toString());
         assertEquals("val666", this.select.getDisplayValue(new XString("val666"), null,
-                null));
+                null).toString());
         
         assertEquals("", this.select.getDisplayValue(null, null, null));
-        assertEquals("", this.select.getDisplayValue(Undef.UNDEF, null, null));
+        assertEquals("", this.select.getDisplayValue(Undef.UNDEF, null, null).toString());
         
         OptionList options0 = new OptionList();
         options0.add("val0", new Option("val0", "label0"));
         options0.add("val1", new Option("val1", "label1"));
-        options0.setRefvalue("ref0");
+        options0.setId("ref0");
         
         OptionList options1 = new OptionList();
         options1.add("val2", new Option("val2", "label2"));
         options1.add("val3", new Option("val3", "label3"));
-        options1.setRefvalue("ref1");
+        options1.setId("ref1");
 
         this.select.addOptions(options0);
         this.select.addOptions(options1);
         
-        assertEquals("label0", this.select.getDisplayValue(new XString("val0"), null, null, "ref0"));
-        assertEquals("label2", this.select.getDisplayValue(new XString("val2"), null, null, "ref1"));
-        assertEquals("label2", this.select.getDisplayValue("val2", null, null, "ref1"));
+        assertEquals("label0", this.select.getDisplayValue(new XString("val0"), null, null, "ref0").toString());
+        assertEquals("label2", this.select.getDisplayValue(new XString("val2"), null, null, "ref1").toString());
+        assertEquals("label2", this.select.getDisplayValue("val2", null, null, "ref1").toString());
         
-        assertEquals("pipo", this.select.getDisplayValue(new XString("pipo"), null, null));
+        assertEquals("pipo", this.select.getDisplayValue(new XString("pipo"), null, null).toString());
 
     }
     
     @Test
-    public void testGetNodeRef() {
-
-        this.select.setProperty("noderef", "bar");
-        assertEquals("bar", this.select.getNodeRef());
-    }
-
-    @Test
     public void testGetOptionsString() {
 
         OptionList options = new OptionList();
-        options.setRefvalue("bar");
+        options.setId("bar");
         OptionList options2 = new OptionList();
-        options2.setRefvalue("foo");
+        options2.setId("foo");
         this.select.addOptions(options);
         this.select.addOptions(options2);
         assertEquals(options.getOptions(), this.select.getOptions("bar"));        

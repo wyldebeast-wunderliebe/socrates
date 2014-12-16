@@ -57,14 +57,25 @@ public void setUp() {
 
   public void testGetAllItemProperties() {
       
-      ItemProperties ip0 = new ItemPropertiesImpl("ip0");
-      ItemProperties ip1 = new ItemPropertiesImpl("ip1");
+      ItemPropertiesImpl ip0 = new ItemPropertiesImpl("ip0");
+      ItemPropertiesImpl ip1 = new ItemPropertiesImpl("ip1");
+
+      ip0.addBind("foo");
+      ip0.addBind("bar");
+      
+      ip1.addBind("xxx");
+      ip1.addBind("yyy");
+      ip1.addBind("zzz");
       
       this.model.addItemProperties(ip0);
       this.model.addItemProperties(ip1);
       
-      assertEquals(2, this.model.getAllItemProperties().size());
-      assertTrue(this.model.getAllItemProperties().contains(ip0));
-      assertTrue(this.model.getAllItemProperties().contains(ip1));
+      assertEquals(5, this.model.getAllItemProperties().size());
+      assertEquals(ip0, this.model.getItemProperties("foo"));
+      assertEquals(ip0, this.model.getItemProperties("foo"));
+      assertEquals(ip1, this.model.getItemProperties("xxx"));
+      assertEquals(ip1, this.model.getItemProperties("yyy"));
+      assertEquals(ip1, this.model.getItemProperties("zzz"));
+
   }
 }

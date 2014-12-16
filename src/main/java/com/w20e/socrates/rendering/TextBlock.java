@@ -21,13 +21,12 @@ public class TextBlock extends RenderableImpl {
 
 	public TextBlock(){
 
-		//super();
+		super();
 	}
 
 	public TextBlock(final String id){
 		
-		this.id = id;
-		//super(id);
+		super(id);
 	}
 	
 	//@Override

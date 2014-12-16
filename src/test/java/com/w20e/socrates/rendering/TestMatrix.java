@@ -50,8 +50,8 @@ public class TestMatrix {
         this.mx.addOption(new Option("val0", "label0"));
         this.mx.addOption(new Option("val1", "label1"));
         
-        assertEquals("label0", this.mx.getOptionLabel("val0"));
-        assertEquals("label1", this.mx.getOptionLabel("val1"));
+        assertEquals("label0", this.mx.getOptionLabel("val0").toString());
+        assertEquals("label1", this.mx.getOptionLabel("val1").toString());
     }
 
 }

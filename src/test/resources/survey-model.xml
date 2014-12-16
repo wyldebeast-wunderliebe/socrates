@@ -34,20 +34,30 @@
       <relevant>bar &gt; 666</relevant>
     </properties>
 
+    <properties id="pipo_required">
+      <bind>pipo</bind>
+      <required>1</required>
+    </properties>
+
   </model>
 
   <layout>
 
-    <!-- optionset id="yesno">
+    <optionset id="yesno">
       <option value="1"><label i18n:trans="">yes</label></option>
       <option value="0"><label i18n:trans="">no</label></option>
-    </optionset-->
+    </optionset>
 
     <group id="grp0" layout="page">
       <label i18n:translate="">This is a group</label>
       <hint></hint>
 
-      <text>Some text...</text>
+	  <input bind="pipo" id="A1">
+	  	<property name="foo">bar</property>
+        <label i18n:translate="">How are you today?</label>
+	  </input>
+
+      <text id="txt">Some text...</text>
 
       <select bind="bar" id="pan">
         <label i18n:translate="">Pick a number</label>
@@ -56,12 +66,30 @@
         <option value="666"><label>666</label></option>
       </select>
 
-      <select bind="badddr" id="padddn"></select>
+      <select bind="bar" id="select_with_ref">
+		<label>Yes... or... no?</label>
+		<optionset ref="yesno" />
+      </select>
   
       <text id="moretext">Some more text...</text>
   
-  
   	</group>
+  	
+  	    <group id="grp1" layout="page">
+      <label i18n:translate="">This is another group</label>
+
+      <text>Some more text...</text>
+
+	</group>
+
+    <group id="grp2" layout="page">
+      <label i18n:translate="">This is yet another group</label>
+
+      <text>Some more text...</text>
+
+	</group>
+  	
+  	
   </layout>
 </survey>
 	

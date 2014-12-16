@@ -47,6 +47,11 @@ public interface ItemProperties {
      */
     List<String> getBind();
 
+    /**
+     * Add a bind to the properties
+     */
+    void addBind(String bind);
+    
 	/**
 	 * Return the type for this item. This is an implementation of the XForms
 	 * data types.

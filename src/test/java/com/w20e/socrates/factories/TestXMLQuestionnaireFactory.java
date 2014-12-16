@@ -1,18 +1,22 @@
 package com.w20e.socrates.factories;
 
-import java.beans.BeanInfo;
-import java.beans.IntrospectionException;
-import java.beans.Introspector;
+import java.io.File;
 import java.net.URI;
-import java.beans.PropertyDescriptor;
+
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
+import org.apache.commons.configuration.Configuration;
+
+import com.w20e.socrates.config.ConfigurationResource;
 import com.w20e.socrates.model.InvalidPathExpression;
+import com.w20e.socrates.model.NodeValidator;
 import com.w20e.socrates.model.Questionnaire;
-import com.w20e.socrates.rendering.RenderConfig;
+import com.w20e.socrates.rendering.Control;
 import com.w20e.socrates.rendering.Group;
+import com.w20e.socrates.rendering.RenderConfig;
 import com.w20e.socrates.rendering.Select;
+import com.w20e.socrates.rendering.TextBlock;
 
 
 public class TestXMLQuestionnaireFactory extends TestCase {
@@ -28,13 +32,17 @@ public class TestXMLQuestionnaireFactory extends TestCase {
 
 		this.factory = new XMLQuestionnaireFactory();
 	}
-
-	public void testCreateModel() {
+	
+	public void testCreateModel() throws Exception {
 		
+	    File file = new File("./target/test-classes/socrates-test-config.xml");
+	    Configuration cfg = ConfigurationResource.getInstance()
+	    .getConfiguration(file.toURI().toURL());
+
 		Questionnaire q = null;
 		
 		try {
-			q = this.factory.createQuestionnaire(new URI("file:./target/test-classes/survey-model.xml"));
+			q = this.factory.createQuestionnaire(new URI("file:./target/test-classes/survey-model.xml"), cfg);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -44,33 +52,51 @@ public class TestXMLQuestionnaireFactory extends TestCase {
 
 			Assert.assertEquals("1", q.getInstance("foo").getNode("foo").getValue());
 						
-			Assert.assertNotNull(q.getModel("foo").getItemProperties("p0"));
+			Assert.assertNotNull(q.getModel("foo").getItemPropertiesById("p0"));
 
-			Assert.assertNotNull(q.getModel("foo").getItemProperties("p1"));
+			Assert.assertNotNull(q.getModel("foo").getItemPropertiesById("p1"));
 			
-			Assert.assertEquals("1", q.getModel("foo").getItemProperties("p0").getRequired().toString());
+			Assert.assertEquals("1", q.getModel("foo").getItemPropertiesById("p0").getRequired().toString());
 			
-			Assert.assertEquals("/bar < 1", q.getModel("foo").getItemProperties("p0").getConstraint().toString());
+			Assert.assertEquals("/bar < 1", q.getModel("foo").getItemPropertiesById("p0").getConstraint().toString());
 
-			Assert.assertEquals("sum(1,1,)", q.getModel("foo").getItemProperties("p0").getCalculate().toString());
+			Assert.assertEquals("sum(1,1,)", q.getModel("foo").getItemPropertiesById("p0").getCalculate().toString());
 
-			Assert.assertEquals("333", q.getModel("foo").getItemProperties("p0").getReadOnly().toString());
+			Assert.assertEquals("333", q.getModel("foo").getItemPropertiesById("p0").getReadOnly().toString());
 
-			Assert.assertEquals("XSInteger", q.getModel("foo").getItemProperties("p0").getDatatype().getSimpleName());
+			Assert.assertEquals("XSInteger", q.getModel("foo").getItemPropertiesById("p0").getDatatype().getSimpleName());
 
-			Assert.assertEquals("/bar > 666", q.getModel("foo").getItemProperties("p1").getRelevant().toString());
+			Assert.assertEquals("/bar > 666", q.getModel("foo").getItemPropertiesById("p1").getRelevant().toString());
 
 			RenderConfig rendering = q.getRenderConfig();
 						
-			Assert.assertEquals("flowgroup", rendering.getItem("grp0").getType());
+			Assert.assertEquals("page", rendering.getItem("grp0").getType());
 
 			Group grp0 = (Group) rendering.getItem("grp0");
+
+			Assert.assertEquals("input", grp0.getItem("A1").getType());
+			
+			Assert.assertEquals("bar", grp0.getItem("A1").getProperty("foo"));
 			
 			Assert.assertEquals("select", grp0.getItem("pan").getType());
 
 			Select pan = (Select) grp0.getItem("pan");
 			
 			Assert.assertEquals(3, pan.getOptions().size());
+
+			Select swr = (Select) grp0.getItem("select_with_ref");
+			
+			Assert.assertEquals(2, swr.getOptions().size());
+			
+			Assert.assertEquals("Some text...", ((TextBlock) grp0.getItem("txt")).getText());
+			
+			Assert.assertTrue(NodeValidator.isRequired(q.getModel("foo").getItemPropertiesById("pipo_required"),
+						q.getInstance("foo"), q.getModel("foo")));
+			
+			Control ctrl = (Control) grp0.getItem("A1");
+						
+			Assert.assertTrue(NodeValidator.isRequired(q.getModel("foo").getItemProperties(ctrl.getBind()),
+					q.getInstance("foo"), q.getModel("foo")));
 			
 		} catch (InvalidPathExpression e) {
 			Assert.fail(e.getMessage());

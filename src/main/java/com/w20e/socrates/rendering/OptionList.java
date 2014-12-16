@@ -24,12 +24,13 @@ public class OptionList {
 	/**
 	 * Version id.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 3706025752473989939L;
 
 	/**
 	 * Holds value for which this list is relevant. If any...
 	 */
-	private String refValue = SelectionControl.DEFAULT_OPTION_LIST;
+	private String id = SelectionControl.DEFAULT_OPTION_LIST;
 
 	private LinkedHashMap<String,Option> options;
 
@@ -43,8 +44,8 @@ public class OptionList {
 	 * 
 	 * @return the value
 	 */
-	public final String getRefValue() {
-		return this.refValue;
+	public final String getId() {
+		return this.id;
 	}
 
 	/**
@@ -53,9 +54,9 @@ public class OptionList {
 	 * @param value
 	 *            the value
 	 */
-	public final void setRefvalue(final String value) {
+	public final void setId(final String value) {
 		
-		this.refValue = value;
+		this.id = value;
 	}
 
 	/**
