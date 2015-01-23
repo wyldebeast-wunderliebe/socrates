@@ -35,23 +35,23 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
     /**
      * Hold help.
      */
-    private String help = "";
+    private Translatable help = TranslatableImpl.EMPTY;
 
     /**
      * Alert in case of errors.
      */
-    private String alert = "";
+    private Translatable alert = TranslatableImpl.EMPTY;
 
     /**
 	 * Control label. Default is the empty string.
 	 */
-	private Label label = Label.EMPTY;
+	private Translatable label = TranslatableImpl.EMPTY;
 
 
 	/**
 	 * Hold the control hint. Default is set to the empty string.
 	 */
-	private String hint = "";
+	private Translatable hint = TranslatableImpl.EMPTY;
 
     /**
      * Hold the control type.
@@ -106,7 +106,7 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
      * @return Returns the alert.
      */
     @Override
-	public final String getAlert() {
+	public final Translatable getAlert() {
 
         return this.alert;
     }
@@ -115,7 +115,7 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
      * @param newAlert
      *            The alert to set.
      */
-    public final void setAlert(final String newAlert) {
+    public final void setAlert(final Translatable newAlert) {
 
         this.alert = newAlert;
     }
@@ -126,7 +126,7 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
      * @return Returns the help.
      */
     @Override
-	public final String getHelp() {
+	public final Translatable getHelp() {
 
         return this.help;
     }
@@ -137,7 +137,7 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
      * @param newHelp
      *            The help to set.
      */
-    public final void setHelp(final String newHelp) {
+    public final void setHelp(final Translatable newHelp) {
 
         this.help = newHelp;
     }
@@ -169,7 +169,7 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
 	/**
 	 * Return this item's hint.
 	 */
-	public String getHint() {
+	public Translatable getHint() {
 
 		return this.hint;
 	}
@@ -177,7 +177,7 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
 	/**
 	 * Return this item's label.
 	 */
-	public Label getLabel() {
+	public Translatable getLabel() {
 
 		return this.label;
 	}
@@ -186,7 +186,7 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
 	 * Set the hint.
 	 * @param newHint
 	 */
-	public void setHint(final String newHint) {
+	public void setHint(final Translatable newHint) {
 
 		this.hint = newHint;
 	}
@@ -195,7 +195,7 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
 	 * Set the label.
 	 * @param newLabel
 	 */
-	public void setLabel(final Label newLabel) {
+	public void setLabel(final Translatable newLabel) {
 		
 		this.label = newLabel;
 	}
@@ -206,7 +206,7 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
 	 */
 	public void setLabel(final String newLabel) {
 		
-		this.label = new Label(newLabel);
+		this.label = new TranslatableImpl(newLabel);
 	}
 
 	public String toString() {

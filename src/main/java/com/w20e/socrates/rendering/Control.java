@@ -33,7 +33,7 @@ public interface Control extends Renderable {
      * 
      * @return label
      */
-    Label getLabel();
+    Translatable getLabel();
 
     /**
      * Get the control's hint. This is usually displayed following the label,
@@ -41,7 +41,7 @@ public interface Control extends Renderable {
      * 
      * @return hint
      */
-    String getHint();
+    Translatable getHint();
 
     /**
      * Get the control's error message.
@@ -49,7 +49,7 @@ public interface Control extends Renderable {
      * @return The error message, usually only when an actual error has
      *         occurred.
      */
-    String getAlert();
+    Translatable getAlert();
 
     /**
      * Get the control help text.
@@ -58,7 +58,7 @@ public interface Control extends Renderable {
      *         for additional help other than that directly provided by the
      *         label and hint.
      */
-    String getHelp();
+    Translatable getHelp();
 
     /**
      * Get the node binding. This is the expression that binds the control to

@@ -60,7 +60,7 @@ public class GroupFactory extends AbstractObjectCreationFactory<Group> {
 
 		LOGGER.finer("Creating new group with id " + attrs.getValue("id"));
 
-		if ("Matrix".equals(attrs.getValue("type"))) {
+		if ("matrix".equals(attrs.getValue("layout"))) {
 			group = new Matrix(attrs.getValue("id"));
 
 		} else if ("grid".equals(attrs.getValue("layout"))) {

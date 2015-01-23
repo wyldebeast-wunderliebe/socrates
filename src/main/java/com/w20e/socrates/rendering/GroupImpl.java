@@ -22,12 +22,12 @@ public abstract class GroupImpl extends RenderableContainerImpl implements
 	/**
 	 * Hold hint for this item.
 	 */
-	private String hint = "";
+	private Translatable hint = TranslatableImpl.EMPTY;
 
 	/**
 	 * Hold label for this item.
 	 */
-	private Label label = Label.EMPTY;
+	private Translatable label = TranslatableImpl.EMPTY;
 
 	private String layout = "flow";
 
@@ -35,7 +35,7 @@ public abstract class GroupImpl extends RenderableContainerImpl implements
 	 * @return Returns the hint.
 	 */
 	@Override
-	public final String getHint() {
+	public final Translatable getHint() {
 
 		return this.hint;
 	}
@@ -44,7 +44,7 @@ public abstract class GroupImpl extends RenderableContainerImpl implements
 	 * @param newHint
 	 *            The hint to set.
 	 */
-	public final void setHint(final String newHint) {
+	public final void setHint(final Translatable newHint) {
 
 		this.hint = newHint;
 	}
@@ -53,7 +53,7 @@ public abstract class GroupImpl extends RenderableContainerImpl implements
 	 * @return Returns the label.
 	 */
 	@Override
-	public final Label getLabel() {
+	public final Translatable getLabel() {
 
 		return this.label;
 	}
@@ -62,7 +62,7 @@ public abstract class GroupImpl extends RenderableContainerImpl implements
 	 * @param newLabel
 	 *            The hint to set.
 	 */
-	public final void setLabel(final Label newLabel) {
+	public final void setLabel(final Translatable newLabel) {
 
 		this.label = newLabel;
 	}

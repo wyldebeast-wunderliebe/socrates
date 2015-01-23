@@ -38,7 +38,7 @@ protected void setUp() throws Exception {
 
   public void testSetId() {
 
-    this.group.setLabel(new Label("Label"));
+    this.group.setLabel(new TranslatableImpl("Label"));
     assertEquals("Label", this.group.getLabel().toString());
   }
 

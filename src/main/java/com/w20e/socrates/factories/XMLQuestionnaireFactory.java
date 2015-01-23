@@ -118,7 +118,7 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 		GroupFactory groupFactory = new GroupFactory();
 		ControlFactory controlFactory = new ControlFactory(cfg);
 		OptionsFactory optionsFactory = new OptionsFactory();
-		LabelFactory labelFactory = new LabelFactory();
+		TranslatableFactory labelFactory = new TranslatableFactory();
 
 		Digester dig = new Digester();
 		
@@ -156,20 +156,26 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 		
 		dig.addFactoryCreate("*/select/optionset", optionsFactory);
 		dig.addSetNext("*/select/optionset", "setOptions");
-		
-		//dig.addCallMethod("*/label", "setLabel", 1);
-		//dig.addCallParam("*/label", 0);
-		
+				
 		dig.addFactoryCreate("*/label", labelFactory);
 		dig.addSetNext("*/label", "setLabel");
         dig.addCallMethod("*/label", "setText", 1);
         dig.addCallParam("*/label", 0);
-		
-		dig.addCallMethod("*/hint", "setHint", 1);
-		dig.addCallParam("*/hint", 0);
 
-		dig.addCallMethod("*/help", "setHelp", 1);
-		dig.addCallParam("*/help", 0);
+		dig.addFactoryCreate("*/hint", labelFactory);
+		dig.addSetNext("*/hint", "setHint");
+        dig.addCallMethod("*/hint", "setText", 1);
+        dig.addCallParam("*/hint", 0);
+
+		dig.addFactoryCreate("*/help", labelFactory);
+		dig.addSetNext("*/help", "setHelp");
+        dig.addCallMethod("*/help", "setText", 1);
+        dig.addCallParam("*/help", 0);
+
+		dig.addFactoryCreate("*/alert", labelFactory);
+		dig.addSetNext("*/alert", "setAlert");
+        dig.addCallMethod("*/alert", "setText", 1);
+        dig.addCallParam("*/alert", 0);
 
         dig.addCallMethod("*/property", "setProperty", 2);
         dig.addCallParam("*/property", 0, "name");

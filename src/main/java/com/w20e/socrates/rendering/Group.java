@@ -24,14 +24,14 @@ public interface Group extends Renderable, RenderableContainer {
 	/**
 	 * Label for the group. Should contain short description.
 	 */
-	Label getLabel();
+	Translatable getLabel();
 
 	/**
 	 * Hint for this group. Should hold extra info.
 	 * 
 	 * @return
 	 */
-	String getHint();
+	Translatable getHint();
 
 	/**
 	 * How should individual items of this group be shown?

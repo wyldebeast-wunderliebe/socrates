@@ -97,6 +97,14 @@ public class TestXMLQuestionnaireFactory extends TestCase {
 						
 			Assert.assertTrue(NodeValidator.isRequired(q.getModel("foo").getItemProperties(ctrl.getBind()),
 					q.getInstance("foo"), q.getModel("foo")));
+
+			Group grp2 = (Group) rendering.getItem("grp2");
+
+			Group grp3 = (Group) grp2.getItem("grp3");
+
+			Assert.assertEquals(2, ((Select) grp3.getItem("select_grp3_1")).getOptions().size());
+			Assert.assertEquals(2, ((Select) grp3.getItem("select_grp3_2")).getOptions().size());
+			Assert.assertEquals(2, ((Select) grp3.getItem("select_grp3_2")).getOptions().size());
 			
 		} catch (InvalidPathExpression e) {
 			Assert.fail(e.getMessage());

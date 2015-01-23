@@ -1,6 +1,8 @@
 package com.w20e.socrates.rendering;
 
-public abstract class TranslatableImpl implements Translatable {
+public class TranslatableImpl implements Translatable {
+
+	public static final TranslatableImpl EMPTY = new TranslatableImpl("");
 
 	String msgid;
 	String msgctx;

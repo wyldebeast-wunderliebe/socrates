@@ -65,22 +65,22 @@ public class TestInput extends TestCase {
 	}
 
 	public final void testGetAlert() {
-	    this.item.setAlert("pipo");
+	    this.item.setAlert(new TranslatableImpl("pipo"));
 	    assertEquals("pipo", this.item.getAlert());
 	}
 
     public final void testGetHelp() {
-        this.item.setHelp("HELP!");
+        this.item.setHelp(new TranslatableImpl("HELP!"));
         assertEquals("HELP!", this.item.getHelp());
     }
 
     public final void testGetHint() {
-        this.item.setHint("HINT!");
+        this.item.setHint(new TranslatableImpl("HINT!"));
         assertEquals("HINT!", this.item.getHint());
     }
 
     public final void testGetLabel() {
-        this.item.setLabel(new Label("LBL!"));
+        this.item.setLabel(new TranslatableImpl("LBL!"));
         assertEquals("LBL!", this.item.getLabel().toString());
     }
 

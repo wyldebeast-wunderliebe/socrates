@@ -27,7 +27,7 @@ public class Option {
     /**
      * Hold label.
      */
-    private Label label;
+    private Translatable label;
 
     /**
      * Hold hint.
@@ -45,7 +45,7 @@ public class Option {
     public Option(final String optionValue, final String optionLabel) {
 
         this.value = optionValue;
-        this.label = new Label(optionLabel);
+        this.label = new TranslatableImpl(optionLabel);
     }
 
     /**
@@ -56,7 +56,7 @@ public class Option {
      * @param optionLabel
      *            label for this option
      */
-    public Option(final String optionValue, final Label optionLabel) {
+    public Option(final String optionValue, final Translatable optionLabel) {
 
         this.value = optionValue;
         this.label = optionLabel;
@@ -69,13 +69,13 @@ public class Option {
     public Option() {
 
         this.value = null;  
-        this.label = Label.EMPTY;
+        this.label = TranslatableImpl.EMPTY;
     }   
 
     /**
      * @return Returns the label.
      */
-    public final Label getLabel() {
+    public final Translatable getLabel() {
 
         return this.label;
     }
@@ -84,7 +84,7 @@ public class Option {
      * @param optionLabel
      *            The label to set.
      */
-    public final void setLabel(final Label optionLabel) {
+    public final void setLabel(final Translatable optionLabel) {
 
         this.label = optionLabel;
     }

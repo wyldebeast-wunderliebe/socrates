@@ -97,7 +97,7 @@ public class Matrix extends GroupImpl implements Vocabulary {
 	 *            value to get label for.
 	 * @return String (nice) presentation for this option.
 	 */
-	public final Label getOptionLabel(String value) {
+	public final Translatable getOptionLabel(String value) {
 
 		return this.select.getOptionLabel(value);
 	}

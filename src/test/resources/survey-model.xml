@@ -80,6 +80,23 @@
 
       <text>Some more text...</text>
 
+      <group id="GROUP_curr" layout="matrix">
+        <label  i18n:trans="">Are you currently...?</label>
+        <select id="notwrk_leave" bind="notwrk_leave">
+          <label  i18n:trans="">On a long term leave, including child-care</label>
+          <optionset ref="yesno" />
+        </select>
+        <select id="notwrk_sick" bind="notwrk_sick">
+          <label  i18n:trans="">Unable to work due to long-term illness or disability</label>
+        </select>
+        <select id="notwrk_student" bind="notwrk_student">
+          <label  i18n:trans="">Student in full-time education</label>
+        </select>
+        <select id="notwrk_retired" bind="notwrk_retired">
+          <label  i18n:trans="">Retired</label>
+        </select>
+      </group>
+
 	</group>
 
     <group id="grp2" layout="page">
@@ -87,9 +104,24 @@
 
       <text>Some more text...</text>
 
+      <group id="grp3" layout="matrix">
+        <label i18n:translate="">The matrix...</label>
+        <select bind="bar" id="select_grp3_1">
+	  	  <label>Yes... or... no?</label>
+		  <optionset ref="yesno" />
+        </select>
+        <select bind="bar" id="select_grp3_2">
+	  	  <label>Yes... or... no?</label>
+		  <optionset ref="yesno" />
+        </select>
+        <select bind="bar" id="select_grp3_3">
+	  	  <label>Yes... or... no?</label>
+		  <optionset ref="yesno" />
+        </select>  	
+      </group>  	
+
 	</group>
-  	
-  	
+
   </layout>
 </survey>
 	

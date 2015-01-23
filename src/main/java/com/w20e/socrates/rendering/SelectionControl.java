@@ -111,12 +111,12 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
      *            value to get label for.
      * @return String (nice) presentation for this option.
      */
-    public final Label getOptionLabel(String value) {
+    public final Translatable getOptionLabel(String value) {
 
     	if (this.optionlists.get(SelectionControl.DEFAULT_OPTION_LIST).contains(value)) {
             return this.optionlists.get(SelectionControl.DEFAULT_OPTION_LIST).get(value).getLabel();
     	} else {
-    		return new Label(value);
+    		return new TranslatableImpl(value);
     	}
     }
 
@@ -127,12 +127,12 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
      *            value to get label for.
      * @return String (nice) presentation for this option.
      */
-    public final Label getOptionLabel(String value, String ref) {
+    public final Translatable getOptionLabel(String value, String ref) {
 
     	if (this.optionlists.get(ref).contains(value)) {
             return this.optionlists.get(ref).get(value).getLabel();
     	} else {
-    		return new Label(value);
+    		return new TranslatableImpl(value);
     	}
     }
 
