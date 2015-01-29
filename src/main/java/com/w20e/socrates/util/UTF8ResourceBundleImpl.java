@@ -131,7 +131,7 @@ public final class UTF8ResourceBundleImpl {
 		 * @return keys
 		 */
 		@Override
-		@SuppressWarnings("unchecked")
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		public Enumeration getKeys() {
 
 			return this.bundle.getKeys();

@@ -14,11 +14,6 @@ import java.net.URL;
 
 import junit.framework.TestCase;
 
-import com.w20e.socrates.workflow.ProcessAction;
-import com.w20e.socrates.workflow.Processor;
-import com.w20e.socrates.workflow.ProcessorFactory;
-import com.w20e.socrates.workflow.ProcessorImpl;
-
 public class TestProcessorFactory extends TestCase {
 
   private ProcessorFactory fac;

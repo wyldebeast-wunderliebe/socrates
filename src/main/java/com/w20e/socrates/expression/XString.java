@@ -28,6 +28,7 @@ public class XString extends AbstractXObjectImpl {
 	/**
 	 * UID.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 	
 	/**

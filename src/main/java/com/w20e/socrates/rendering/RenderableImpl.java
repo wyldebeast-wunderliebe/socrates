@@ -1,12 +1,8 @@
 package com.w20e.socrates.rendering;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.UUID;
-
-import com.w20e.socrates.data.Node;
 
 
 /**
@@ -19,7 +15,8 @@ public abstract class RenderableImpl implements Renderable {
 	/**
      * Default serial id.
      */
-    private static final long serialVersionUID = 1L;
+    @SuppressWarnings("unused")
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Hold unique id for this item.

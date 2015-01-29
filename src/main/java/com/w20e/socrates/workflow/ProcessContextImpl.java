@@ -33,6 +33,7 @@ public class ProcessContextImpl implements ProcessContext {
 	/**
 	 * UID.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = -5675308257805811790L;
 
 	/**

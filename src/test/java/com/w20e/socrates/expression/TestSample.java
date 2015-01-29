@@ -46,9 +46,7 @@ public class TestSample extends TestCase {
         s.setOperands(ops);
 
         assertEquals(((List) ((XList) s.eval()).toObject()).size(), 3);
-        
-        System.out.println(s.eval());
-        
+                
         Expression[] ops1 = {num0, num1, size};
 
         s.setOperands(ops1);

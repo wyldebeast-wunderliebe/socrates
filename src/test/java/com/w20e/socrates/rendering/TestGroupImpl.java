@@ -49,6 +49,6 @@ protected void setUp() throws Exception {
  
   public void testGetHint() {
       this.group.setHint(new TranslatableImpl("HINT"));
-      assertEquals("HINT", this.group.getHint());
+      assertEquals("HINT", this.group.getHint().toString());
   }
 }

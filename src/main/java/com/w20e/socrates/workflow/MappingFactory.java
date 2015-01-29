@@ -21,7 +21,7 @@ import org.xml.sax.Attributes;
  * @version 1.0
  */
 public class MappingFactory
-  extends AbstractObjectCreationFactory {
+  extends AbstractObjectCreationFactory<Mapping> {
 
   /**
    * Create a new Mapping object. This will only work if the
@@ -32,7 +32,7 @@ public class MappingFactory
    * @return an <code>Object</code> value
    * @exception Exception if an error occurs
    */
-  public final Object createObject(final Attributes attrs)
+  public final Mapping createObject(final Attributes attrs)
     throws Exception {
 
     if (attrs.getValue("from") == null

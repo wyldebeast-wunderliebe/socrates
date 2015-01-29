@@ -23,6 +23,7 @@ public class Eval extends XString {
 	/**
 	 * uid.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 /**

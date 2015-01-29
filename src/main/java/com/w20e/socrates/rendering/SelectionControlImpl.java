@@ -26,6 +26,7 @@ public class SelectionControlImpl extends SelectionControl {
 	/**
 	 * Serialization id.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	/**

@@ -20,6 +20,7 @@ public final class HiddenGroup extends GroupImpl {
 	/**
 	 * Serial version.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	/**

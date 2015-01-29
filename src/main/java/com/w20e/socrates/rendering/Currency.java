@@ -16,6 +16,7 @@ public class Currency extends ControlImpl {
 	/**
 	 * Serial UID.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	/**

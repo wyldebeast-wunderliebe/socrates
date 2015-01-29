@@ -66,17 +66,17 @@ public class TestInput extends TestCase {
 
 	public final void testGetAlert() {
 	    this.item.setAlert(new TranslatableImpl("pipo"));
-	    assertEquals("pipo", this.item.getAlert());
+	    assertEquals("pipo", this.item.getAlert().toString());
 	}
 
     public final void testGetHelp() {
         this.item.setHelp(new TranslatableImpl("HELP!"));
-        assertEquals("HELP!", this.item.getHelp());
+        assertEquals("HELP!", this.item.getHelp().toString());
     }
 
     public final void testGetHint() {
         this.item.setHint(new TranslatableImpl("HINT!"));
-        assertEquals("HINT!", this.item.getHint());
+        assertEquals("HINT!", this.item.getHint().toString());
     }
 
     public final void testGetLabel() {

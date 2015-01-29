@@ -20,6 +20,7 @@ public final class FlowGroup extends GroupImpl {
 	/**
 	 * UID.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	/**

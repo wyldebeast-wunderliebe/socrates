@@ -19,6 +19,7 @@ public class Undef extends AbstractXObjectImpl {
 	/**
 	 * uid.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	/**

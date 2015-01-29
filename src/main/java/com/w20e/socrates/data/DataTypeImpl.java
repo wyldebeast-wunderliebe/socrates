@@ -62,6 +62,7 @@ public abstract class DataTypeImpl implements DataType {
 	 * @return The XObject after evaluation of all transformations and
 	 * restrictions.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public final XObject eval(final Object value)
 	    throws TransformationException, RestrictionViolation {

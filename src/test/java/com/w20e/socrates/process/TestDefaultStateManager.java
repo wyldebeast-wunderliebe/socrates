@@ -1,11 +1,7 @@
 package com.w20e.socrates.process;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.net.URI;
-
-import junit.framework.Assert;
 
 import org.apache.commons.configuration.Configuration;
 import org.junit.Before;
@@ -13,7 +9,6 @@ import org.junit.Test;
 
 import com.w20e.socrates.config.ConfigurationResource;
 import com.w20e.socrates.model.Model;
-import com.w20e.socrates.rendering.RenderState;
 import com.w20e.socrates.rendering.StateManager;
 
 public class TestDefaultStateManager {
@@ -45,7 +40,7 @@ public class TestDefaultStateManager {
 	@Test
 	public void testNext() {
 
-	    RenderState state = this.sm.next();
+	    this.sm.next();
 	}
 
 	@Test

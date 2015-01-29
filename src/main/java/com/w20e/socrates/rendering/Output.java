@@ -23,6 +23,7 @@ public class Output extends ControlImpl {
 	/**
 	 * UID.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	/**

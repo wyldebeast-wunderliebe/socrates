@@ -41,6 +41,7 @@ public class XRef extends AbstractExpressionImpl implements XObject {
 	/**
 	 * uid.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	/**

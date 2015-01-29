@@ -120,6 +120,15 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
         this.alert = newAlert;
     }
 
+	/**
+	 * Set the alert.
+	 * @param newAlert
+	 */
+	public void setAlert(final String newAlert) {
+
+		this.alert = new TranslatableImpl(newAlert);
+	}
+
     /**
      * Get the set help text.
      * 
@@ -141,6 +150,15 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
 
         this.help = newHelp;
     }
+    
+	/**
+	 * Set the help text
+	 * @param newHelp
+	 */
+	public void setHelp(final String newHelp) {
+
+		this.help = new TranslatableImpl(newHelp);
+	}
 
     /**
      * Set the control's type.
@@ -189,6 +207,16 @@ public abstract class ControlImpl extends RenderableImpl implements Control {
 	public void setHint(final Translatable newHint) {
 
 		this.hint = newHint;
+	}
+
+	
+	/**
+	 * Set the hint.
+	 * @param newHint
+	 */
+	public void setHint(final String newHint) {
+
+		this.hint = new TranslatableImpl(newHint);
 	}
 
 	/**

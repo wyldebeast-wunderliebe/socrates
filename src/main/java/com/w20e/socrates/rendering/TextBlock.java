@@ -10,6 +10,7 @@ public class TextBlock extends RenderableImpl {
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1505360129571705660L;
 
 	/**
@@ -17,8 +18,6 @@ public class TextBlock extends RenderableImpl {
 	 */
 	private String text;
 	
-	private String id;
-
 	public TextBlock(){
 
 		super();

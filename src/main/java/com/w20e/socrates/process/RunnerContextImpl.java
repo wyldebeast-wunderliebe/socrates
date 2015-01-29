@@ -50,6 +50,7 @@ public class RunnerContextImpl extends ProcessContextImpl implements
 	/**
 	 * UID.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 7629592103605211467L;
 
 	/**

@@ -11,6 +11,7 @@ public class XVar extends XString {
 	/**
 	 * uid.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	/**

@@ -13,6 +13,7 @@ public class XList extends AbstractXObjectImpl implements Iterable<Expression> {
 	/**
 	 * UID.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 	
 	/**

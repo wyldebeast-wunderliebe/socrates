@@ -28,6 +28,7 @@ public abstract class AbstractXObjectImpl extends AbstractExpressionImpl
 	/**
 	 * Serialization UID.
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	/**
