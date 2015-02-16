@@ -20,16 +20,16 @@ public class TestRange {
     }
 
     @Test
-    public void testGetEnd() {
+    public void testGetMax() {
 
-        this.range.setEnd(10);
-        assertEquals(10, this.range.getEnd());
+        this.range.setMax(10);
+        assertEquals(10, this.range.getMax());
     }
 
     @Test
-    public void testGetStart() {
-        this.range.setStart(1);
-        assertEquals(1, this.range.getStart());
+    public void testGetMin() {
+        this.range.setMin(1);
+        assertEquals(1, this.range.getMin());
     }
 
     @Test

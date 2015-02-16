@@ -15,6 +15,7 @@
       </vargroup>
     </vargroup>
     <var name="zzz" />
+    <var name="yybirth" />    
   </data>
 
   <model>
@@ -120,6 +121,9 @@
         </select>  	
       </group>  	
 
+      <range id="yybirth" bind="yybirth" min="1930" max="2007">
+        <label  i18n:trans="">When were you born?</label>        
+      </range>      
 	</group>
 
   </layout>

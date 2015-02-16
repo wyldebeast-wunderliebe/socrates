@@ -29,7 +29,8 @@ public class TestSample extends TestCase {
         assertEquals("sample(1,2,3,4,5,6,3,)", s.toString());
     }
 
-    public void testEval() {
+    @SuppressWarnings("rawtypes")
+	public void testEval() {
 
         Sample s = new Sample();
 

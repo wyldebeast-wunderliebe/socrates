@@ -16,6 +16,7 @@ public class TestToList extends TestCase {
 		this.tl = new ToList(); 
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void testTransform() {
 
 		ArrayList<Object> list = new ArrayList<Object>();

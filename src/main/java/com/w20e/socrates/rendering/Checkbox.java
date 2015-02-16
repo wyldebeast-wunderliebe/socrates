@@ -28,6 +28,10 @@ public class Checkbox extends ControlImpl {
     @SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
+    public Checkbox() {
+    	super();
+    }
+    
     /**
      * Construct input type.
      */

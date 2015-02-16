@@ -146,6 +146,22 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 		dig.addSetProperties("*/input");
 		dig.addSetNext("*/input", "addItem");
 
+		dig.addObjectCreate("*/checkbox", cfg.getString("layout.controlclasses.checkbox", "com.w20e.socrates.rendering.Checkbox"));
+		dig.addSetProperties("*/checkbox");
+		dig.addSetNext("*/checkbox", "addItem");
+
+		dig.addObjectCreate("*/textarea", cfg.getString("layout.controlclasses.textarea", "com.w20e.socrates.rendering.Input"));
+		dig.addSetProperties("*/textarea");
+		dig.addSetNext("*/textarea", "addItem");
+
+		dig.addObjectCreate("*/date", cfg.getString("layout.controlclasses.date", "com.w20e.socrates.rendering.Date"));
+		dig.addSetProperties("*/date");
+		dig.addSetNext("*/date", "addItem");
+
+		dig.addObjectCreate("*/range", cfg.getString("layout.controlclasses.range", "com.w20e.socrates.rendering.Range"));
+		dig.addSetProperties("*/range");
+		dig.addSetNext("*/range", "addItem");
+
 		dig.addFactoryCreate("*/control", controlFactory);
 		dig.addSetProperties("*/control");
 		dig.addSetNext("*/control", "addItem");

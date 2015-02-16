@@ -12,17 +12,25 @@ public class Range extends Input {
 	/**
 	 * Start range at...
 	 */
-	private int start = 0;
+	private int max = 0;
 	
 	/**
 	 * Stop range at...
 	 */
-	private int end = 0;
+	private int min = 0;
 	
 	/**
 	 * Step size.
 	 */
 	private int step = 1;
+
+	/**
+	 * Construct input type.
+	 */
+	public Range() {
+
+		super();
+	}
 
 	/**
 	 * Construct new range.
@@ -35,25 +43,25 @@ public class Range extends Input {
 	}
 
 	
-	public int getEnd() {
+	public int getMin() {
 	
-		return this.end;
+		return this.min;
 	}
 
-	public void setEnd(int newEnd) {
+	public void setMin(int newMin) {
 	
-		this.end = newEnd;
+		this.min = newMin;
 	}
 	
 
-	public int getStart() {
+	public int getMax() {
 	
-		return this.start;
+		return this.max;
 	}
 
-	public void setStart(int newStart) {
+	public void setMax(int newMax) {
 	
-		this.start = newStart;
+		this.max = newMax;
 	}
 	
 
