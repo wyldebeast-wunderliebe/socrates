@@ -9,9 +9,7 @@ import java.util.Collection;
  */
 public interface Vocabulary {
 
-    @SuppressWarnings("rawtypes")
-	public Collection getOptions();
+	public Collection<Option> getOptions();
 
-    @SuppressWarnings("rawtypes")
-	public Collection getOptions(String refvalue);
+	public Collection<Option> getOptions(String refvalue);
 }
