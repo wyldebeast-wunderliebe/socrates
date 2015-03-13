@@ -46,5 +46,17 @@ public class TestRange {
 
         assertEquals("xxx", this.range.getDisplayValue(new XString("xxx"), XSString.class, null));
     }
+    
+    public final void testGetOptions() {
+
+    	this.range.setMin(1);
+    	this.range.setMax(10);
+    	
+    	assertEquals(10, this.range.getOptions().size());
+    	
+    	this.range.setStep(2);
+    	
+    	assertEquals(5, this.range.getOptions().size());
+    }
 
 }

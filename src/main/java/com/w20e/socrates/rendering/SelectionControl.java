@@ -70,7 +70,7 @@ public abstract class SelectionControl extends ControlImpl implements Vocabulary
      * @return options.
      */
     @Override
-	public final Collection<Option> getOptions() {
+	public Collection<Option> getOptions() {
 
         return this.getOptions(SelectionControl.DEFAULT_OPTION_LIST);
     }
