@@ -34,11 +34,6 @@ public class NodeImpl implements Node, Serializable {
 	private Object nodeValue;
 
 	/**
-	 * The default value of this Node.
-	 */
-	private Object defaultValue;
-
-	/**
 	 * The name of this Node (pathRef).
 	 */
 	private String nodeName;
@@ -53,7 +48,6 @@ public class NodeImpl implements Node, Serializable {
 	 */
 	public NodeImpl(final String name, final Object value) {
 
-		this.defaultValue = value;
 		this.nodeValue = value;
 		this.nodeName = name;
 	}
@@ -91,22 +85,7 @@ public class NodeImpl implements Node, Serializable {
 
 		this.nodeValue = value;
 	}
-
-	/**
-	 * Set default value. If the node value is still null, this value will also
-	 * be set.
-	 * 
-	 * @param value
-	 *            the default value to use.
-	 */
-	public void setDefaultValue(final Object value) {
-
-		this.defaultValue = value;
-		if (this.nodeValue == null) {
-			this.nodeValue = value;
-		}
-	}
-
+	
 	/**
 	 * @see com.w20e.socrates.data.Node#getName()
 	 */
@@ -121,7 +100,7 @@ public class NodeImpl implements Node, Serializable {
 	@Override
 	public void reset() {
 
-		this.nodeValue = this.defaultValue;
+		this.nodeValue = null;
 	}
 
 	/**

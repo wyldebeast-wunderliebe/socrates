@@ -19,12 +19,18 @@ public class Hidden extends Input {
 	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
+	
+	public Hidden() {
+	
+		super();
+	}
+	
 	/**
 	 * Construct hidden type. Useful for providing extra info that is rendered
 	 * invisible.
 	 */
 	public Hidden(String id) {
+
 		super(id);
-		setType("hidden");
 	}
 }

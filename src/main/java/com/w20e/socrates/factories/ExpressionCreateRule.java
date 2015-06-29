@@ -41,7 +41,9 @@ public class ExpressionCreateRule extends FactoryCreateRule {
 			if (name == "required") {
 				props.setRequired((Expression) Parser.parseExpression(wrap.getExpr(), this.compiler));
 			} else if (name == "relevant") {
-				props.setRelevant((Expression) Parser.parseExpression(wrap.getExpr(), this.compiler));				
+				props.setRelevant((Expression) Parser.parseExpression(wrap.getExpr(), this.compiler));	
+			} else if (name == "default") {
+				props.setDefault((Expression) Parser.parseExpression(wrap.getExpr(), this.compiler));				
 			} else if (name == "readonly") {
 				props.setReadOnly((Expression) Parser.parseExpression(wrap.getExpr(), this.compiler));				
 			} else if (name == "calculate") {

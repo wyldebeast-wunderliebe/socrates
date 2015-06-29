@@ -3,7 +3,10 @@ package com.w20e.socrates.model;
 import com.w20e.socrates.data.XSBoolean;
 import com.w20e.socrates.data.XSInteger;
 import com.w20e.socrates.expression.Equals;
+import com.w20e.socrates.expression.Expression;
+import com.w20e.socrates.expression.IfThenElse;
 import com.w20e.socrates.expression.Or;
+import com.w20e.socrates.expression.RandomInt;
 import com.w20e.socrates.expression.Undef;
 import com.w20e.socrates.expression.XBoolean;
 import com.w20e.socrates.expression.XNumber;
@@ -75,6 +78,28 @@ public class TestNodeValidator extends TestCase {
                 this.instance).toString());
         
         assertNull(NodeValidator.getValue(this.n, null, this.model, this.instance).toObject());
+    }
+    
+    public void testGetValueWithDefault() {
+        
+        ItemProperties props = new ItemPropertiesImpl("/a");
+
+        props.setDefault(new XString("yo"));
+
+        assertEquals(null, n.getValue());
+        
+        assertEquals("yo", NodeValidator.getValue(this.n, props, this.model, this.instance).toObject());
+
+        assertEquals("yo", n.getValue().toString());
+
+        this.n.setValue("foo");
+
+        assertEquals("foo", n.getValue());
+        
+        assertEquals("foo", NodeValidator.getValue(this.n, props, this.model, this.instance).toObject());
+        
+        assertEquals("foo", n.getValue());
+
     }
 
     /*
@@ -245,6 +270,35 @@ public class TestNodeValidator extends TestCase {
             e.printStackTrace();
             fail(e.getMessage());
         }
+
+    }
+
+    
+    /* Test recursion capabilities
+     */
+    public void testGetValueWithSelf() {
+    	
+        IfThenElse ite = new IfThenElse();
+        RandomInt random = new RandomInt();
+        
+        XNumber num0 = new XNumber(Long.valueOf(5));
+
+        Expression[] ops = {num0};
+
+        random.setOperands(ops);
+        
+        ite.setLeftOperand(new XVar("/a"));
+        ite.setMiddleOperand(new XVar("/a"));
+        ite.setRightOperand(random);
+        
+        this.props.setCalculate(ite);
+        
+        assertTrue(NodeValidator.getValue(this.n, this.props, this.model, this.instance).toNumber().intValue() > 0);
+        assertTrue(NodeValidator.getValue(this.n, this.props, this.model, this.instance).toNumber().intValue() < 6);
+        
+        this.n.setValue(3);
+        
+        assertTrue(NodeValidator.getValue(this.n, this.props, this.model, this.instance).toNumber().intValue() == 3);
 
     }
 

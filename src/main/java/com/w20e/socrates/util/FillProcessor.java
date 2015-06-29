@@ -74,20 +74,24 @@ public final class FillProcessor {
             try {
                 if (expr.endsWith(":raw")) {
                     expr = expr.substring(0, expr.length() - 4);
-                    c = (Control) cfg.getItem(expr);
-                    n = inst.getNode(c.getBind());
-                    props = model.getItemProperties(expr);
+                    n = inst.getNode(expr);
+                    displayVal = n.getValue().toString();
+                } else if (expr.endsWith(":ctrl")) {
+                	expr = expr.substring(0, expr.length() - 5);
+                	 c = (Control) cfg.getItem(expr);	
+                	 n = inst.getNode(c.getBind());
 
-                    if (props == null) {
-                        props = new ItemPropertiesImpl(expr);
-                    }
+                     props = model.getItemProperties(expr);
 
-                    displayVal = NodeValidator.getValue(n, props, model, inst)
-                            .toString();
+                     if (props == null) {
+                         props = new ItemPropertiesImpl(expr);
+                     }
 
+                     val = NodeValidator.getValue(n, props, model, inst);
+                     
+                	 displayVal = c.getDisplayValue(val.toObject(), props.getDatatype(), locale).toString();
                 } else {
-                    c = (Control) cfg.getItem(expr);
-                    n = inst.getNode(c.getBind());
+                    n = inst.getNode(expr);
                     props = model.getItemProperties(expr);
 
                     if (props == null) {
@@ -96,9 +100,7 @@ public final class FillProcessor {
                     
                     val = NodeValidator.getValue(n, props, model, inst);
                     
-                    displayVal = c
-                            .getDisplayValue(val.toObject(), props.getDatatype(), locale)
-                            .toString();
+                    displayVal = val.toString();
                 }
             } catch (Exception e) {
             	LOGGER.log(Level.WARNING, "Error in fill for " + expr, e);

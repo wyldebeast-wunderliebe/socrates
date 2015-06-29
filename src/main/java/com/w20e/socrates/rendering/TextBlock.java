@@ -16,7 +16,7 @@ public class TextBlock extends RenderableImpl {
 	/**
 	 * Hold the text.
 	 */
-	private String text;
+	private Translatable text = TranslatableImpl.EMPTY;
 	
 	public TextBlock(){
 
@@ -34,14 +34,19 @@ public class TextBlock extends RenderableImpl {
 		return "text";
 	}
 
-	public String getText() {
+	public Translatable getText() {
 	
 		return this.text;
 	}
 
-	public void setText(String newText) {
+	public void setText(Translatable newText) {
 	
 		this.text = newText;
+	}
+
+	public void setText(String newText) {
+		
+		this.text = new TranslatableImpl(newText);
 	}
 
 }

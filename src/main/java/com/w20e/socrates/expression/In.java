@@ -23,15 +23,11 @@ public class In extends AbstractFunctionImpl {
 		XList list;
 		
 		if (!(this.getOperands()[1].eval() instanceof XList)) {
-			System.out.println("its not a list, it's a " + this.getOperands()[1].getClass());
 			list = new XList(Arrays.asList(this.getOperands()).subList(1, 
 					this.getOperands().length));
 		} else {
-			System.out.println("its a list!");
 			list = (XList)this.getOperands()[1].eval();
 		}
-
-		System.out.println("LIST" + list);
 		
 		boolean isIn = false;
 		

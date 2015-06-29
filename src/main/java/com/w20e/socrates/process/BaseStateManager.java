@@ -119,11 +119,13 @@ public abstract class BaseStateManager implements StateManager {
 			node = this.instance.getNode(ctrl.getBind());
 		} catch (InvalidPathExpression e1) {
 			// If it doesn't have a node, it is relevant...
+			LOGGER.warning("Node " + ctrl.getBind() + " not found; assuming relevant = true");
 			return true;
 		}
 
 		// No proper binding...
 		if (node == null) {
+			LOGGER.warning("Node is null; assuming relevant = true");
 			return true;
 		}
 

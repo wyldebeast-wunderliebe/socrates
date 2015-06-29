@@ -29,9 +29,9 @@ import java.util.Map;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 
-import com.w20e.socrates.formatting.Formatter;
 import com.w20e.socrates.config.ConfigurationResource;
 import com.w20e.socrates.data.Instance;
+import com.w20e.socrates.formatting.Formatter;
 import com.w20e.socrates.model.Model;
 import com.w20e.socrates.rendering.RenderConfig;
 import com.w20e.socrates.rendering.StateManager;
@@ -243,6 +243,12 @@ public class RunnerContextImpl extends ProcessContextImpl implements
 
 	public void setLocale(Locale newLocale) {
 		this.locale = newLocale;
+		
+    	try {
+    		this.instance.getNode("locale").setValue(newLocale);
+    	} catch (Exception ex) {
+    		// no sweat
+    	}
 	}
 	
 	@Override

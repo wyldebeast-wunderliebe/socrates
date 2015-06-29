@@ -144,4 +144,20 @@ public interface ItemProperties {
 	 * @return the epxression.
 	 */
 	Expression getCalculate();
+
+	/**
+	 * Set default expression. This expression will be used to calculate a default value for a bound node.
+	 * 
+	 * @param expression
+	 *            expression to use in default.
+	 */
+	void setDefault(Expression expression);
+
+	/**
+	 * Get the epxression used for the default value for this field.
+	 * 
+	 * @return the epxression.
+	 */
+	Expression getDefault();
+
 }

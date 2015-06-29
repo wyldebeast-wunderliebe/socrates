@@ -84,8 +84,18 @@ public final class NodeValidator {
             if (node == null) {
                 return Undef.UNDEF;
             }
-
+                        
+            if (("".equals(node.getValue()) || node.getValue() == null) && props.getDefault() != null) {
+            	
+            	Object value = XRefSolver.resolve(model, inst,
+            					props.getDefault(), node).eval().toObject();
+            	
+            	node.setValue(TypeChecker.evaluate(props.getDatatype(),
+            			value));
+			}
+            
             return TypeChecker.evaluate(props.getDatatype(), node.getValue());
+
         } catch (Exception e) {
         	try {
         		LOGGER.log(Level.FINE, "Exception in getting node value for " + node.getName() +"; returning Undef");
@@ -128,6 +138,14 @@ public final class NodeValidator {
             return Undef.UNDEF;
         }
         
+        if (("".equals(node.getValue()) || node.getValue() == null) && props.getDefault() != null) {
+        	
+        	Object value = XRefSolver.resolve(model, inst,
+        					props.getDefault(), node).eval().toObject();
+        	
+        	node.setValue(TypeChecker.evaluate(props.getDatatype(), value));
+		}
+
         return node.getValue();
     }
 

@@ -102,8 +102,8 @@ Usage examples:
 ---------
 'not' negates the following argument.
 Usage examples:
-  not true() => false()
-  not false() => true()
+  not(true()) => false()
+  not(false()) => true()
 
 
 3.2 Binary operations (Infixes)
@@ -145,10 +145,10 @@ Usage examples:
 3.2.5 divide
 ------------
 Divedes left operand by right operand.
-Notation: <expr> / <expr>
+Notation: <expr> div <expr>
 Usage examples:
-  'pipo' / 5 => Undef
-  10 / 2 => 5
+  'pipo' div 5 => Undef
+  10 div 2 => 5
 
 
 3.2.6 multiply

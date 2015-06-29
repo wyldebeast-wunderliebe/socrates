@@ -53,9 +53,9 @@ public class TestFillProcessor extends TestCase {
 	    cfg.addItem(s);
 	    cfg.addItem(fg);
 	    
-		assertEquals("Let's fill in YO and WILLIE", FillProcessor.processFills("Let's fill in ${s0} and ${i0}", i, m, cfg, null));
+		assertEquals("Let's fill in YO and WILLIE", FillProcessor.processFills("Let's fill in ${s0:ctrl} and ${i0:ctrl}", i, m, cfg, null));
 		assertEquals("Let's fill in nothing", FillProcessor.processFills("Let's fill in nothing", i, m, cfg, null));
-		assertEquals("Raw value: 0", FillProcessor.processFills("Raw value: ${s0:raw}", i, m, cfg, null));
+		assertEquals("Raw value: 0", FillProcessor.processFills("Raw value: ${/a/b:raw}", i, m, cfg, null));
 	}
 
 }

@@ -95,7 +95,7 @@ public class ModelImpl implements Model {
     }
 
     /**
-     * Return the ItemProperties defined by it's id. If the properties object
+     * Return the ItemProperties defined by it's bind. If the properties object
      * can't be found, return a default implementation.
      * 
      * @param propsId

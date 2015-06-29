@@ -10,8 +10,6 @@
 
 package com.w20e.socrates.model;
 
-import com.w20e.socrates.model.NodeImpl;
-
 import junit.framework.TestCase;
 
 public class TestNodeImpl extends TestCase {
@@ -58,11 +56,10 @@ public void setUp() {
 
   public void testSetDefaultValue() {
 
-	    this.node.setDefaultValue("yyy");
 	    this.node.setValue("xxx");
 	    assertTrue(this.node.getValue().equals("xxx"));
 	    this.node.reset();
-	    assertTrue(this.node.getValue().equals("yyy"));	    
+	    assertNull(this.node.getValue());	    
 	  }
 
 }

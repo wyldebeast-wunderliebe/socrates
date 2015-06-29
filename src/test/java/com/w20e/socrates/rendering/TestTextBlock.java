@@ -30,8 +30,8 @@ public class TestTextBlock {
     @Test
     public void testGetText() {
 
-        this.tb.setText("TEXT");
-        assertEquals("TEXT", this.tb.getText());
+        this.tb.setText(new TranslatableImpl("TEXT"));
+        assertEquals("TEXT", this.tb.getText().toString());
     }
 
 }

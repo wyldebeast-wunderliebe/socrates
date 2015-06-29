@@ -70,7 +70,12 @@ public class ItemPropertiesImpl implements ItemProperties {
     /**
      * Expression holding calculation of value for this item.
      */
-    private Expression calculate;
+    private Expression calculate = null;
+
+    /**
+     * Expression holding calculation of value for this item.
+     */
+    private Expression defaultExpr = null;
 
     /**
      * Creates a new <code>ItemPropertiesImpl</code> instance.
@@ -250,6 +255,29 @@ public class ItemPropertiesImpl implements ItemProperties {
 	public final Expression getCalculate() {
 
         return this.calculate;
+    }
+
+    /**
+     * Set the calculation expression for this item.
+     * 
+     * @param e
+     *            expression to use.
+     */
+    @Override
+	public final void setDefault(final Expression e) {
+
+        this.defaultExpr = e;
+    }
+
+    /**
+     * Return the expression used to calculate this item's value.
+     * 
+     * @return expression.
+     */
+    @Override
+	public final Expression getDefault() {
+
+        return this.defaultExpr;
     }
 
     /**

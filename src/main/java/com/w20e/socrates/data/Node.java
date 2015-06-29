@@ -27,7 +27,7 @@ public interface Node {
 	String getName();
 
 	/**
-	 * Return the value for this node.
+	 * Return the value for this node. Should return null if no value is set.
 	 * 
 	 * @return the value for this node.
 	 */

@@ -27,15 +27,18 @@ import org.apache.commons.digester3.Digester;
 import org.apache.commons.digester3.Rule;
 import org.xml.sax.SAXException;
 
+import com.w20e.socrates.data.Node;
+import com.w20e.socrates.data.TypeChecker;
+import com.w20e.socrates.model.ItemProperties;
 import com.w20e.socrates.model.Questionnaire;
+import com.w20e.socrates.model.XRefSolver;
 import com.w20e.socrates.rendering.RenderConfig;
 import com.w20e.socrates.rendering.RenderConfigImpl;
-
 
 /**
  * @author dokter
  * 
- * Factory class for creating the Wageindicator version of the Model.
+ *         Factory class for creating the Wageindicator version of the Model.
  */
 public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 
@@ -54,32 +57,33 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 	private Digester createInstanceDigester() {
 
 		Digester dig = new Digester();
-		
+
 		NodeFactory nodeFactory = new NodeFactory();
 		PropertiesFactory propsFactory = new PropertiesFactory();
 		ExpressionFactory exprFactory = new ExpressionFactory();
-		
+
 		dig.addObjectCreate("survey", QuestionnaireImpl.class);
-		
-		//dig.addRule("*/var", nodeCreateRule);
-		//dig.addCallParam( "*/var", 0, "name");
-		//dig.addCallParam( "*/var", 1);
+
+		// dig.addRule("*/var", nodeCreateRule);
+		// dig.addCallParam( "*/var", 0, "name");
+		// dig.addCallParam( "*/var", 1);
 		dig.addFactoryCreate("*/var", nodeFactory);
-		dig.addCallMethod("*/var", "setDefaultValue", 1);
+		dig.addCallMethod("*/var", "setValue", 1);
 		dig.addCallParam("*/var", 0);
 		dig.addSetNext("*/var", "addNode", "com.w20e.socrates.model.NodeImpl");
 
-		//dig.addObjectCreate("*/vargroup", Node.class);
-		//dig.addSetNext("*/var", "addNode");
+		// dig.addObjectCreate("*/vargroup", Node.class);
+		// dig.addSetNext("*/var", "addNode");
 
 		dig.addFactoryCreate("*/model/properties", propsFactory);
-		dig.addSetNext("*/model/properties", "addProperties", "com.w20e.socrates.model.ItemPropertiesImpl");
-		
+		dig.addSetNext("*/model/properties", "addProperties",
+				"com.w20e.socrates.model.ItemPropertiesImpl");
+
 		dig.addCallMethod("*/model/properties/bind", "addBind", 1);
 		dig.addCallParam("*/model/properties/bind", 0);
-				
+
 		Rule exprRule = new ExpressionCreateRule(exprFactory);
-		
+
 		dig.addRule("*/properties/required", exprRule);
 		dig.addCallMethod("*/properties/required", "setExpr", 1);
 		dig.addCallParam("*/properties/required", 0);
@@ -104,6 +108,10 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 		dig.addCallMethod("*/properties/datatype", "setExpr", 1);
 		dig.addCallParam("*/properties/datatype", 0);
 
+		dig.addRule("*/properties/default", exprRule);
+		dig.addCallMethod("*/properties/default", "setExpr", 1);
+		dig.addCallParam("*/properties/default", 0);
+
 		return dig;
 	}
 
@@ -121,44 +129,64 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 		TranslatableFactory labelFactory = new TranslatableFactory();
 
 		Digester dig = new Digester();
-		
+
 		dig.addObjectCreate("survey/layout", RenderConfigImpl.class);
 
-		dig.addObjectCreate("*/layout/optionset", "com.w20e.socrates.rendering.OptionList");
+		dig.addObjectCreate("*/layout/optionset",
+				"com.w20e.socrates.rendering.OptionList");
 		dig.addSetProperties("*/layout/optionset");
 		dig.addSetNext("*/layout/optionset", "addOptionList");
-				
+
 		dig.addFactoryCreate("*/group", groupFactory);
-		dig.addSetNext("*/group", "addItem", "com.w20e.socrates.rendering.Group");
-		
+		dig.addSetNext("*/group", "addItem",
+				"com.w20e.socrates.rendering.Group");
+
 		dig.addObjectCreate("*/text", "com.w20e.socrates.rendering.TextBlock");
 		dig.addSetProperties("*/text");
-		dig.addSetNext("*/text", "addItem", "com.w20e.socrates.rendering.TextBlock");
-        dig.addCallMethod("*/text", "setText", 1);
-        dig.addCallParam("*/text", 0);
-		
-		dig.addObjectCreate("*/select", cfg.getString("layout.controlclasses.select",
-					"com.w20e.socrates.rendering.Select"));
+		dig.addSetNext("*/text", "addItem",
+				"com.w20e.socrates.rendering.TextBlock");
+		dig.addCallMethod("*/text", "setText", 1);
+		dig.addCallParam("*/text", 0);
+
+		dig.addObjectCreate("*/select", cfg.getString(
+				"layout.controlclasses.select",
+				"com.w20e.socrates.rendering.Select"));
 		dig.addSetProperties("*/select");
 		dig.addSetNext("*/select", "addItem");
 
-		dig.addObjectCreate("*/input", cfg.getString("layout.controlclasses.select", "com.w20e.socrates.rendering.Input"));
+		dig.addObjectCreate("*/input", cfg.getString(
+				"layout.controlclasses.select",
+				"com.w20e.socrates.rendering.Input"));
 		dig.addSetProperties("*/input");
 		dig.addSetNext("*/input", "addItem");
 
-		dig.addObjectCreate("*/checkbox", cfg.getString("layout.controlclasses.checkbox", "com.w20e.socrates.rendering.Checkbox"));
+		dig.addObjectCreate("*/hidden", cfg.getString(
+				"layout.controlclasses.hidden",
+				"com.w20e.socrates.rendering.Hidden"));
+		dig.addSetProperties("*/hidden");
+		dig.addSetNext("*/hidden", "addItem");
+
+		dig.addObjectCreate("*/checkbox", cfg.getString(
+				"layout.controlclasses.checkbox",
+				"com.w20e.socrates.rendering.Checkbox"));
 		dig.addSetProperties("*/checkbox");
 		dig.addSetNext("*/checkbox", "addItem");
 
-		dig.addObjectCreate("*/textarea", cfg.getString("layout.controlclasses.textarea", "com.w20e.socrates.rendering.Input"));
+		dig.addObjectCreate("*/textarea", cfg.getString(
+				"layout.controlclasses.textarea",
+				"com.w20e.socrates.rendering.Input"));
 		dig.addSetProperties("*/textarea");
 		dig.addSetNext("*/textarea", "addItem");
 
-		dig.addObjectCreate("*/date", cfg.getString("layout.controlclasses.date", "com.w20e.socrates.rendering.Date"));
+		dig.addObjectCreate("*/date", cfg.getString(
+				"layout.controlclasses.date",
+				"com.w20e.socrates.rendering.Date"));
 		dig.addSetProperties("*/date");
 		dig.addSetNext("*/date", "addItem");
 
-		dig.addObjectCreate("*/range", cfg.getString("layout.controlclasses.range", "com.w20e.socrates.rendering.Range"));
+		dig.addObjectCreate("*/range", cfg.getString(
+				"layout.controlclasses.range",
+				"com.w20e.socrates.rendering.Range"));
 		dig.addSetProperties("*/range");
 		dig.addSetNext("*/range", "addItem");
 
@@ -168,35 +196,36 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 
 		dig.addObjectCreate("*/option", "com.w20e.socrates.rendering.Option");
 		dig.addSetProperties("*/option");
-		dig.addSetNext("*/option", "addOption", "com.w20e.socrates.rendering.Option");		
-		
+		dig.addSetNext("*/option", "addOption",
+				"com.w20e.socrates.rendering.Option");
+
 		dig.addFactoryCreate("*/select/optionset", optionsFactory);
 		dig.addSetNext("*/select/optionset", "setOptions");
-				
+
 		dig.addFactoryCreate("*/label", labelFactory);
 		dig.addSetNext("*/label", "setLabel");
-        dig.addCallMethod("*/label", "setText", 1);
-        dig.addCallParam("*/label", 0);
+		dig.addCallMethod("*/label", "setText", 1);
+		dig.addCallParam("*/label", 0);
 
 		dig.addFactoryCreate("*/hint", labelFactory);
 		dig.addSetNext("*/hint", "setHint");
-        dig.addCallMethod("*/hint", "setText", 1);
-        dig.addCallParam("*/hint", 0);
+		dig.addCallMethod("*/hint", "setText", 1);
+		dig.addCallParam("*/hint", 0);
 
 		dig.addFactoryCreate("*/help", labelFactory);
 		dig.addSetNext("*/help", "setHelp");
-        dig.addCallMethod("*/help", "setText", 1);
-        dig.addCallParam("*/help", 0);
+		dig.addCallMethod("*/help", "setText", 1);
+		dig.addCallParam("*/help", 0);
 
 		dig.addFactoryCreate("*/alert", labelFactory);
 		dig.addSetNext("*/alert", "setAlert");
-        dig.addCallMethod("*/alert", "setText", 1);
-        dig.addCallParam("*/alert", 0);
+		dig.addCallMethod("*/alert", "setText", 1);
+		dig.addCallParam("*/alert", 0);
 
-        dig.addCallMethod("*/property", "setProperty", 2);
-        dig.addCallParam("*/property", 0, "name");
-        dig.addCallParam("*/property", 1);
-		
+		dig.addCallMethod("*/property", "setProperty", 2);
+		dig.addCallParam("*/property", 0, "name");
+		dig.addCallParam("*/property", 1);
+
 		return dig;
 	}
 
@@ -215,39 +244,42 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 	 * @throws UnsupportedProtocolException
 	 *             When the protocol in URL is not supported
 	 * @return a WoliWeb model.
-	 * @throws NotFoundException 
-	 * @throws InvalidException 
+	 * @throws NotFoundException
+	 * @throws InvalidException
 	 * @throws
 	 * @todo which protocols are supported by digester?
 	 * @todo Maybe rendering/instance parsing can be made more efficient?
 	 */
 	@Override
-	public final synchronized Questionnaire createQuestionnaire(final URI uri, final Configuration cfg)
-			throws UnsupportedProtocolException, NotFoundException, InvalidException {
+	public final synchronized Questionnaire createQuestionnaire(final URI uri,
+			final Configuration cfg) throws UnsupportedProtocolException,
+			NotFoundException, InvalidException {
 
 		String uristr = uri.toString();
-		
+
 		if (uristr.startsWith("file:")) {
-			
+
 			LOGGER.fine("We have a file URI...");
-			
+
 			uristr = uristr.replace("$HOME", System.getProperty("user.home"));
 
 			if (uristr.startsWith("file:.")) {
 
 				if (System.getProperty("socrates.cfg.root") != null) {
-					uristr = uristr.replaceAll("^file:\\.", "file:" + System.getProperty("socrates.cfg.root"));
+					uristr = uristr.replaceAll("^file:\\.",
+							"file:" + System.getProperty("socrates.cfg.root"));
 				}
 			}
 		}
 
 		LOGGER.fine("Creating model for " + uristr);
-		
+
 		try {
 			QuestionnaireImpl q = (QuestionnaireImpl) createInstanceDigester()
 					.parse(uristr);
-			q.setRenderConfig((RenderConfig) createRenderingDigester(cfg).parse(
-					uristr));
+			q.setRenderConfig((RenderConfig) createRenderingDigester(cfg)
+					.parse(uristr));
+
 			return q;
 		} catch (IOException e) {
 			LOGGER.severe("Couldn't create model: " + e.getMessage());
