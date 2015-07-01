@@ -168,4 +168,9 @@ public class XList extends AbstractXObjectImpl implements Iterable<Expression> {
 		
 		return this.members.size();
 	}
+	
+	public Expression get(int index) {
+		
+		return this.members.get(index);
+	}
 }

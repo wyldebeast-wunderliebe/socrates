@@ -5,6 +5,7 @@ import com.w20e.socrates.data.XSInteger;
 import com.w20e.socrates.expression.Equals;
 import com.w20e.socrates.expression.Expression;
 import com.w20e.socrates.expression.IfThenElse;
+import com.w20e.socrates.expression.Not;
 import com.w20e.socrates.expression.Or;
 import com.w20e.socrates.expression.RandomInt;
 import com.w20e.socrates.expression.Undef;
@@ -278,6 +279,8 @@ public class TestNodeValidator extends TestCase {
      */
     public void testGetValueWithSelf() {
     	
+    	ItemProperties props = new ItemPropertiesImpl("/a");
+    	
         IfThenElse ite = new IfThenElse();
         RandomInt random = new RandomInt();
         
@@ -291,15 +294,57 @@ public class TestNodeValidator extends TestCase {
         ite.setMiddleOperand(new XVar("/a"));
         ite.setRightOperand(random);
         
-        this.props.setCalculate(ite);
+        props.setCalculate(ite);
         
-        assertTrue(NodeValidator.getValue(this.n, this.props, this.model, this.instance).toNumber().intValue() > 0);
-        assertTrue(NodeValidator.getValue(this.n, this.props, this.model, this.instance).toNumber().intValue() < 6);
+        assertTrue(NodeValidator.getValue(this.n, props, this.model, this.instance).toNumber().intValue() > 0);
+        assertTrue(NodeValidator.getValue(this.n, props, this.model, this.instance).toNumber().intValue() < 6);
         
         this.n.setValue(3);
         
-        assertTrue(NodeValidator.getValue(this.n, this.props, this.model, this.instance).toNumber().intValue() == 3);
+        assertTrue(NodeValidator.getValue(this.n, props, this.model, this.instance).toNumber().intValue() == 3);
 
     }
 
+    
+    public void testValidateWithSelf() {
+    	
+    	ItemProperties props = new ItemPropertiesImpl("/a");
+    	
+        Or or = new Or();
+
+        Not not = new Not();
+        not.setLeftOperand(new XVar("/a"));
+
+        Equals eq1 = new Equals();
+        eq1.setLeftOperand(new XVar("/a"));
+        eq1.setRightOperand(new XNumber(Integer.valueOf(3)));
+
+        or.setLeftOperand(not);
+        or.setRightOperand(eq1);
+
+        props.setConstraint(or);
+        
+        try {
+            NodeValidator.validate(this.n, props, this.instance, this.model);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+
+       this.n.setValue(3);
+
+       try {
+           NodeValidator.validate(this.n, props, this.instance, this.model);
+       } catch (Exception e) {
+           fail(e.getMessage());
+       }
+
+       this.n.setValue(1);
+
+       try {
+           NodeValidator.validate(this.n, props, this.instance, this.model);
+           fail("Validation should have failed");
+       } catch (Exception e) {
+       }
+
+    }
 }

@@ -24,6 +24,8 @@ public class TestToDouble extends TestCase {
 
         assertEquals(new Double(3.25), fl.transform("3.25"));
         assertEquals("3.25", fl.transform("3,25", Locale.FRANCE).toString());
+        assertEquals("30000.25", fl.transform("30.000,25", Locale.GERMAN).toString());
+        assertEquals("30000.25", fl.transform("30000,25", Locale.GERMAN).toString());
         assertNull(fl.transform("pipo", Locale.FRANCE));
     }
 

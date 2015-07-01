@@ -28,6 +28,7 @@ import com.w20e.socrates.expression.Floor;
 import com.w20e.socrates.expression.Format;
 import com.w20e.socrates.expression.GT;
 import com.w20e.socrates.expression.GTE;
+import com.w20e.socrates.expression.Get;
 import com.w20e.socrates.expression.IfThenElse;
 import com.w20e.socrates.expression.In;
 import com.w20e.socrates.expression.LT;
@@ -574,7 +575,18 @@ public final class ExpressionCompiler implements Compiler {
             in.setOperands(v.toArray(new Expression[v.size()]));
             
             return in;
+        } else if (arg0.toString().equals("get")) {
+            Get get = new Get();
+            Vector<Expression> v = new Vector<Expression>();
+            for (Object arg: arg1) {
+                v.add((Expression) arg);
+            }
+                        
+            get.setOperands(v.toArray(new Expression[v.size()]));
+            
+            return get;
         }
+
 
 		return new XBoolean(false);
 	}

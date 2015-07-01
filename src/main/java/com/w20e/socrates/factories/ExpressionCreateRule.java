@@ -72,16 +72,10 @@ public class ExpressionCreateRule extends FactoryCreateRule {
 			return XSDecimal.class;
 		} else if ("xs:amount".equals(typeName)) {
 			return XSAmount.class;
-		} else if ("xs:amount-no-decimal".equals(typeName)) {
-			return XSInteger.class;
 		} else if ("xs:integer".equals(typeName)) {
 			return XSInteger.class;
 		} else if ("xs:date".equals(typeName)) {
 			return XSDate.class;
-			// } else if ("xs:time".equals(typeName)) {
-			// return XSHoursQuarters.class;
-		} else if ("xs:workweek".equals(typeName)) {
-			return XSDecimal.class;
 		} else if ("xs:list".equals(typeName)) {
 			return XSList.class;
 		}

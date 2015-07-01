@@ -15,7 +15,6 @@ import com.w20e.socrates.model.NodeValidator;
 import com.w20e.socrates.model.XRefSolver;
 import com.w20e.socrates.rendering.Control;
 import com.w20e.socrates.rendering.Group;
-import com.w20e.socrates.rendering.Matrix;
 import com.w20e.socrates.rendering.Renderable;
 import com.w20e.socrates.rendering.Select;
 import com.w20e.socrates.rendering.StateManager;
@@ -37,9 +36,9 @@ public abstract class BaseStateManager implements StateManager {
 	 * Hold the model for this state manager.
 	 */
 	protected Model model;
-	
+
 	/**
-	 * 	Hold global configuration.
+	 * Hold global configuration.
 	 */
 	protected Configuration cfg;
 
@@ -72,29 +71,13 @@ public abstract class BaseStateManager implements StateManager {
 
 		Renderable rItem;
 
-		if ("matrix".equals(grp.getType())) {
-			if (((Matrix) grp).getOptions().isEmpty()) {
-				return false;
-			}
-			for (final Iterator<Renderable> i = grp.getItems().iterator(); i
-					.hasNext();) {
+		for (final Iterator<Renderable> i = grp.getItems().iterator(); i
+				.hasNext();) {
 
-				rItem = i.next();
+			rItem = i.next();
 
-				if (isRelevant((Control) rItem, true)) {
-					return true;
-				}
-			}
-		} else {
-
-			for (final Iterator<Renderable> i = grp.getItems().iterator(); i
-					.hasNext();) {
-
-				rItem = i.next();
-
-				if (isRelevant(rItem)) {
-					return true;
-				}
+			if (isRelevant(rItem)) {
+				return true;
 			}
 		}
 
@@ -119,7 +102,8 @@ public abstract class BaseStateManager implements StateManager {
 			node = this.instance.getNode(ctrl.getBind());
 		} catch (InvalidPathExpression e1) {
 			// If it doesn't have a node, it is relevant...
-			LOGGER.warning("Node " + ctrl.getBind() + " not found; assuming relevant = true");
+			LOGGER.warning("Node " + ctrl.getBind()
+					+ " not found; assuming relevant = true");
 			return true;
 		}
 

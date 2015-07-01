@@ -16,7 +16,13 @@ import java.util.Map;
 import junit.framework.TestCase;
 
 import com.w20e.socrates.data.Instance;
+import com.w20e.socrates.data.XSList;
+import com.w20e.socrates.expression.Expression;
+import com.w20e.socrates.expression.Get;
+import com.w20e.socrates.expression.Sample;
+import com.w20e.socrates.expression.XNumber;
 import com.w20e.socrates.expression.XString;
+import com.w20e.socrates.expression.XVar;
 import com.w20e.socrates.model.InstanceImpl;
 import com.w20e.socrates.model.InvalidPathExpression;
 import com.w20e.socrates.model.ItemPropertiesImpl;
@@ -61,12 +67,53 @@ protected void setUp() throws Exception {
     instance.addNode(new NodeImpl("/foo/foo2/foo3/", "bar & boos; <are we escaped yet?>"));
     instance.addNode(new NodeImpl("/bar"));
     instance.addNode(new NodeImpl("/bar2"));
+    instance.addNode(new NodeImpl("/r"));
+    instance.addNode(new NodeImpl("/r1"));
 
     ItemPropertiesImpl props = new ItemPropertiesImpl("p", "/bar");
     
     props.setCalculate(new XString("argh"));    
-        
+
+    ItemPropertiesImpl props2 = new ItemPropertiesImpl("p", "/bar2");
+    
+    props2.setDefault(new XVar("/bar"));    
+
+    ItemPropertiesImpl r_props = new ItemPropertiesImpl("p", "/r");
+    
+    Sample sample = new Sample();
+    
+    XNumber num0 = new XNumber(Long.valueOf(1));
+    XNumber num1 = new XNumber(Long.valueOf(2));
+    XNumber num2 = new XNumber(Long.valueOf(3));
+    XNumber num3 = new XNumber(Long.valueOf(4));
+    XNumber num4 = new XNumber(Long.valueOf(5));
+    XNumber num5 = new XNumber(Long.valueOf(6));
+    XNumber size = new XNumber(Long.valueOf(3));
+
+    Expression[] ops = {num0, num1, num2, num3, num4, num5, size};
+
+    sample.setOperands(ops);
+    
+    r_props.setDefault(sample);
+    r_props.setDatatype(XSList.class);
+
+    ItemPropertiesImpl r1_props = new ItemPropertiesImpl("p", "/r1");
+
+    Get get = new Get();
+
+    XNumber idx = new XNumber(Long.valueOf(0));
+    XVar var = new XVar("/r");
+
+    Expression[] ops2 = {idx, var};
+
+    get.setOperands(ops2);
+    
+    r1_props.setCalculate(get);
+    
     model.addItemProperties(props);
+    model.addItemProperties(props2);
+    model.addItemProperties(r_props);
+    model.addItemProperties(r1_props);
     
     Map<String, Object> meta = instance.getMetaData();
 
@@ -110,14 +157,15 @@ protected void setUp() throws Exception {
         inst2 = InstanceXMLSerializer.deserialize(new URI("file:" + this.filename));
         
         assertEquals("argh", inst2.getNode("/bar").getValue().toString());
+        assertEquals("argh", inst2.getNode("/bar2").getValue().toString());
         
     } catch (URISyntaxException e) {
         fail("Exception in deserialize file instance");
     } catch (InvalidPathExpression e) {
         fail("Exception in deserialize file instance");
     }    
-    
-    //assertTrue(file.delete());
+        
+    file.delete();
   }
 
 }

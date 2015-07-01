@@ -82,6 +82,7 @@ public class TestXMLQuestionnaireFactory extends TestCase {
 			Assert.assertEquals("page", rendering.getItem("grp0").getType());
 
 			Group grp0 = (Group) rendering.getItem("grp0");
+			Group grp1 = (Group) rendering.getItem("grp1");
 
 			Assert.assertEquals("input", grp0.getItem("A1").getType());
 

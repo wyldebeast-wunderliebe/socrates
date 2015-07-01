@@ -229,7 +229,17 @@ public class TestExpressionCompiler extends TestCase {
 			// sample
 			assertTrue(this.createExpression("sample(3, 1, 2, 3)")
 					.eval().toString().indexOf("1") > -1);
-
+			
+			// get
+			assertEquals("1", this.createExpression("get(0, 1, 2, 3)")
+					.eval().toString());
+			// get
+			assertEquals("2", this.createExpression("get(1, 1, 2, 3)")
+					.eval().toString());
+			// get
+			assertEquals("3", this.createExpression("get(2, 1, 2, 3)")
+					.eval().toString());
+			
 			// in
 			assertTrue(this.createExpression("in(3, 1, 2, 3)").eval()
 					.toBoolean());

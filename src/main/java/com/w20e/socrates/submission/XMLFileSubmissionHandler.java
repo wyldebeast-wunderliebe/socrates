@@ -39,91 +39,92 @@ import com.w20e.socrates.model.util.InstanceXMLSerializer;
  */
 public final class XMLFileSubmissionHandler implements SubmissionHandler {
 
-    /**
-     * Initialize this class' logging.
-     */
-    private static final Logger LOGGER = Logger
-            .getLogger(XMLFileSubmissionHandler.class.getName());
+	/**
+	 * Initialize this class' logging.
+	 */
+	private static final Logger LOGGER = Logger
+			.getLogger(XMLFileSubmissionHandler.class.getName());
 
-    /**
-     * Hold meta data.
-     */
-    private Map<String, Object> metaData;
+	/**
+	 * Hold meta data.
+	 */
+	private Map<String, Object> metaData;
 
-    /**
-     * Default extension.
-     */
-    private static final String EXTENSION = ".xml";
+	/**
+	 * Default extension.
+	 */
+	private static final String EXTENSION = ".xml";
 
-    /**
-     * Submit the Instance to the file designated in the constructor.
-     * 
-     * @param data
-     *            Instance to submit. To enable proper submission to relative
-     *            files, prepend your filename with /./foo.xml. So the complete
-     *            URI would be like: file:///./foo.xml.
-     * @param submission
-     *            Submission info
-     * @throws SubmissionException
-     *             in case the data can't be processed.
-     */
-    @Override
-	public void submit(final Instance data, final Model model, final Submission submission)
-            throws SubmissionException {
+	/**
+	 * Submit the Instance to the file designated in the constructor.
+	 * 
+	 * @param data
+	 *            Instance to submit. To enable proper submission to relative
+	 *            files, prepend your filename with /./foo.xml. So the complete
+	 *            URI would be like: file:///./foo.xml.
+	 * @param submission
+	 *            Submission info
+	 * @throws SubmissionException
+	 *             in case the data can't be processed.
+	 */
+	@Override
+	public void submit(final Instance data, final Model model,
+			final Submission submission) throws SubmissionException {
 
-        LOGGER.fine("Storing instance");
+		LOGGER.fine("Storing instance");
 
-        //  Before anything else, we need to traverse all nodes, and see whether
-        // there is any calculations left...
-        //
-        for (Node n: data.getAllNodes()) {
-            ItemProperties props;
+		// Before anything else, we need to traverse all nodes, and see whether
+		// there is any calculations left...
+		//
+		for (Node n : data.getAllNodes()) {
+			ItemProperties props;
 
-            props = model.getItemProperties(n.getName());
+			props = model.getItemProperties(n.getName());
 
-            if (props == null || props.getCalculate() == null) {
-                continue;
-            }
-            try {
-                n.setValue(NodeValidator.getRawValue(n, props, model, data));
-            } catch (Exception e) {
-                LOGGER.severe("Error in calculating node value.");
-                n.setValue(null);
-            }
-        }
-        
-        Date now = new Date();
-        String filename;
+			if (props == null || (props.getCalculate() == null && props.getDefault() == null)) {
+				continue;
+			}
+			
+			try {
+				n.setValue(NodeValidator.getRawValue(n, props, model, data));
+			} catch (Exception e) {
+				LOGGER.severe("Error in calculating node value.");
+				n.setValue(null);
+			}
+		}
 
-        this.metaData = data.getMetaData();
+		Date now = new Date();
+		String filename;
 
-        if (this.metaData.containsKey("filename")) {
-            filename = this.metaData.get("filename").toString();
-        } else {
-            this.metaData.put("warn01",
-                    "put filename in metaData of SubmissionHandler"
-                            + " to avoid overwriting the output file");
-            filename = "out_" + now.toString();
-        }
+		this.metaData = data.getMetaData();
 
-        String base = submission.getAction().getPath();
+		if (this.metaData.containsKey("filename")) {
+			filename = this.metaData.get("filename").toString();
+		} else {
+			this.metaData.put("warn01",
+					"put filename in metaData of SubmissionHandler"
+							+ " to avoid overwriting the output file");
+			filename = "out_" + now.toString();
+		}
 
-        if (base.startsWith("/.")) {
-            base = base.substring(1);
-        }
+		String base = submission.getAction().getPath();
 
-        String file = base + File.separator + filename + EXTENSION;
+		if (base.startsWith("/.")) {
+			base = base.substring(1);
+		}
 
-        LOGGER.fine("Try to store data as " + file);
+		String file = base + File.separator + filename + EXTENSION;
 
-        try {
-            InstanceXMLSerializer.serialize(data, new File(file));
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Couldn't submit data", e);
-            throw new SubmissionException(e.getMessage());
-        }
+		LOGGER.fine("Try to store data as " + file);
 
-        LOGGER.fine("Done");
-    }
+		try {
+			InstanceXMLSerializer.serialize(data, new File(file));
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Couldn't submit data", e);
+			throw new SubmissionException(e.getMessage());
+		}
+
+		LOGGER.fine("Done");
+	}
 
 }

@@ -264,7 +264,7 @@ public final class NodeValidator {
                         .getName());
             }
         }
-
+        
         if (XRefSolver.resolve(model, inst, props.getConstraint(), node).toBoolean()) {
             return;
         }

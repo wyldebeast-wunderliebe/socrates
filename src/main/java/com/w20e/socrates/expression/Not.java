@@ -32,10 +32,6 @@ public class Not extends AbstractUnaryOperationImpl {
 	@Override
 	public final boolean toBoolean() {
 
-		if (getLeftOperand() instanceof Undef) {
-			return false;
-		}
-
 		return !getLeftOperand().toBoolean();
 	}
 

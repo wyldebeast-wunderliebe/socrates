@@ -59,7 +59,7 @@
         <label i18n:translate="">How are you today?</label>
 	  </input>
 
-      <text id="txt">Some text...</text>
+      <text id="txt" i18n:trans="">Some text...</text>
 
       <select bind="bar" id="pan">
         <label i18n:translate="">Pick a number</label>
@@ -80,7 +80,11 @@
   	    <group id="grp1" layout="page">
       <label i18n:translate="">This is another group</label>
 
-      <text>Some more text...</text>
+      <text id="text_w_link">
+      <![CDATA[
+      Some more text... with a <a href="http://foo.bar/${locale}">link</a>
+      ]]>
+      </text>
 
       <group id="GROUP_curr" layout="matrix">
         <label  i18n:trans="">Are you currently...?</label>

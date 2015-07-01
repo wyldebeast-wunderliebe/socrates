@@ -52,7 +52,7 @@ public void setUp() {
     
     this.not.setLeftOperand(new Undef());
     
-    assertFalse(this.not.toBoolean());    
+    assertTrue(this.not.toBoolean());    
   }
 
   public void testToString() {

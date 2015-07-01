@@ -74,7 +74,7 @@ public void setUp() {
     assertTrue(this.op.eval().toBoolean());
     
     this.op.setLeftOperand(null);
-
+    
     assertTrue(this.op.eval().toBoolean());
   }
 

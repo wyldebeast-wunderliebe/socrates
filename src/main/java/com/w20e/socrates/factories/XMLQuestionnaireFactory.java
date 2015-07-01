@@ -27,11 +27,7 @@ import org.apache.commons.digester3.Digester;
 import org.apache.commons.digester3.Rule;
 import org.xml.sax.SAXException;
 
-import com.w20e.socrates.data.Node;
-import com.w20e.socrates.data.TypeChecker;
-import com.w20e.socrates.model.ItemProperties;
 import com.w20e.socrates.model.Questionnaire;
-import com.w20e.socrates.model.XRefSolver;
 import com.w20e.socrates.rendering.RenderConfig;
 import com.w20e.socrates.rendering.RenderConfigImpl;
 

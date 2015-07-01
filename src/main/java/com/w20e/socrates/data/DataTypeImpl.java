@@ -68,7 +68,7 @@ public abstract class DataTypeImpl implements DataType {
 	    throws TransformationException, RestrictionViolation {
 
 		Object newValue = value;
-
+		
 		for (final Iterator<Transformation> i = this.transformations.iterator(); i.hasNext();) {
 			newValue = i.next().transform(newValue);
 		}
@@ -78,7 +78,7 @@ public abstract class DataTypeImpl implements DataType {
 			    throw new RestrictionViolation("Value not conform restriction");
 			}
 		}
-
+		
 		if (newValue == null) {
 			return new Undef();
 		} else if (newValue instanceof Number) {
