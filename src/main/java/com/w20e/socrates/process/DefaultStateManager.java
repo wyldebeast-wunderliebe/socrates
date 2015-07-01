@@ -312,6 +312,8 @@ public final class DefaultStateManager extends BaseStateManager
 		this.itemIndex = keepIndex;
 		this.currentState = keepState;
 		
+		LOGGER.finest("Do we have a next state? " + hasNext);
+		
 		return hasNext;
 	}
 
@@ -331,7 +333,9 @@ public final class DefaultStateManager extends BaseStateManager
 		
 		this.itemIndex = keepIndex;
 		this.currentState = keepState;
-		
+
+		LOGGER.finest("Do we have a previous state? " + hasPrevious);
+
 		return hasPrevious;
 	}
 

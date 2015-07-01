@@ -3,15 +3,18 @@ package com.w20e.socrates.process;
 import java.io.File;
 import java.net.URI;
 
+import junit.framework.TestCase;
+
 import org.apache.commons.configuration.Configuration;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.w20e.socrates.config.ConfigurationResource;
 import com.w20e.socrates.model.Model;
+import com.w20e.socrates.rendering.RenderState;
 import com.w20e.socrates.rendering.StateManager;
 
-public class TestDefaultStateManager {
+public class TestDefaultStateManager extends TestCase {
 
 	StateManager sm;
 	
@@ -46,6 +49,24 @@ public class TestDefaultStateManager {
 	@Test
 	public void testPrevious() {
 
+	}
+	
+	@Test
+	public void testHasNext() {
+		
+		assertTrue(this.sm.hasNext());
+		
+	    this.sm.next();
+
+		assertTrue(this.sm.hasNext());
+
+	    this.sm.next();
+
+		assertTrue(this.sm.hasNext());
+	    
+		this.sm.next();
+
+		assertFalse(this.sm.hasNext());	    
 	}
 
 }
