@@ -46,6 +46,9 @@ public class TestXMLQuestionnaireFactory extends TestCase {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		Assert.assertEquals("pipo", q.getModel("foo").getMetaData().get("id"));
+		Assert.assertEquals("666", q.getModel("foo").getMetaData().get("version"));
 
 		try {
 			Assert.assertNotNull(q.getInstance("foo").getNode("foo"));
@@ -82,7 +85,6 @@ public class TestXMLQuestionnaireFactory extends TestCase {
 			Assert.assertEquals("page", rendering.getItem("grp0").getType());
 
 			Group grp0 = (Group) rendering.getItem("grp0");
-			Group grp1 = (Group) rendering.getItem("grp1");
 
 			Assert.assertEquals("input", grp0.getItem("A1").getType());
 

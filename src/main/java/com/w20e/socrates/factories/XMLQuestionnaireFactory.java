@@ -57,8 +57,10 @@ public class XMLQuestionnaireFactory implements QuestionnaireFactory {
 		NodeFactory nodeFactory = new NodeFactory();
 		PropertiesFactory propsFactory = new PropertiesFactory();
 		ExpressionFactory exprFactory = new ExpressionFactory();
+		SurveyFactory surveyFactory = new SurveyFactory();
 
-		dig.addObjectCreate("survey", QuestionnaireImpl.class);
+		dig.addFactoryCreate("survey", surveyFactory);
+		dig.addSetProperties("survey");
 
 		// dig.addRule("*/var", nodeCreateRule);
 		// dig.addCallParam( "*/var", 0, "name");

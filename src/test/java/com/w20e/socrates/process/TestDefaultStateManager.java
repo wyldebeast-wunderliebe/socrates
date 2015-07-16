@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import com.w20e.socrates.config.ConfigurationResource;
 import com.w20e.socrates.model.Model;
-import com.w20e.socrates.rendering.RenderState;
 import com.w20e.socrates.rendering.StateManager;
 
 public class TestDefaultStateManager extends TestCase {
@@ -53,7 +52,7 @@ public class TestDefaultStateManager extends TestCase {
 	
 	@Test
 	public void testHasNext() {
-		
+				
 		assertTrue(this.sm.hasNext());
 		
 	    this.sm.next();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<survey id="pipo"
+<survey id="pipo" version="666"
+
 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"

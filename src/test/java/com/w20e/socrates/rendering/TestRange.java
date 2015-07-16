@@ -1,13 +1,9 @@
 package com.w20e.socrates.rendering;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import com.w20e.socrates.data.XSString;
-import com.w20e.socrates.expression.Undef;
-import com.w20e.socrates.expression.XString;
 
 public class TestRange {
 
@@ -38,15 +34,8 @@ public class TestRange {
         assertEquals(2, this.range.getStep());
 
     }
-
-    public final void testGetDisplayValue() {
-        
-        assertEquals("", this.range.getDisplayValue(null, null, null));
-        assertEquals("", this.range.getDisplayValue(Undef.UNDEF, XSString.class, null));
-
-        assertEquals("xxx", this.range.getDisplayValue(new XString("xxx"), XSString.class, null));
-    }
     
+    @Test
     public final void testGetOptions() {
 
     	this.range.setMin(1);

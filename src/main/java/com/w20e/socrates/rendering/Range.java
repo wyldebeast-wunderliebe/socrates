@@ -80,7 +80,7 @@ public class Range extends Input implements Vocabulary {
 
 		ArrayList<Option> options = new ArrayList<Option>();
 
-		for (int i = this.min; i < this.max; i += this.step) {
+		for (int i = this.min; i <= this.max; i += this.step) {
 			options.add(new Option(String.valueOf(i), String.valueOf(i)));
 		}
 
