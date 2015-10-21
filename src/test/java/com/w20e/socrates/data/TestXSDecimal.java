@@ -68,8 +68,10 @@ public class TestXSDecimal extends TestCase {
         assertEquals("1.0", dec.eval("1.0").toString());
         assertEquals("1", dec.evalLexical("1.0", Locale.US));
         assertEquals("3.14", dec.evalLexical("3.14", Locale.US));
-        assertEquals("3,14", dec.evalLexical("3.14", new Locale("pt", "BR")));
-        assertEquals("3", dec.evalLexical("3.0", new Locale("pt", "BR")));
+        assertEquals("3,14", dec.evalLexical(3.14, new Locale("pt", "BR")));
+        assertEquals("9.876,54", dec.evalLexical("9.876,54", new Locale("pt", "BR")));
+        assertEquals("9.876,54", dec.evalLexical("9876,54", new Locale("pt", "BR")));
+        assertEquals("3", dec.evalLexical("3,0", new Locale("pt", "BR")));
 
     } catch (TransformationException e) {
         fail(e.getMessage());

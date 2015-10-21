@@ -51,16 +51,20 @@ public class TestXSInteger extends TestCase {
         try {
             XSInteger i = new XSInteger();
             System.out.println(i.eval("").toNumber());
-
-            i.eval("pipo").toNumber();
-
-
-            fail("Should fail with non int string");
+            fail("Should fail with value not conform restriction");
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             // Whatever.
         }
 
+        try {
+            XSInteger i = new XSInteger();
+            i.eval("pipo").toNumber();
+            fail("Should fail with non int string");
+        } catch (Exception e) {
+            //e.printStackTrace();
+            // Whatever.
+        }
 
     
     }

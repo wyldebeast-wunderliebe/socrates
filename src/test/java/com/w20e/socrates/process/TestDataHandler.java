@@ -70,7 +70,7 @@ public class TestDataHandler extends TestCase {
 		
 	    // Let's start with no data: should be no problem!
 	    try {
-	    	DataHandler.setData(this.data, this.model, this.instance, this.state);
+	    	DataHandler.setData(this.data, this.model, this.instance, this.state, null);
 		} catch (ValidationException e) {
 			fail("Shouldn't have failed here");
 		}
@@ -82,7 +82,7 @@ public class TestDataHandler extends TestCase {
 
 	      // This should still not be a problem!
         try {
-            DataHandler.setData(this.data, this.model, this.instance, this.state);
+            DataHandler.setData(this.data, this.model, this.instance, this.state, null);
         } catch (ValidationException e) {
             fail("Should have failed on invalid type for XSInteger");
         }
@@ -91,7 +91,7 @@ public class TestDataHandler extends TestCase {
 		
 		// This should be a problem!
 	    try {
-	    	DataHandler.setData(this.data, this.model, this.instance, this.state);
+	    	DataHandler.setData(this.data, this.model, this.instance, this.state, null);
 			fail("Should have failed on invalid type for XSInteger");
 		} catch (ValidationException e) {
 			// As expected.
@@ -102,7 +102,7 @@ public class TestDataHandler extends TestCase {
 
 		// Should be no problem!
 	    try {
-	    	DataHandler.setData(this.data, this.model, this.instance, this.state);
+	    	DataHandler.setData(this.data, this.model, this.instance, this.state, null);
 		} catch (ValidationException e) {
 			fail("Should not have failed on valid type for XSInteger");
 		}
@@ -112,7 +112,7 @@ public class TestDataHandler extends TestCase {
 
 		// If not required, shouldn't be a problem
 	    try {
-	    	DataHandler.setData(this.data, this.model, this.instance, this.state);
+	    	DataHandler.setData(this.data, this.model, this.instance, this.state, null);
 		} catch (ValidationException e) {
 			fail("Should not have failed on valid type for XSInteger");
 		}
@@ -121,7 +121,7 @@ public class TestDataHandler extends TestCase {
 		this.props.setRequired(new XBoolean(true));
 		
 	    try {
-	    	DataHandler.setData(this.data, this.model, this.instance, this.state);
+	    	DataHandler.setData(this.data, this.model, this.instance, this.state, null);
 			fail("Should have failed on empty value for XSInteger");
 		} catch (ValidationException e) {
 			// No worries...
@@ -138,7 +138,7 @@ public class TestDataHandler extends TestCase {
 		
 	    // Let's start with no data: should be no problem!
 	    try {
-	    	DataHandler.setData(this.data, this.model, this.instance, this.state);
+	    	DataHandler.setData(this.data, this.model, this.instance, this.state, null);
 		} catch (ValidationException e) {
 			fail("Shouldn't have failed here");
 		}
@@ -148,7 +148,7 @@ public class TestDataHandler extends TestCase {
 
 		// Should be no problem!
 	    try {
-	    	DataHandler.setData(this.data, this.model, this.instance, this.state);
+	    	DataHandler.setData(this.data, this.model, this.instance, this.state, null);
 		} catch (ValidationException e) {
 			fail("Should not have failed on valid type for XSBoolean");
 		}
@@ -158,7 +158,7 @@ public class TestDataHandler extends TestCase {
 
 		// Should be no problem!
 	    try {
-	    	DataHandler.setData(this.data, this.model, this.instance, this.state);
+	    	DataHandler.setData(this.data, this.model, this.instance, this.state, null);
 		} catch (ValidationException e) {
 			fail("Shouldn't have failed here");
 		}
@@ -167,7 +167,7 @@ public class TestDataHandler extends TestCase {
 		this.props.setRequired(new XBoolean(true));
 		
 	    try {
-	    	DataHandler.setData(this.data, this.model, this.instance, this.state);
+	    	DataHandler.setData(this.data, this.model, this.instance, this.state, null);
 		} catch (ValidationException e) {
 			fail("Shouldn't have failed on empty value for XSBoolean");
 		}
@@ -182,7 +182,7 @@ public class TestDataHandler extends TestCase {
 		
 	    // Let's start with no data: should be no problem!
 	    try {
-	    	DataHandler.setData(this.data, this.model, this.instance, this.state);
+	    	DataHandler.setData(this.data, this.model, this.instance, this.state, null);
 		} catch (ValidationException e) {
 			fail("Shouldn't have failed here");
 		}
@@ -192,7 +192,7 @@ public class TestDataHandler extends TestCase {
 
 		// Should be no problem!
 	    try {
-	    	DataHandler.setData(this.data, this.model, this.instance, this.state);
+	    	DataHandler.setData(this.data, this.model, this.instance, this.state, null);
 		} catch (ValidationException e) {
 			fail("Should not have failed on valid type for XSString");
 		}
@@ -202,7 +202,7 @@ public class TestDataHandler extends TestCase {
 
 		// Should be no problem!
 	    try {
-	    	DataHandler.setData(this.data, this.model, this.instance, this.state);
+	    	DataHandler.setData(this.data, this.model, this.instance, this.state, null);
 		} catch (ValidationException e) {
 			fail("Shouldn't have failed here");
 		}
@@ -211,7 +211,7 @@ public class TestDataHandler extends TestCase {
 		this.props.setRequired(new XBoolean(true));
 		
 	    try {
-	    	DataHandler.setData(this.data, this.model, this.instance, this.state);
+	    	DataHandler.setData(this.data, this.model, this.instance, this.state, null);
 			fail("Should have failed on empty value for XSString");
 		} catch (ValidationException e) {
 			// As expected.
@@ -221,7 +221,7 @@ public class TestDataHandler extends TestCase {
 		this.data.clear();
 		
 	    try {
-	    	DataHandler.setData(this.data, this.model, this.instance, this.state);
+	    	DataHandler.setData(this.data, this.model, this.instance, this.state, null);
 			fail("Should have failed on undefined value for XSString");
 		} catch (ValidationException e) {
 			// As expected.

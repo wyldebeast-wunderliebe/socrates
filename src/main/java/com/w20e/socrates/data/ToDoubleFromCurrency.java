@@ -14,41 +14,27 @@ package com.w20e.socrates.data;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import com.w20e.socrates.expression.XNumber;
-
 /**
  * @author dokter
  * 
  * @todo To change the template for this generated type comment go to Window -
  *       Preferences - Java - Code Style - Code Templates
  */
-public class ToDouble implements Transformation {
 
+
+public class ToDoubleFromCurrency implements Transformation {
+	
 	/**
-	 * Return Double value for this object. If the argument is null, null is
-	 * returned.
+	 * Return Double value for this object. If the argument is null, null is returned
 	 * 
 	 * @param obj
 	 *            object to convert.
-	 * @return float object
+	 * @return double object
 	 */
 	@Override
 	public final Object transform(final Object obj) {
-
-		if (obj == null || "".equals(obj.toString()) || obj.toString() == null) {
-			return null;
-		}
 		
-		if (obj instanceof XNumber) {
-			Number num = ((XNumber)obj).toNumber();
-			return Double.valueOf(num.doubleValue());
-		}
-
-		if (obj instanceof Number) {
-			return Double.valueOf(((Number)obj).doubleValue());
-		}				
-
-		return Double.valueOf(obj.toString());
+		return obj; // do nothing in this transform
 	}
 
 	@Override
@@ -59,12 +45,28 @@ public class ToDouble implements Transformation {
 		}
 
 		try {
-			if (obj instanceof Number) {
-				return Double.valueOf(((Number)obj).doubleValue());
-			}				
-			return Double.valueOf(((Number)NumberFormat.getInstance(locale).parseObject(obj.toString())).doubleValue());
+		
+			if (obj instanceof String) {
+				// try to parse this as a currency
+				
+				// first a real dumb trick: if only a comma or a dot is used
+				// and it is followed by 1 or 2 digits, then assume it's the
+				// decimal seperator, no matter what the locale
+				if (obj.toString().matches("^\\d+[.,]{1}\\d{1,2}$")) {
+					String decimal_str = obj.toString().replace(",", ".");
+					return Double.parseDouble(decimal_str);
+				}
+				
+				Number val = NumberFormat.getCurrencyInstance(locale).parse(obj.toString());
+				return Double.valueOf(val.doubleValue());
+			}
+			
 		} catch (Exception e) {
-			return null;
+			// whatever
 		}
+		
+		return obj; // do nothing in this transform
 	}
+
 }
+

@@ -28,8 +28,9 @@ public class TestXSAmount extends TestCase {
             assertEquals("$0.00", amount.evalLexical("0.0", Locale.US));
             //assertEquals("$0.00", amount.evalLexical(null, Locale.US));
 
-            assertEquals("R$ 3,14", amount.evalLexical("3.14", new Locale("pt", "BR")));
-            assertEquals("R$ 3,10", amount.evalLexical("3.1", new Locale("pt", "BR")));
+            assertEquals("R$ 3,14", amount.evalLexical(3.14, new Locale("pt", "BR")));
+            assertEquals("R$ 3.014,99", amount.evalLexical("3.014,99", new Locale("pt", "BR")));
+            assertEquals("R$ 3,10", amount.evalLexical("3,1", new Locale("pt", "BR")));
 
         } catch (TransformationException e) {
             fail(e.getMessage());

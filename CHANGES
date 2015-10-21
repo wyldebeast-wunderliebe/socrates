@@ -1,8 +1,13 @@
-4.0.0 
-===== 
+4.1.0
+=====
+* Pass locale to the transformation of the data so xs:amount and xs:decimal are
+  now accepted in the current locale (decimal an thousands separators)
+
+4.0.0
+=====
 * Collapsed socrates-impl into this package. There's no point in
   keeping a separate interfaces packages, given that there will ever
-  be only one implementation...      
+  be only one implementation...
 
 3.2.6
 =====

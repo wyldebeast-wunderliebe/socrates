@@ -99,7 +99,7 @@ public class XRef extends AbstractExpressionImpl implements XObject {
 		return TypeChecker.evaluate(
 				XSDouble.class,
 				NodeValidator.getRawValue(this.node, this.props, this.model,
-						this.instance)).toNumber();
+						this.instance), null).toNumber();
 	}
 
 	/**
@@ -163,7 +163,7 @@ public class XRef extends AbstractExpressionImpl implements XObject {
 		return TypeChecker.evaluate(
 				XSBoolean.class,
 				NodeValidator.getRawValue(this.node, this.props, this.model,
-						this.instance)).toBoolean();
+						this.instance), null).toBoolean();
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class XRef extends AbstractExpressionImpl implements XObject {
 		return TypeChecker.evaluate(
 				XSString.class,
 				NodeValidator.getRawValue(this.node, this.props, this.model,
-						this.instance)).toString();
+						this.instance), null).toString();
 	}
 
 	/**

@@ -39,8 +39,12 @@ public interface DataType {
 	 * 
 	 * @param value
 	 *            Object to test.
+	 * @param locale TODO
 	 * @return eval'ed object
 	 */
+	XObject eval(Object value, Locale locale) throws TransformationException,
+			RestrictionViolation;
+	
 	XObject eval(Object value) throws TransformationException,
 			RestrictionViolation;
 
@@ -78,8 +82,19 @@ public interface DataType {
 	 * @param trans
 	 *            Transformation to add.
 	 */
-	void addTransformation(Transformation trans);
+	void addTransformation(Transformation trans, boolean prepend);
 
+	/**
+	 * Add a transformation to this type.
+	 * 
+	 * @param trans
+	 *            Transformation to add.
+	 * @param prepend
+	 * 			  Add the transformation as first in the list
+	 */
+	void addTransformation(Transformation trans);
+	
+	
 	/**
 	 * Set the transformation for converting to the lexical representation.
 	 * 

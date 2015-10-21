@@ -14,6 +14,8 @@ package com.w20e.socrates.data;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import com.w20e.socrates.expression.XNumber;
+
 /**
  * @author dokter
  * 
@@ -37,15 +39,33 @@ public class ToFloat implements Transformation {
 			return null;
 		}
 
+		if (obj instanceof Number) {
+			return Float.valueOf(((Number)obj).floatValue());
+		}				
+		
 		return Float.valueOf(obj.toString());
 	}
 
 	@Override
 	public final Object transform(final Object obj, final Locale locale) {
-
+		
+		if (locale == null) {
+			return transform(obj);
+		}
+		
 		try {
-			return NumberFormat.getInstance(locale)
-					.parseObject(obj.toString());
+			
+			if (obj instanceof XNumber) {
+				Number num = ((XNumber)obj).toNumber();
+				return Float.valueOf(num.floatValue());
+			}
+			
+			if (obj instanceof Number) {
+				return Float.valueOf(((Number)obj).floatValue());
+			}				
+			
+			return Float.valueOf(((Number)NumberFormat.getInstance(locale).parseObject(obj.toString())).floatValue());
+			
 		} catch (Exception e) {
 			return null;
 		}

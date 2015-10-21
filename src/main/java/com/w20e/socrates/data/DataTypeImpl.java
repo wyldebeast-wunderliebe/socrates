@@ -64,13 +64,13 @@ public abstract class DataTypeImpl implements DataType {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public final XObject eval(final Object value)
+	public final XObject eval(final Object value, Locale locale)
 	    throws TransformationException, RestrictionViolation {
 
 		Object newValue = value;
 		
 		for (final Iterator<Transformation> i = this.transformations.iterator(); i.hasNext();) {
-			newValue = i.next().transform(newValue);
+			newValue = i.next().transform(newValue, locale);
 		}
 
 		for (final Iterator<Restriction> i = this.restrictions.iterator(); i.hasNext();) {
@@ -91,6 +91,13 @@ public abstract class DataTypeImpl implements DataType {
 
 		return new XString(newValue.toString());
 	}
+	
+	@Override
+	public final XObject eval(final Object value)
+	    throws TransformationException, RestrictionViolation {
+
+		return eval(value, null);
+	}	
 
 	/**
      * Validate against all restrictions. The method will throw a runtime
@@ -129,7 +136,7 @@ public abstract class DataTypeImpl implements DataType {
 	public final String evalLexical(final Object value, final Locale locale)
 	throws TransformationException, RestrictionViolation {
 
-		XObject newValue = eval(value);
+		XObject newValue = eval(value, locale);
 
 		for (LexicalTransformation t : this.lexTransformations) {
 			newValue = t.transform(newValue, locale);
@@ -157,10 +164,17 @@ public abstract class DataTypeImpl implements DataType {
 	 *            the transformation to add.
 	 */
 	@Override
+	public final void addTransformation(final Transformation trans, boolean prepend) {
+
+		this.transformations.add(0, trans);
+	}
+	
+	@Override
 	public final void addTransformation(final Transformation trans) {
 
 		this.transformations.add(trans);
 	}
+	
 
 	/**
 	 * Set the lexical transformation for this type. This should consider the

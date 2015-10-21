@@ -2,6 +2,7 @@ package com.w20e.socrates.process;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import com.w20e.socrates.data.Instance;
@@ -53,19 +54,21 @@ public final class DataHandler {
      *            an <code>Instance</code> value
      * @param state
      *            the current state
+     * @param locale TODO
      * @exception ValidationException
      *                if an error occurs
      * @todo The value of the node should really be set to the plain value; the
      *       type should be used in validation only...
      */
     public static void setData(final Map<String, Object> data,
-            final Model model, final Instance inst, final RenderState state)
+            final Model model, final Instance inst, final RenderState state,
+            final Locale locale)
             throws ValidationException {
 
         ValidationException dataExcp = new ValidationException();
         Map<String, Node> nodes = DataHandler.processNodes(inst, model, state
-                .getItems(), data, dataExcp);
-
+                .getItems(), data, dataExcp, locale);
+        
         // Now do validation...
         for (Map.Entry<String, Node> entry : nodes.entrySet()) {
 
@@ -103,13 +106,14 @@ public final class DataHandler {
     /**
      * Find bound nodes for all render items and set data, if the node is not
      * found to be readonly. This method will recurse through all groups.
-     * 
      * @param renderItems
+     * @param locale TODO
+     * 
      * @return list of nodes contained in the given list of render items.
      */
     private static Map<String, Node> processNodes(Instance inst, Model model,
             Collection<Renderable> renderItems, Map<String, Object> data,
-            ValidationException dataExcp) {
+            ValidationException dataExcp, Locale locale) {
 
         Map<String, Node> nodes = new HashMap<String, Node>();
         Node n;
@@ -120,7 +124,7 @@ public final class DataHandler {
         for (Renderable r : renderItems) {
             if (r instanceof Group) {
                 nodes.putAll(processNodes(inst, model, ((Group) r).getItems(),
-                        data, dataExcp));
+                        data, dataExcp, locale));
             } else if (r instanceof Control) {
 
                 // If there's no data available, don't set.
@@ -146,7 +150,7 @@ public final class DataHandler {
 
                             if (val != null) {
                                 typedVal = TypeChecker.evaluate(
-                                        props.getDatatype(), val).toObject();
+                                        props.getDatatype(), val, locale).toObject();
                             }
 
                             if (typedVal != null) {

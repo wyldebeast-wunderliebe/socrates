@@ -13,6 +13,8 @@ package com.w20e.socrates.data;
 
 import java.util.Locale;
 
+import com.w20e.socrates.expression.XNumber;
+
 /**
  * Transformation to integer.
  */
@@ -31,8 +33,13 @@ public class ToInteger implements Transformation {
 	public final Object transform(final Object obj)
 			throws TransformationException {
 
-		if (obj == null) {
+		if (obj == null || obj.toString().equals("")) {
 			return null;
+		}
+		
+		if (obj instanceof XNumber) {
+			Number num = ((XNumber)obj).toNumber();
+			return Integer.valueOf(num.intValue());
 		}
 
 		if (obj instanceof Number) {

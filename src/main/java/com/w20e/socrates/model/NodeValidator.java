@@ -78,7 +78,7 @@ public final class NodeValidator {
             	
                     Object value = XRefSolver.resolve(model, inst,
                             props.getCalculate(), node).eval().toObject();
-                return TypeChecker.evaluate(props.getDatatype(), value);
+                return TypeChecker.evaluate(props.getDatatype(), value, null);
             }
             
             if (node == null) {
@@ -91,10 +91,10 @@ public final class NodeValidator {
             					props.getDefault(), node).eval().toObject();
             	
             	node.setValue(TypeChecker.evaluate(props.getDatatype(),
-            			value));
+            			value, null));
 			}
             
-            return TypeChecker.evaluate(props.getDatatype(), node.getValue());
+            return TypeChecker.evaluate(props.getDatatype(), node.getValue(), null);
 
         } catch (Exception e) {
         	try {
@@ -143,7 +143,7 @@ public final class NodeValidator {
         	Object value = XRefSolver.resolve(model, inst,
         					props.getDefault(), node).eval().toObject();
         	
-        	node.setValue(TypeChecker.evaluate(props.getDatatype(), value));
+        	node.setValue(TypeChecker.evaluate(props.getDatatype(), value, null));
 		}
 
         return node.getValue();

@@ -22,8 +22,8 @@ public class XSAmount extends XSFloat {
 	 * Create new Amount object.
 	 */
 	public XSAmount() {
-		super();
-		addTransformation(new ToFloat());
+		super();		
+		addTransformation(new ToDoubleFromCurrency(), true); // prepend!
 		addLexicalTransformation(new NullToZeroAsFloat());
 		addLexicalTransformation(new CurrencyFormat());
 	}

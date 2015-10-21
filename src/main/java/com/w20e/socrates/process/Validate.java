@@ -82,9 +82,11 @@ public class Validate extends AbstractProcessActionImpl {
 		}
 		
 		try {
-			DataHandler.setData(((RunnerContextImpl) context).getData(),
+			DataHandler.setData(
+					((RunnerContextImpl) context).getData(),
 					((RunnerContext) context).getModel(),
-					((RunnerContext) context).getInstance(), state);
+					((RunnerContext) context).getInstance(), state,
+					((RunnerContext) context).getLocale());
 		} catch (ValidationException e) {
 
 			return new Failure(e);

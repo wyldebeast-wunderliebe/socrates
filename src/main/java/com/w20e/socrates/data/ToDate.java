@@ -32,7 +32,11 @@ public class ToDate implements Transformation {
 
 
 	   @Override
-	public Object transform(final Object obj, final Locale locale) {
+	public Object transform(final Object obj, final Locale locale) throws TransformationException {
+		   
+		   if (locale == null) {
+			   return transform(obj);
+		   }
 
 	        if (obj == null || "".equals(obj.toString())) {
 	            return null;

@@ -33,21 +33,21 @@ public class TestTypeChecker extends TestCase {
 	public void testEvaluate() {
 
 		try {
-			XObject value = TypeChecker.evaluate(TypeChecker.class, "");
+			XObject value = TypeChecker.evaluate(TypeChecker.class, "", null);
 			assertEquals("", value.toString());
 		} catch (Exception e) {
 			fail("This is impossible");
 		}
 
 		try {
-			XObject value = TypeChecker.evaluate(DataType.class, "");
+			XObject value = TypeChecker.evaluate(DataType.class, "", null);
 			assertEquals("", value.toString());
 		} catch (Exception e) {
 			fail("This is impossible");
 		}
 
 		// try {
-		assertEquals(Undef.UNDEF, TypeChecker.evaluate(XSInteger.class, ""));
+		assertEquals(Undef.UNDEF, TypeChecker.evaluate(XSInteger.class, "", null));
 		// fail("Shouldn't be possible");
 		// } catch (TransformationException e1) {
 		// } catch (RestrictionViolation e1) {
@@ -56,13 +56,13 @@ public class TestTypeChecker extends TestCase {
 		// }
 
 		try {
-			assertEquals(false, TypeChecker.evaluate(XSBoolean.class, "")
+			assertEquals(false, TypeChecker.evaluate(XSBoolean.class, "", null)
 					.toBoolean());
-			assertEquals(false, TypeChecker.evaluate(XSBoolean.class, "false")
+			assertEquals(false, TypeChecker.evaluate(XSBoolean.class, "false", null)
 					.toBoolean());
-			assertEquals(true, TypeChecker.evaluate(XSBoolean.class, "falszze")
+			assertEquals(true, TypeChecker.evaluate(XSBoolean.class, "falszze", null)
 					.toBoolean());
-			assertEquals(true, TypeChecker.evaluate(XSBoolean.class, "true")
+			assertEquals(true, TypeChecker.evaluate(XSBoolean.class, "true", null)
 					.toBoolean());
 		} catch (Exception e) {
 			fail(e.getMessage());

@@ -53,16 +53,39 @@ public class TestToDate {
 
         Locale l = new Locale("nl_NL");
 
-        assertEquals("01", String.format("%tm", todate.transform("01/04/2009",
+        try {
+        	assertEquals("01", String.format("%tm", todate.transform("01/04/2009",
                 l)));
+        } catch (TransformationException tfe) {
+        	fail(tfe.getMessage());
+        }
 
         l = new Locale("de_DE");
 
-        assertEquals("01", String.format("%tm", todate.transform("01/04/2009",
+        try {
+        	assertEquals("01", String.format("%tm", todate.transform("01/04/2009",
                 l)));
+	    } catch (TransformationException tfe) {
+	    	fail(tfe.getMessage());
+	    }
 
-        assertNull(todate.transform("pipo", l));
-        assertEquals(d, todate.transform(d, l));
-        assertNull(todate.transform(null, l));
+        try {
+        	assertNull(todate.transform("pipo", l));
+		} catch (TransformationException tfe) {
+			fail(tfe.getMessage());
+		}
+        
+        try {
+        	assertEquals(d, todate.transform(d, l));
+        } catch (TransformationException tfe) {
+        	fail(tfe.getMessage());
+        }
+
+        try {
+        	assertNull(todate.transform(null, l));
+        } catch (TransformationException tfe) {
+        	fail(tfe.getMessage());
+        }
+
     }
 }

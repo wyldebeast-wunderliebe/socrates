@@ -54,12 +54,13 @@ public final class TypeChecker {
   /**
    * Evaluate object against type.
    * @param type type for object
-   * @param value value
+ * @param value value
+ * @param locale TODO
    * @return new evaluated object or undefined if the transformation cannot be done.
  * @throws RestrictionViolation 
  * @throws TransformationException 
    */
-  public static XObject evaluate(final Class<?> type, final Object value) {
+  public static XObject evaluate(final Class<?> type, final Object value, Locale locale) {
 
     if (!TypeChecker.typeCache.containsKey(type)) {
         try {
@@ -70,7 +71,7 @@ public final class TypeChecker {
     }
 
     try {
-        return TypeChecker.typeCache.get(type).eval(value);
+        return TypeChecker.typeCache.get(type).eval(value, locale);
     } catch (Exception e) {
         return Undef.UNDEF;
     }

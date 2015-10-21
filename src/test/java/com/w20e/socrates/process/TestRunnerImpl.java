@@ -327,7 +327,7 @@ public class TestRunnerImpl extends TestCase {
 
 				// This should try rendering
 				this.runner.next(this.ctx);
-				fail();
+				fail(); // should not arrive here
 			} catch (Exception aee) {
 				// As expected.
 			}

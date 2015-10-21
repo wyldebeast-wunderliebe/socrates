@@ -92,7 +92,7 @@ public final class XRefSolver {
 				}
 
 				if (node == self) {
-					return TypeChecker.evaluate(props.getDatatype(), node.getValue());
+					return TypeChecker.evaluate(props.getDatatype(), node.getValue(), null);
 				}
 
 				return new XRef(node, model, inst, props);
