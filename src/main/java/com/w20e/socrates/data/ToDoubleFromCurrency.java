@@ -51,7 +51,7 @@ public class ToDoubleFromCurrency implements Transformation {
 				
 				// first a real dumb trick: if only a comma or a dot is used
 				// and it is followed by 1 or 2 digits, then assume it's the
-				// decimal seperator, no matter what the locale
+				// decimal separator, no matter what the locale
 				if (obj.toString().matches("^\\d+[.,]{1}\\d{1,2}$")) {
 					String decimal_str = obj.toString().replace(",", ".");
 					return Double.parseDouble(decimal_str);

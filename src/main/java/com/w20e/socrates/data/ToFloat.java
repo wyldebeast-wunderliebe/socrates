@@ -62,7 +62,19 @@ public class ToFloat implements Transformation {
 			
 			if (obj instanceof Number) {
 				return Float.valueOf(((Number)obj).floatValue());
-			}				
+			}
+			
+			if (obj instanceof String) {
+				// try to parse this as a a float
+				
+				// first a real dumb trick: if only a comma or a dot is used
+				// and it is followed by 1 or 2 digits, then assume it's the
+				// decimal separator, no matter what the locale
+				if (obj.toString().matches("^\\d+[.,]{1}\\d{1,2}$")) {
+					String decimal_str = obj.toString().replace(",", ".");
+					return Float.parseFloat(decimal_str);
+				}
+			}			
 			
 			return Float.valueOf(((Number)NumberFormat.getInstance(locale).parseObject(obj.toString())).floatValue());
 			

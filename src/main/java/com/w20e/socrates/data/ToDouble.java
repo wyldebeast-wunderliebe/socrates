@@ -61,7 +61,20 @@ public class ToDouble implements Transformation {
 		try {
 			if (obj instanceof Number) {
 				return Double.valueOf(((Number)obj).doubleValue());
-			}				
+			}
+			
+			if (obj instanceof String) {
+				// try to parse this as a a double
+				
+				// first a real dumb trick: if only a comma or a dot is used
+				// and it is followed by 1 or 2 digits, then assume it's the
+				// decimal separator, no matter what the locale
+				if (obj.toString().matches("^\\d+[.,]{1}\\d{1,2}$")) {
+					String decimal_str = obj.toString().replace(",", ".");
+					return Double.parseDouble(decimal_str);
+				}
+			}			
+			
 			return Double.valueOf(((Number)NumberFormat.getInstance(locale).parseObject(obj.toString())).doubleValue());
 		} catch (Exception e) {
 			return null;

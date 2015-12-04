@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>socrates</groupId>
   <artifactId>socrates</artifactId>
-  <version>4.1.0</version>
+  <version>4.1.1</version>
   <name>Socrates Core API</name>
 
   <description>Socrates Core API consisting of interfaces and implementation
