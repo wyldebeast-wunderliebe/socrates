@@ -63,6 +63,11 @@ public class ToDouble implements Transformation {
 				return Double.valueOf(((Number)obj).doubleValue());
 			}
 			
+			if (obj instanceof XNumber) {
+				Number num = ((XNumber)obj).toNumber();
+				return Double.valueOf(num.doubleValue());
+			}			
+			
 			if (obj instanceof String) {
 				// try to parse this as a a double
 				

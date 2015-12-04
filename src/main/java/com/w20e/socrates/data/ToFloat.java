@@ -39,6 +39,11 @@ public class ToFloat implements Transformation {
 			return null;
 		}
 
+		if (obj instanceof XNumber) {
+			Number num = ((XNumber)obj).toNumber();
+			return Float.valueOf(num.floatValue());
+		}		
+		
 		if (obj instanceof Number) {
 			return Float.valueOf(((Number)obj).floatValue());
 		}				
